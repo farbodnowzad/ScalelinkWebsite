@@ -11470,7 +11470,7 @@ section.cta:before {
   stop-color: #000;
 }
 .features-device-mockup .circle .gradient-end-color {
-  stop-color: #9f1ae2;
+  stop-color: #000;
 }
 .features-device-mockup .shape-1 {
   position: absolute;
@@ -11492,7 +11492,11 @@ section.cta:before {
 .features-device-mockup .device-wrapper {
   max-width: 10rem;
 }
-
+@media (max-width: 576px) {
+  .features-device-mockup .device-wrapper {
+    max-width: 15rem;
+  }
+}
 @media (min-width: 576px) {
   .features-device-mockup .circle {
     width: 70%;
@@ -11648,5 +11652,23 @@ footer a:hover, footer a:active, footer a:focus {
   }
   .masthead .masthead-device-mockup .device-wrapper {
     max-width: 17rem;
+  }
+}
+@media (max-width: 576px) {
+  .masthead .masthead-device-mockup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .masthead .masthead-device-mockup .circle {
+    position: absolute;
+    left: 0;
+    fill: url(#circleGradient);
+    width: 70%;
+    display: none;
+  }
+  .masthead .masthead-device-mockup .device-wrapper {
+    max-width: 15rem;
   }
 }
