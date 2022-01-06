@@ -11687,6 +11687,9 @@ footer a:hover, footer a:active, footer a:focus {
     font-family: "SFPro-Regular";
     src: url("../assets/fonts/SF-Pro/SF-Pro-Text-Regular.otf");
 }
+.feed-h1 {
+    font-size: 1.25rem;
+}
 .feed-campaign {
     width: 100%;
     height: 100%;
@@ -11704,7 +11707,8 @@ footer a:hover, footer a:active, footer a:focus {
     height: 100%;
     min-height: 100%;
     border-radius: 10px;
-}.feed-campaign .content-container div {
+}
+.feed-campaign .content-container div {
    margin-bottom: 1%;
 }
 .banner-image {
@@ -11714,7 +11718,6 @@ footer a:hover, footer a:active, footer a:focus {
     justify-content: center;
     align-items: center; */
     overflow: hidden;
-    border: 1px black solid;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
@@ -11727,7 +11730,6 @@ footer a:hover, footer a:active, footer a:focus {
 }
 .brand-name {
     padding-top: 2%;
-    font-size: 1.25rem;
     font-family: "SFPro-Heavy";
 }
 .content-container .description {
@@ -11787,7 +11789,6 @@ footer a:hover, footer a:active, footer a:focus {
     width: 100%;
     background-color: #0A47E4;
     font-family: "SFPro-Heavy";
-    font-size: 1.25rem;
     color: white;
     border-radius: 5px;
     text-align: center;
@@ -11795,3 +11796,47 @@ footer a:hover, footer a:active, footer a:focus {
     padding-bottom: 2.5%;
     margin-top: 3%;
 }
+@media (max-width: 576px) {
+    .container {
+        padding: 0px;
+    }
+    .px-5 {
+        padding-right: 1rem !important;
+        padding-left: 1rem !important;
+    }
+    .feed-campaign {
+        padding-top: 0%;
+        padding-bottom: 0%;
+        padding-left: 0%;
+        padding-right: 0%;
+    }
+    .feed-campaign .content-container div {
+        margin-bottom: 2%;
+     }
+    .text-content {
+        padding-bottom: 3%;
+        padding-left: 3%;
+        padding-right: 3%;
+    }
+    div {
+        font-size: 0.65rem;
+    }
+    .feed-h1 {
+        font-size: 0.9rem;
+    }
+    .campaign_details {
+        visibility: hidden;
+        /* height: 0px; */
+    }
+    .get_link {
+        width: 100%;
+        background-color: #0A47E4;
+        font-family: "SFPro-Heavy";
+        color: white;
+        border-radius: 5px;
+        text-align: center;
+        padding-top: 2.5%;
+        padding-bottom: 2.5%;
+        margin-top: -5%;
+    }
+  }
