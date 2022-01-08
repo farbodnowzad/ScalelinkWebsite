@@ -64,6 +64,21 @@
   --bs-body-bg: #fff;
 }
 
+@font-face {
+  font-family: "SFPro-Heavy";
+  src: url("../assets/fonts/SF-Pro/SF-Pro-Text-Heavy.otf");
+}
+@font-face {
+  font-family: "SFPro-Bold";
+  src: url("../assets/fonts/SF-Pro/SF-Pro-Text-Bold.otf");
+}@font-face {
+  font-family: "SFPro-Medium";
+  src: url("../assets/fonts/SF-Pro/SF-Pro-Text-Medium.otf");
+}@font-face {
+  font-family: "SFPro-Regular";
+  src: url("../assets/fonts/SF-Pro/SF-Pro-Text-Regular.otf");
+}
+
 *,
 *::before,
 *::after {
@@ -11360,7 +11375,8 @@ section {
   color: #212529;
 }
 #mainNav .navbar-nav .nav-item .nav-link {
-  color: #212529;
+  color: #878787;
+  font-family: "SFPro-Regular";
 }
 #mainNav .navbar-nav .nav-item .nav-link:hover {
   color: #6c757d;
@@ -11672,21 +11688,6 @@ footer a:hover, footer a:active, footer a:focus {
     max-width: 15rem;
   }
 }
-
-@font-face {
-    font-family: "SFPro-Heavy";
-    src: url("../assets/fonts/SF-Pro/SF-Pro-Text-Heavy.otf");
-}
-@font-face {
-    font-family: "SFPro-Bold";
-    src: url("../assets/fonts/SF-Pro/SF-Pro-Text-Bold.otf");
-}@font-face {
-    font-family: "SFPro-Medium";
-    src: url("../assets/fonts/SF-Pro/SF-Pro-Text-Medium.otf");
-}@font-face {
-    font-family: "SFPro-Regular";
-    src: url("../assets/fonts/SF-Pro/SF-Pro-Text-Regular.otf");
-}
 .section-header {
     font-family: "SFPro-Bold";
     font-size: 1.25rem;
@@ -11842,10 +11843,113 @@ footer a:hover, footer a:active, footer a:focus {
     margin-right: auto;
     vertical-align: middle;
 }
+
+/* links */
+.my-link {
+  width: 100%;
+  height: 100%;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, .1);
+  border-radius: 10px;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  padding-left: 10%;
+  padding-right: 10%;
+  font-family: "SFPro-Medium";
+  font-size: 1rem;
+  margin-bottom: 5%;
+}
+.my-link .banner-image {
+  width: 100%;
+  height: 20vh;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  overflow: hidden;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  /* border: 1px solid black; */
+}
+.my-link .banner-image img {
+  /* flex-shrink: 0; */
+  min-width: 100%;
+  height: auto;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.link-desc-top-row {
+  width: 100%;
+  height: 100%;
+}
+.link-desc-top-row .campaign-title{
+  width: 70%;
+  float: left;
+}
+.link-desc-top-row .campaign-expiration{
+  width: 30%;
+  float: right;
+  text-align: right;
+}
+.link-desc-bottom-row {
+  width: 100%;
+  height: 100%;
+}
+.link-desc-bottom-row .url{
+  width: 50%;
+  float: left;
+}
+.link-desc-bottom-row .budget{
+  width: 50%;
+  float: right;
+  text-align: right;
+}
+.campaign-details {
+  font-family: "SFPro-Heavy";
+  color: #0A47E4;
+}
+.campaign-details a {
+  text-decoration: none;
+}
+.earnings {
+  width: 100%;
+  height: 100%;
+}
+.earnings .total-earnings{
+  width: 50%;
+  float: left;
+  text-align: right;
+  padding-right: 5%;
+  font-family: "SFPro-Heavy";
+}
+.earnings .unique-visitors{
+  width: 50%;
+  float: right;
+  text-align: left;
+  padding-left: 5%;
+  font-family: "SFPro-Heavy";
+}
+.earnings .amount {
+  color: #0A47E4;
+}
+.unique-link {
+  width: 100%;
+  background-color: #F0F1F2;
+  font-family: "SFPro-Heavy";
+  color: black;
+  border-radius: 5px;
+  text-align: center;
+  padding-top: 2.0%;
+  padding-bottom: 2.0%;
+  margin-top: 7%;
+}
+
 @media (max-width: 576px) {
     .banner-image {
         width: 100%;
         height: 30vh;
+    }
+    .my-link .banner-image {
+      width: 100%;
+      height: 15vh;
     }
     .container {
         padding: 0px;
@@ -11916,12 +12020,9 @@ footer a:hover, footer a:active, footer a:focus {
         vertical-align: middle;
     }
 }
-.my-account-header {
-
-}
-.full-name {
-    font-family: "SFPro-Heavy";
-    font-size: 1.75rem;
+.page-header {
+  font-family: "SFPro-Heavy";
+  font-size: 1.75rem;
 }
 .wallet {
     margin-top: 5%;

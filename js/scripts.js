@@ -3,3 +3,6 @@ $('.feed-campaign').click(function(e){
     window.location = $(this).find("a").attr("href");
     return false;
 });
+
+var referrer = document.referrer;
+console.log(referrer);
