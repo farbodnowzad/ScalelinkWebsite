@@ -12067,3 +12067,89 @@ footer a:hover, footer a:active, footer a:focus {
 .input-info input::placeholder {
     color: #878787;
 }
+
+/* login sign up */
+.login-signup-logo {
+  width: 100%;
+  text-align: center;
+}
+
+.login-signup-logo img {
+  width: 50%;
+}
+
+.login-sign-up-input-container {
+  margin-top: 15%;
+  width: 100%;
+}
+
+.login-sign-up-input-row {
+  width: 100%;
+  margin-top: 6%;
+}
+
+.login-sign-up-input {
+  border: 1px solid #E8E8E8;
+  width: 100%;
+  border-radius: 5px;
+  padding: 1.5%;
+  padding-left: 2.5%;
+  padding-right: 2.5%;
+  margin-top: 2%;
+}
+
+.login-sign-up-input::placeholder {
+  color: #878787;
+  font-family: "SFPro-Regular";
+}
+
+.login-sign-up-password::placeholder {
+  font-size: 8px;
+  color: #a4a4a4
+}
+
+.login-signup-action-button{
+  font-family: "SFPro-Bold";
+  background-color: #0A47E4;
+  color: white;
+  text-align: center;
+  width: 100%;
+  margin-top: 6%;
+  padding: 2%;
+  border-radius: 5px;
+}
+
+.enter-sign-up-button {
+  font-family: "SFPro-Bold";
+  text-align: center;
+  margin-top: 6%;
+  width: 100%;
+}
+
+.enter-sign-up-button a {
+  color: black;
+  text-decoration: none;
+}
+
+.container {
+  font-family: "SFPro-Medium";
+  font-size: 14px;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; 
+}
+
+.sign-up-checkbox {
+  padding-top: 1%;
+}
+
+.sign-up-checkbox label{
+  padding-left: 1%;
+}
+
+#back-button, .login-signup-action-button {
+  cursor: pointer;
+}
