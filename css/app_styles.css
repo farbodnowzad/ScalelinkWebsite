@@ -12079,13 +12079,13 @@ footer a:hover, footer a:active, footer a:focus {
 }
 
 .login-sign-up-input-container {
-  margin-top: 15%;
+  margin-top: 10%;
   width: 100%;
 }
 
 .login-sign-up-input-row {
   width: 100%;
-  margin-top: 6%;
+  margin-top: 5%;
 }
 
 .login-sign-up-input {
@@ -12117,6 +12117,7 @@ footer a:hover, footer a:active, footer a:focus {
   margin-top: 6%;
   padding: 2%;
   border-radius: 5px;
+  border: none;
 }
 
 .enter-sign-up-button {
@@ -12152,4 +12153,531 @@ select {
 
 #back-button, .login-signup-action-button {
   cursor: pointer;
+}
+
+input[type=file] {
+  color: #878787;
+  font-family: "SFPRo-Regular";
+}
+
+input[type=file]::file-selector-button {
+  border: 1px solid #b8b8b8;
+  padding: .2em .4em;
+  border-radius: 0.5em;
+  background-color: white;
+  transition: 1s;
+  margin-right: 1rem;
+  color: black
+}
+
+input[type=file]::file-selector-button:hover {
+  border: 1px solid #0A47E4;
+}
+
+#budget-estimates {
+  border: 1px solid #0A47E4;
+  width: 100%;
+  border-radius: 5px;
+  padding: 1%;
+  padding-left: 2.5%;
+  padding-right: 2.5%;
+  margin-top: 2%;
+  color: grey;
+}
+
+.long_text {
+  height: 100px;
+}
+
+.page-top {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
+#sidebar {
+  min-width: 250px;
+  max-width: 250px;
+  min-height: 100vh;
+  position: fixed;
+  background: black;
+  color: #fff;
+}
+
+#sidebar.active {
+  margin-left: -250px;
+}
+
+/* .dropdown-toggle::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+} */
+
+/* @media (max-width: 768px) {
+  #sidebar {
+      margin-left: -250px;
+  }
+  #sidebar.active {
+      margin-left: 0;
+  }
+} */
+
+#sidebar {
+  /* don't forget to add all the previously mentioned styles here too */
+  
+  color: #fff;
+  transition: all 0.3s;
+}
+
+#sidebar .sidebar-header {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: black;
+  text-align: center;
+}
+
+#sidebar .sidebar-header img{
+  width: 70%;
+}
+
+#sidebar ul p {
+  color: #fff;
+  padding: 10px;
+}
+
+#sidebar ul li a {
+  padding: 10px;
+  font-size: 1.1em;
+  display: block;
+  color: white;
+  text-decoration: none;
+  font-family: "SFPro-Light";
+}
+#sidebar ul li a:hover {
+  color: white;
+  background-color: #0A47E4;
+}
+
+#sidebar ul li.active > a, a[aria-expanded="true"] {
+  color: #fff;
+  background: #0A47E4;
+}
+
+.row {
+  width: 100%;
+}
+
+.campaign-preview {
+  padding-left: 5%;
+}
+
+.feed-campaign-preview {
+  width: 100%;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, .1);
+  border-radius: 10px;
+  padding-top: 5%;
+  padding-bottom: 10%;
+  padding-left: 10%;
+  padding-right: 10%;
+  font-family: "SFPro-Medium";
+  font-size: 0.9rem;
+  margin-bottom: 5%;
+  cursor: pointer;
+}
+.feed-campaign-preview .content-container-preview {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  border-radius: 10px;
+}
+.feed-campaign-preview .content-container-preview div {
+ margin-bottom: 1%;
+}
+.banner-image-preview {
+  height: 30vh;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  overflow: hidden;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  /* border: 1px solid black; */
+}
+.banner-image-preview img {
+  /* flex-shrink: 0; */
+  min-width: 100%;
+  height: auto;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.brand-name-preview {
+  padding-top: 1rem;
+  font-family: "SFPro-Heavy";
+}
+.content-container-preview .description-preview {
+  width: 100%;
+}
+.content-container-preview .url-preview a{
+ text-decoration: none;
+ color: #878787;
+ font-family: "SFPro-Regular";
+}
+.expirations-preview {
+  width: 100%;
+  height: 100%;
+}
+.expirations-preview .timestamp-preview {
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+.expirations-preview .budget-preview {
+  width: 50%;
+  height: 100%;
+  float: right;
+  text-align: right;
+}
+.campaign_details-preview a{
+  text-decoration: none;
+  color: black;
+}
+
+.campaign-result {
+  width: 100%;
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, .1);
+  border-radius: 10px;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  padding-left: 5%;
+  padding-right: 5%;
+  font-family: "SFPro-Medium";
+  font-size: 1rem;
+  margin-bottom: 5%;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+}
+
+.campaign-results-feed a {
+  text-decoration: none;
+  color: black;
+}
+
+.campaign-result-info {
+  width: 80%;
+  float: left;
+}
+
+.campaign-result-title {
+  font-family: "SFPro-Heavy";
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+.campaign-result-timestamps {
+  width: 100%;
+  font-size: 0.9rem;
+  font-family: "SFPro-Medium";
+  color: grey;
+}
+
+.campaign-result-created {
+  float: left;
+  margin-right: 5%;
+}
+
+.campaign-result-arrow {
+  width: 20%;
+  float: right;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  vertical-align: middle;
+  display: table-cell;
+}
+
+.arrow-wrapper {
+  position: absolute;
+  top: 50%; left: 70%;
+  transform: translate(-50%,-50%);
+}
+
+.arrow-wrapper img {
+  width: 90%;
+}
+
+.campaign-field {
+  margin-bottom: 4%;
+  font-family: "SFPro-Semibold";
+}
+
+.campaign-field-title {
+  font-family: "SFPro-Bold";
+  color: #878787
+}
+
+#expire-campaign {
+  margin-top: 5%;
+  background-color:#f0f1f2;
+  color: #EA4856;
+  padding: 2%;
+  width: 100%;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.campaign-metrics-row {
+  width: 100%;
+}
+
+.campaign-metrics-narrow {
+  width: 48%;
+  height: 10rem;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, .1);
+  float: left;
+  border-radius: 10px;
+  margin-bottom: 5%;
+  text-align: center;
+}
+
+.campaign-metrics-value {
+  font-family: "SFPro-Heavy";
+  font-size: 2rem;
+  /* position: absolute; */
+  margin-top: 15%;
+  /* transform: translate(-50%,-50%); */
+}
+
+.right-side {
+  float: right;
+}
+
+.campaign-metrics-wide {
+  width: 100%;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, .1);
+  float: left;
+  margin-right: 5%;
+  border-radius: 10px;
+  margin-bottom: 5%;
+  text-align: center;
+  padding: 5%;
+}
+
+#bar-chart{
+  width: 100%;
+  max-width:600px;
+  font-family: "SFPro-Semibold";
+}
+
+.top-performers-headers {
+  width: 100%;
+  font-family: "SFPro-Bold";
+  margin-bottom: 2%;
+  display: inline-block;
+}
+
+.top-performers-title {
+  float: left;
+}
+.top-performers-subtitle {
+  float: right;
+}
+.top-performers-row {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  line-height: 50px;
+  margin-bottom: 2%;
+  /* vertical-align: middle; */
+}
+.top-performers-row img{
+  object-fit: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+}
+
+.top-performers-image {
+  float: left;
+}
+.top-performers-full-name {
+  float: left;
+  padding-left: 3%;
+}
+.top-performers-value {
+  float: right;
+}
+
+.notifications-row {
+  height: 42px;
+  width: 100%;
+  display: inline-block;
+  cursor: pointer;
+}
+.notifications-clickable {
+  width: 70%;
+  float: left;
+}
+.notifications-image-wrapper {
+  float: left;
+}
+.notifications-image {
+  height: 60px;
+  width: 60px;
+  object-fit: cover;
+  border-radius: 100px;
+}
+.notifications-description {
+  margin-left: 3%;
+  display: inline-block;
+  vertical-align: middle;
+  height: 42px;
+}
+.notifications-user-text {
+  margin: 0;
+  position: absolute;
+  font-family: "SFPro-Bold";
+}
+.notifications-actions {
+  float: right;
+  height: 100%;
+  width: 30%;
+}
+.notifications-deny {
+  height: 100%;
+  width: 45%;
+  border-radius: 5px;
+  font-family: "SFPro-Bold";
+  background-color: #f0f1f2;
+  color: #EA4856;
+  text-align: center;
+  float: left;
+  vertical-align: middle;
+  line-height: 42px;
+}
+.notifications-accept {
+  height: 100%;
+  width: 45%;
+  border-radius: 5px;
+  font-family: "SFPro-Bold";
+  background-color: #0A47E4;
+  color: white;
+  text-align: center;
+  float: right;
+  vertical-align: middle;
+  line-height: 42px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding-top: 2%;
+  padding-bottom: 3%;
+  padding-left: 2%;
+  padding-right: 2%;
+  width: 25%;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, .1);
+  border: 0;
+  font-family: "SFPro-Semibold";
+}
+
+.modal-info {
+  margin: 0px auto;
+}
+
+.modal-info-row {
+  width: 100%;
+  text-align: center;
+  margin-bottom: -5%;
+}
+
+.modal-info-name {
+  font-family: "SFPro-Heavy";
+}
+
+.modal-info-social {
+  font-family: "SFPro-Heavy";
+  color: #E1306C;
+}
+
+.modal-info-social img{
+  height: 20px;
+  width: 20px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-image {
+  height: 80px;
+  width: 80px;
+  object-fit: cover;
+  border-radius: 100px;
+}
+
+.account-top-row {
+  /* width: 100%; */
+  /* display: inline-block; */
+  /* height: 100%; */
+}
+.account-top-row div {
+  /* float: left; */
+}
+.account-top-row img {
+  max-width: 100px;
+  max-width: 100px;
+}
+.notificaiton-campaign-link {
+  color: grey;
+}
+.notificaiton-campaign-link:hover {
+  color: black;
+}
+.campaign-product-users{
+  width: 100%;
+  text-align: right;
+  margin-bottom: 2%;
+}
+.campaign-product-users a{
+  color: #0A47E4;
+  /* text-decoration: none; */
+}
+.campaign-status{
+  text-align: right;
+}
+
+.list-unstyled {
+  font-size: 12px;
 }
