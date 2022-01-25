@@ -80,12 +80,13 @@ function show(data) {
       }
     }
     $(document).on("click", ".notifications-clickable", function() {
-        // var profile_image = this.getElementById("notifications-image")[0].src;
+        var profile_image = this.querySelectorAll(".notifications-image")[0].src;
         var att = this.querySelectorAll(".notifications-description")[0].attributes;
         var full_name = att["full_name"].value;
         var gender = att["gender"].value;
         var age = att["age"].value;
         var location = att["location"].value;
+        document.getElementsByClassName("modal-image")[0].src = profile_image;
         document.getElementsByClassName("modal-info-name")[0].innerHTML = full_name;
         document.getElementsByClassName("modal-info-gender")[0].innerHTML = gender;
         document.getElementsByClassName("modal-info-age")[0].innerHTML = age;

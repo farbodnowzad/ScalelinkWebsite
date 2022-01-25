@@ -75,6 +75,7 @@ class PageConstructor {
             var select = `
             <div class="login-sign-up-input-row">
             <span class='login-sign-up-input-row-name'>${section.title}</span><br>
+            <span class='input-row-subtitle'>${section.subtitle ? section.subtitle : ""}</span>${section.subtitle ? "<br>" : ""}
             <select name="${section.name}" class="${section.class}">
                 <option value="" disabled selected>${section.placeholder}</option>
             `
@@ -87,7 +88,8 @@ class PageConstructor {
         }
         else if (section.type == "checkbox") {
             var checkbox = `<div class="login-sign-up-input-row">
-            <span class='login-sign-up-input-row-name'>${section.title}</span><br>`
+            <span class='login-sign-up-input-row-name'>${section.title}</span><br>
+            <span class='input-row-subtitle'>${section.subtitle ? section.subtitle : ""}</span>${section.subtitle ? "<br>" : ""}`
             for (let val of section.options) {
                 var check_toggled = this.variables[section.name].includes(val.toLowerCase()) ? "checked" : "!checked"
                 checkbox += `<div class="sign-up-checkbox">
@@ -102,6 +104,7 @@ class PageConstructor {
             return `
             <div class="login-sign-up-input-row">
                 <span class='login-sign-up-input-row-name'>${section.title}</span><br>
+                <span class='input-row-subtitle'>${section.subtitle ? section.subtitle : ""}</span>${section.subtitle ? "<br>" : ""}
                 <input class="${section.class}" style="${section.style}" type="${section.type}" name="${section.name}" placeholder="${section.placeholder}" value="${this.variables[section.name]}"/>
                 <span class="error-message"></span>
             </div>
@@ -120,6 +123,7 @@ class PageConstructor {
             return `
             <div class="login-sign-up-input-row ">
                 <span class='login-sign-up-input-row-name'>${section.title}</span><br>
+                <span class='input-row-subtitle'>${section.subtitle ? section.subtitle : ""}</span>${section.subtitle ? "<br>" : ""}
                 <input class="${section.class} ${section.class_style}" style="${section.style}" type="${section.type}" name="${section.name}" value="${this.variables[section.name]["path"]}" accept="image/*"/>
                 <span class="error-message"></span>
             </div>
@@ -128,6 +132,7 @@ class PageConstructor {
             return `
             <div class="login-sign-up-input-row ">
                 <span class='login-sign-up-input-row-name'>${section.title}</span><br>
+                <span class='input-row-subtitle'>${section.subtitle ? section.subtitle : ""}</span>${section.subtitle ? "<br>" : ""}
                 <textarea class="${section.class} ${section.class_style}" style="${section.style}" type="${section.type}" name="${section.name}" placeholder="${section.placeholder}" ${section.meta}>${this.variables[section.name]}</textarea>
                 <span class="error-message"></span>
             </div>
@@ -136,6 +141,7 @@ class PageConstructor {
             return `
             <div class="login-sign-up-input-row ">
                 <span class='login-sign-up-input-row-name'>${section.title}</span><br>
+                <span class='input-row-subtitle'>${section.subtitle ? section.subtitle : ""}</span>${section.subtitle ? "<br>" : ""}
                 <input class="${section.class} ${section.class_style}" style="${section.style}" type="${section.type}" name="${section.name}" placeholder="${section.placeholder}" value="${this.variables[section.name]}" min=${(new Date()).toISOString().split('T')[0]} ${section.meta}/>
                 <span class="error-message"></span>
             </div>

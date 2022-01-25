@@ -25,17 +25,19 @@ var variables = {
 var page_1 = [
     {
         "title": "Title",
+        "subtitle": "Pick something to help identify the campaign",
         "class": "login-sign-up-input",
         "type": "text",
         "name": "title",
-        "placeholder": "The campaign title that users will see",
+        "placeholder": "20% Off New Product Line",
     },
     {
         "title": "URL",
+        "subtitle": "Where should people be directed to when they engage with an influencer's content?",
         "class": "login-sign-up-input",
         "type": "text",
         "name": "url",
-        "placeholder": "Where should people go when they engage?",
+        "placeholder": "acme.com",
     },
     {
         "title": "Banner Image",
@@ -45,11 +47,12 @@ var page_1 = [
     },
     {
         "title": "What should potential influencers know about this campaign?",
+        "subtitle": "Give details about the campaign such as what the product or service is. Use this space to provide more context.",
         "class": "login-sign-up-input",
         "class_style": "long_text",
         "type": "text",
         "name": "about",
-        "placeholder": "Give details about the campaign such as what the product or service is. Please metition if you want influencers to use any of the additional images below. Use this space to provide more context.",
+        "placeholder": "Enter details",
     },
     {
         "title": "Add any additional images here",
@@ -63,11 +66,12 @@ var page_1 = [
 var page_2 = [
     {
         "title": "What should influencers mention in their posts?",
+        "subtitle": "Discuss talking points, content that they should include, or specific things to say about the product or service",
         "class": "login-sign-up-input",
         "class_style": "long_text",
         "type": "text",
         "name": "do_mention",
-        "placeholder": "Discuss talking points or things to emphasize",
+        "placeholder": "Enter here",
     },
     {
         "title": "What should influencers NOT mention in their posts?",
@@ -75,7 +79,7 @@ var page_2 = [
         "class_style": "long_text",
         "type": "text",
         "name": "do_not_mention",
-        "placeholder": "Discuss topics or names to avoid",
+        "placeholder": "Enter here",
     },
     {
         "title": "Do you want to approve influencers before they can start sharing?",
@@ -261,7 +265,7 @@ function create_campaign_preview() {
     var about = variables.about ? variables.about.slice(0,100) + "..." : ""
     var requires_approval = variables.requires_approval == "yes" ? "Requires Approval" : ""
     var requires_product = variables.requires_product == "yes" ? "Requires Product" : ""
-    var max_payout = parseInt(variables.max_payout) > 0 ? "Max Payout: $" + internationalNumberFormat.format(parseInt(variables.max_payout)) : ""
+    var max_payout = parseInt(variables.max_payout) > 0 ? "Max Payout: $" + internationalNumberFormat.format(variables.max_payout) : ""
     var gender = variables.gender.length > 0 ? "Gender: " + variables.gender : ""
     var age = variables.age.length > 0 ? "Age: " + variables.age : ""
     var region = variables.region ? "Regions: " + variables.region : ""
