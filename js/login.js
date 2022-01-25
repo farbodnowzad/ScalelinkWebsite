@@ -10,7 +10,7 @@ class Login {
         formData.append("email", email);
         formData.append("password", password);
 
-        var login_url = "http://scalelink-api-env.eba-ncaemzfy.us-west-1.elasticbeanstalk.com/businesses/login"
+        var login_url = "https://sclnk.app/businesses/login"
         let login_response
         $.ajax({
             url: login_url,

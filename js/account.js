@@ -87,7 +87,7 @@ function post(path, parameters) {
     });
 }
 var pages = [page_1]
-var api_url = "http://scalelink-api-env.eba-ncaemzfy.us-west-1.elasticbeanstalk.com/businesses"
+var api_url = "https://sclnk.app/businesses"
 var business_id = auth.business_id;
 var variables = await get(api_url, "_id", business_id);
 var page_constructor = new PageConstructor(variables, pages, document)

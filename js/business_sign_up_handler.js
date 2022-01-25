@@ -14,7 +14,7 @@ class BusinessSignUp {
             }
         });
 
-        var sign_up_url = "http://scalelink-api-env.eba-ncaemzfy.us-west-1.elasticbeanstalk.com/businesses/sign_up"
+        var sign_up_url = "https://sclnk.app/businesses/sign_up"
         let sign_up_response;
         $.ajax({
             url: sign_up_url,

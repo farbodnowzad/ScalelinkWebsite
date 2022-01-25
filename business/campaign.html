@@ -70,7 +70,7 @@
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
             const campaign_id = urlParams.get('id')
-            var api_url = "http://scalelink-api-env.eba-ncaemzfy.us-west-1.elasticbeanstalk.com/campaign_metrics"
+            var api_url = "https://sclnk.app/campaign_metrics"
             // api url
             const url = api_url + `?campaign_id=${campaign_id}`;
             // Storing response

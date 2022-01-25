@@ -10,7 +10,7 @@ async function getapi(api_url, key, value) {
         show(data);
     });
 }
-var api_url = "http://scalelink-api-env.eba-ncaemzfy.us-west-1.elasticbeanstalk.com/campaigns"
+var api_url = "https://sclnk.app/campaigns"
 var business_id = auth.business_id;;
 
 getapi(api_url, "business_id", business_id);

@@ -2,7 +2,7 @@ import {Auth} from './auth.js'
 const auth = new Auth();
 
 async function get_overview(key, value) {
-    var api_url = "http://scalelink-api-env.eba-ncaemzfy.us-west-1.elasticbeanstalk.com/campaigns"
+    var api_url = "https://sclnk.app/campaigns"
     // api url
     const url = api_url + `?${key}=${value}`;
     // Storing response
@@ -17,7 +17,7 @@ async function get_overview(key, value) {
 }
 
 export async function get_metrics(key, value, campaign) {
-    var api_url = "http://scalelink-api-env.eba-ncaemzfy.us-west-1.elasticbeanstalk.com/campaign_metrics"
+    var api_url = "https://sclnk.app/campaign_metrics"
     // api url
     const url = api_url + `?${key}=${value}`;
     // Storing response
@@ -198,6 +198,6 @@ function show_campaign_metrics(data, campaign) {
 }
 
 $(document).on("click", ".campaign-product-users", function() {
-    var url = "http://scalelink-api-env.eba-ncaemzfy.us-west-1.elasticbeanstalk.com/link_requests/product_request_users"
+    var url = "https://sclnk.app/link_requests/product_request_users"
     user_address_csv(url, {"campaign_id": campaign_id, "business_id": business_id})
 })

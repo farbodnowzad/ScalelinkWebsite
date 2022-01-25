@@ -13,13 +13,13 @@ async function getapi(api_url, parameters) {
         show(data);
     });
 }
-var api_url = "http://scalelink-api-env.eba-ncaemzfy.us-west-1.elasticbeanstalk.com/link_requests"
+var api_url = "https://sclnk.app/link_requests"
 var business_id = auth.business_id;;
 
 getapi(api_url, {"business_id": business_id, "status": "open"});
 
 function notification_action(parameters) {
-    var path = "http://scalelink-api-env.eba-ncaemzfy.us-west-1.elasticbeanstalk.com/link_requests/action"
+    var path = "https://sclnk.app/link_requests/action"
     var formData = new FormData()
     $.each(parameters, function(key, value) {
         formData.append(key, value)

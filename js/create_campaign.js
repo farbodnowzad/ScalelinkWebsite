@@ -320,7 +320,7 @@ function post(path, parameters) {
         }
     });
 }
-var api_url = "http://scalelink-api-env.eba-ncaemzfy.us-west-1.elasticbeanstalk.com/campaigns"
+var api_url = "https://sclnk.app/campaigns"
 var pages = [page_1, page_2, page_3, page_4, page_5]
 var page_constructor = new PageConstructor(variables, pages, document)
 page_constructor.show();
