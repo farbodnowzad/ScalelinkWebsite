@@ -16,6 +16,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script type="module" src="../js/init.js"></script>
+        <script src="https://js.stripe.com/v3/"></script>
     </head>
     <body id="page-top">
         <nav id="sidebar">
@@ -44,6 +45,20 @@
         <!-- App features section-->
         <section>
             <div class="container">
+                <div id="payment-modal" class="modal">
+                    <link href="../css/payment.css" rel="stylesheet" />
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <div id="payment-element">
+                            <!--Stripe.js injects the Payment Element-->
+                        </div>
+                        <button id="submit">
+                            <div class="spinner hidden" id="spinner"></div>
+                            <span id="button-text">Pay now</span>
+                        </button>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-1 col-sm-1"></div>
                     <div class="col-10 col-sm-5">

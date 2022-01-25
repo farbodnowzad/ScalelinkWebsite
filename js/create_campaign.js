@@ -1,6 +1,9 @@
 import {PageConstructor} from './page_constructor.js'
 import {Auth} from './auth.js'
+import {pages} from './page_sections/create_campaign.js'
 const auth = new Auth();
+const stripe =  Stripe("pk_test_51K9hYrIyqcT6sVBoc69DHBEsM84eoNp2gv98T0x7pblMXCJnqU0tajuxs46XDYg1aCGue73A5pu8ftrSo95vfn3j00mENAsC2v");
+let elements;
 
 var variables = {
     "business_id": auth.business_id,
@@ -21,242 +24,6 @@ var variables = {
     "max_payout": "",
     "secondary_attachments": [],
 }
-
-var page_1 = [
-    {
-        "title": "Title",
-        "subtitle": "Pick something to help identify the campaign",
-        "class": "login-sign-up-input",
-        "type": "text",
-        "name": "title",
-        "placeholder": "20% Off New Product Line",
-    },
-    {
-        "title": "URL",
-        "subtitle": "Where should people be directed to when they engage with an influencer's content?",
-        "class": "login-sign-up-input",
-        "type": "text",
-        "name": "url",
-        "placeholder": "acme.com",
-    },
-    {
-        "title": "Banner Image",
-        "class": "login-sign-up-input",
-        "type": "file",
-        "name": "primary_image",
-    },
-    {
-        "title": "What should potential influencers know about this campaign?",
-        "subtitle": "Give details about the campaign such as what the product or service is. Use this space to provide more context.",
-        "class": "login-sign-up-input",
-        "class_style": "long_text",
-        "type": "text",
-        "name": "about",
-        "placeholder": "Enter details",
-    },
-    {
-        "title": "Add any additional images here",
-        "class": "login-sign-up-input",
-        "type": "file",
-        "name": "secondary_attachments",
-        "meta": "multiple"
-    },
-]
-
-var page_2 = [
-    {
-        "title": "What should influencers mention in their posts?",
-        "subtitle": "Discuss talking points, content that they should include, or specific things to say about the product or service",
-        "class": "login-sign-up-input",
-        "class_style": "long_text",
-        "type": "text",
-        "name": "do_mention",
-        "placeholder": "Enter here",
-    },
-    {
-        "title": "What should influencers NOT mention in their posts?",
-        "class": "login-sign-up-input",
-        "class_style": "long_text",
-        "type": "text",
-        "name": "do_not_mention",
-        "placeholder": "Enter here",
-    },
-    {
-        "title": "Do you want to approve influencers before they can start sharing?",
-        "class": "login-sign-up-input",
-        "type": "select",
-        "name": "requires_approval",
-        "options": ["Yes", "No"],
-        "placeholder": "Select One...",
-    },
-    {
-        "title": "Will you send a product to influencers before they can start sharing?",
-        "class": "login-sign-up-input",
-        "type": "select",
-        "name": "requires_product",
-        "options": ["Yes", "No"],
-        "placeholder": "Select One...",
-    },
-]
-
-var page_3 = [
-    {
-        "title": "Set an expiration date",
-        "class": "login-sign-up-input",
-        "type": "date",
-        "name": "expiration",
-    },
-    {
-        "title": "How much do you want to spend on this campaign?",
-        "class": "login-sign-up-input",
-        "type": "budget",
-        "name": "budget",
-        "placeholder": "$10,000"
-    },
-    {
-        "title": "What is the maximum amount that one person can make?",
-        "class": "login-sign-up-input",
-        "type": "text",
-        "name": "max_payout",
-        "placeholder": "No maximum"
-    }
-]
-
-var page_4 = [
-    {
-        "title": "Do you want to target influencers of a specific gender?",
-        "class": "login-sign-up-input",
-        "type": "checkbox",
-        "name": "gender",
-        "options": ["Male", "Female", "Other"],
-    },
-    {
-        "title": "Do you want to target influencers in a specific age range?",
-        "class": "login-sign-up-input",
-        "type": "checkbox",
-        "name": "age",
-        "options": ["< 18", "18-24", "25-34", "35-44", "45-64", "65+"],
-    },
-    {
-        "title": "Do you want to target influencers in a specific region?",
-        "class": "login-sign-up-input",
-        "type": "text",
-        "name": "region",
-        "placeholder": "Los Angeles"
-    }
-]
-
-var page_5 = [
-    {
-        "title": "Title",
-        "class": "login-sign-up-input",
-        "type": "review",
-        "name": "title",
-        "placeholder": "The campaign title that users will see",
-    },
-    {
-        "title": "URL",
-        "class": "login-sign-up-input",
-        "type": "review",
-        "name": "url",
-        "placeholder": "Where should people go when they engage?",
-    },
-    {
-        "title": "Banner Image",
-        "class": "login-sign-up-input",
-        "type": "review",
-        "name": "primary_image",
-        "sub_type": "file"
-    },
-    {
-        "title": "What shoudld potential influencers know about this campaign?",
-        "class": "login-sign-up-input",
-        "class_style": "long_text",
-        "type": "review",
-        "name": "about",
-        "placeholder": "Give details about the campaign such as what the product or service is. Please metition if you want creators to use any of the additional images. Use this space to provide more context.",
-    },
-    {
-        "title": "Add any additional images here",
-        "class": "login-sign-up-input",
-        "type": "review",
-        "name": "secondary_attachments",
-        "meta": "multiple"
-    },
-    {
-        "title": "What should influencers mention in their posts?",
-        "class": "login-sign-up-input",
-        "class_style": "long_text",
-        "type": "review",
-        "name": "do_mention",
-        "placeholder": "Discuss talking points or things to emphasize",
-    },
-    {
-        "title": "What should influencers NOT mention in their posts?",
-        "class": "login-sign-up-input",
-        "class_style": "long_text",
-        "type": "review",
-        "name": "do_not_mention",
-        "placeholder": "Discuss topics or names to avoid",
-    },
-    {
-        "title": "Do you want to approve influencers before they can start sharing?",
-        "class": "login-sign-up-input",
-        "type": "review",
-        "name": "requires_approval",
-        "options": ["Yes", "No"],
-        "placeholder": "Select One...",
-    },
-    {
-        "title": "Will you send a product to influencers before they can start sharing?",
-        "class": "login-sign-up-input",
-        "type": "review",
-        "name": "requires_product",
-        "options": ["Yes", "No"],
-        "placeholder": "Select One...",
-    },
-    {
-        "title": "Set an expiration date",
-        "class": "login-sign-up-input",
-        "type": "review",
-        "name": "expiration",
-    },
-    {
-        "title": "How much do you want to spend on this campaign?",
-        "class": "login-sign-up-input",
-        "type": "review",
-        "name": "budget",
-        "placeholder": "$10,000"
-    },
-    {
-        "title": "What is the maximum amount that one person can make?",
-        "class": "login-sign-up-input",
-        "type": "review",
-        "name": "max_payout",
-        "placeholder": "No maximum"
-    },
-    {
-        "title": "Do you want to target influencers of a specific gender?",
-        "class": "login-sign-up-input",
-        "type": "review",
-        "name": "gender",
-        "options": ["Male", "Female", "Other"],
-    },
-    {
-        "title": "Do you want to target influencers in a specific age range?",
-        "class": "login-sign-up-input",
-        "type": "review",
-        "name": "age",
-        "options": ["< 18", "18-24", "25-34", "35-44", "45-64", "65+"],
-    },
-    {
-        "title": "Do you want to target influencers in a specific region?",
-        "class": "login-sign-up-input",
-        "type": "review",
-        "name": "region",
-        "placeholder": "Los Angeles"
-    }
-]
 
 function create_campaign_preview() {
     var internationalNumberFormat = new Intl.NumberFormat('en-US')
@@ -299,7 +66,22 @@ function create_campaign_preview() {
     document.getElementsByClassName("feed-campaign-preview")[0].innerHTML = campaign_preview
 }
 
-function post(path, parameters) {
+function show_payment_modal() {
+    var span = document.getElementsByClassName("close")[0];
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+    var modal = document.getElementById("payment-modal");
+    modal.style.display = "block";
+}
+
+async function create_campaign(path, parameters) {
     var formData = new FormData()
     $.each(parameters, function(key, value) {
         if (["primary_image"].includes(key)) {
@@ -308,12 +90,27 @@ function post(path, parameters) {
             formData.append(key, value)
         }
     });
+    const response = await $.ajax({
+        url: path,
+        data: formData,
+        processData: false,
+        contentType: false,
+        type: 'POST'
+    });
+    return response;
+}
+
+function update_campaign(path, parameters) {
+    var formData = new FormData()
+    $.each(parameters, function(key, value) {
+        formData.append(key, value)
+    });
     $.ajax({
         url: path,
         data: formData,
         processData: false,
         contentType: false,
-        type: 'POST',
+        type: 'PUT',
         success: async function(data){
             Swal.fire({
                 title: 'Success!',
@@ -327,24 +124,67 @@ function post(path, parameters) {
         }
     });
 }
-var api_url = "https://sclnk.app/campaigns"
-var pages = [page_1, page_2, page_3, page_4, page_5]
+
+async function initialize_payment_intent(campaign_id) {
+    var parameters = {"budget": variables.budget, "campaign_id": campaign_id};
+    var formData = new FormData()
+    $.each(parameters, function(key, value) {
+        formData.append(key, value)
+    });
+    // var path = "https://sclnk.app/payments/create_payment_intent"
+    var path = "http://127.0.0.1:5000/payments/create_payment_intent"
+    const response = await $.ajax({
+        url: path,
+        data: formData,
+        processData: false,
+        contentType: false,
+        type: 'POST'
+    });
+
+    const clientSecret = response.clientSecret;
+    const appearance = {
+        theme: 'stripe',
+        variables: {
+          colorPrimary: '#0a47e4',
+        },
+    };
+    elements = stripe.elements({ appearance, clientSecret });
+    const paymentElement = elements.create("payment");
+    paymentElement.mount("#payment-element");
+}
+
+async function handleSubmit(e) {
+    e.preventDefault();
+    setLoading(true);
+  
+    const { error } = await stripe.confirmPayment({
+      elements,
+      confirmParams: {
+        // Make sure to change this to your payment completion page
+        return_url: "https://scalelink.xyz",
+      },
+    });
+  
+    // This point will only be reached if there is an immediate error when
+    // confirming the payment. Otherwise, your customer will be redirected to
+    // your `return_url`. For some payment methods like iDEAL, your customer will
+    // be redirected to an intermediate site first to authorize the payment, then
+    // redirected to the `return_url`.
+    if (error.type === "card_error" || error.type === "validation_error") {
+      showMessage(error.message);
+    } else {
+      showMessage("An unexpected error occured.");
+    }
+    setLoading(false);
+    update_campaign("https://sclnk.app/campaigns", {"_id": variables.campaign_id, "status": "active"})
+}
+
 var page_constructor = new PageConstructor(variables, pages, document)
 page_constructor.show();
 page_constructor.create_listeners()
+
+// generate preview based on updates to the variables
 create_campaign_preview()
-var next_button = document.getElementById("login-signup-action-button")
-next_button.onclick = function () {
-    if (page_constructor.current_page == pages.length-1) {
-        var response = post(api_url, variables)
-    } else {
-        page_constructor.next_page("Launch Campaign")
-    }
-}
-var back_button = document.getElementById("back-button")
-back_button.onclick = function () {
-    page_constructor.previous_page()
-}
 $(document).on("change", "input", function(){
     create_campaign_preview()
 })
@@ -354,3 +194,23 @@ $(document).on("change", "select", function(){
 $(document).on("change", "textarea", function(){
     create_campaign_preview()
 })
+
+var next_button = document.getElementById("login-signup-action-button")
+next_button.onclick = function () {
+    if (page_constructor.current_page == pages.length-1) {
+        var resp = create_campaign("https://sclnk.app/campaigns", variables)
+        // variables["campaign_id"] = resp.campaign_id
+        // initialize_payment_intent(resp.campaign_id);
+        // checkStatus();
+        // document.querySelector("#payment-modal").addEventListener("submit", handleSubmit);
+        show_payment_modal()
+    } else {
+        page_constructor.next_page("Launch Campaign")
+    }
+}
+
+// load the previous section on back button
+var back_button = document.getElementById("back-button")
+back_button.onclick = function () {
+    page_constructor.previous_page()
+}
