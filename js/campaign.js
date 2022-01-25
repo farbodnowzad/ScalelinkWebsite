@@ -66,7 +66,7 @@ function create_campaign_overview(campaign) {
             </div>
             <div class="url campaign-field">
                 <span class="campaign-field-title">URL</span><br>
-                <a href="#">${campaign.url}</a>
+                <a href="https://${campaign.url}">${campaign.url}</a>
             </div>
             <div class="expiration campaign-field">
                 <span class="campaign-field-title">Expires</span><br>

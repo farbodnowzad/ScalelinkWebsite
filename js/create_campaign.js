@@ -290,7 +290,7 @@ function create_campaign_preview() {
                 <div>${requires_approval}</div>
                 <div>${requires_product}</div>
             </div>
-            <div class="preview-row">${internationalNumberFormat.format(max_payout) == 0 ? "" : internationalNumberFormat.format(max_payout)}</div>
+            <div class="preview-row">${max_payout}</div>
             <div class="preview-row">${gender}</div>
             <div class="preview-row">${age}</div>
             <div class="preview-row">${region}</div>
