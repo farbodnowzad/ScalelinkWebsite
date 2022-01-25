@@ -255,12 +255,13 @@ var page_5 = [
 ]
 
 function create_campaign_preview() {
+    var internationalNumberFormat = new Intl.NumberFormat('en-US')
     var expiration = variables.expiration ? "Expires: " + variables.expiration : ""
-    var budget = variables.budget ? "Budget: $" + variables.budget : ""
+    var budget = variables.budget ? "Budget: $" + internationalNumberFormat.format(variables.budget) : ""
     var about = variables.about ? variables.about.slice(0,100) + "..." : ""
     var requires_approval = variables.requires_approval == "yes" ? "Requires Approval" : ""
     var requires_product = variables.requires_product == "yes" ? "Requires Product" : ""
-    var max_payout = parseInt(variables.max_payout) > 0 ? "Max Payout: $" + parseInt(variables.max_payout) : ""
+    var max_payout = parseInt(variables.max_payout) > 0 ? "Max Payout: $" + internationalNumberFormat.format(parseInt(variables.max_payout)) : ""
     var gender = variables.gender.length > 0 ? "Gender: " + variables.gender : ""
     var age = variables.age.length > 0 ? "Age: " + variables.age : ""
     var region = variables.region ? "Regions: " + variables.region : ""
@@ -281,9 +282,11 @@ function create_campaign_preview() {
                     <div class="remaining_amount-preview">${budget}</div>
                 </div>
             </div>
-            <div class="preview-row">${requires_approval}</div>
-            <div class="preview-row">${requires_product}</div>
-            <div class="preview-row">${max_payout}</div>
+            <div class="preview-row">
+                <div>${requires_approval}</div>
+                <div>${requires_product}</div>
+            </div>
+            <div class="preview-row">${internationalNumberFormat.format(max_payout) == 0 ? "" : internationalNumberFormat.format(max_payout)}</div>
             <div class="preview-row">${gender}</div>
             <div class="preview-row">${age}</div>
             <div class="preview-row">${region}</div>

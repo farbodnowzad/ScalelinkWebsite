@@ -22,11 +22,12 @@ class PageConstructor {
             self.variables[this.name] = this.value;
         })
         $(this.document).on("keyup", "input[type='budget']", function() {
+            var internationalNumberFormat = new Intl.NumberFormat('en-US')
             self.variables[this.name] = this.value;
             var budget = self.variables[this.name] ? parseInt(self.variables[this.name]) : 0
             var num_visitors = parseInt(budget / 3)
             var num_impressions = parseInt(num_visitors * 33)
-            var text = num_visitors ? `Get ${num_visitors} unique visitors and an estimated ${num_impressions} impressions` : "Estimated engagement..."
+            var text = num_visitors ? `Get ${internationalNumberFormat.format(num_visitors)} unique visitors and an estimated ${internationalNumberFormat.format(num_impressions)} impressions` : "Estimated engagement..."
             $('#budget-estimates').text(text);
         })
         $(this.document).on("change", "input[type='checkbox']", function() {

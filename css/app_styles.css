@@ -12182,7 +12182,7 @@ input[type=file]::file-selector-button:hover {
   padding-left: 2.5%;
   padding-right: 2.5%;
   margin-top: 2%;
-  color: grey;
+  color: black;
 }
 
 .long_text {
@@ -12297,14 +12297,10 @@ input[type=file]::file-selector-button:hover {
  margin-bottom: 1%;
 }
 .banner-image-preview {
-  height: 30vh;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
+  max-height: 30vh;
   overflow: hidden;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  /* border: 1px solid black; */
 }
 .banner-image-preview img {
   /* flex-shrink: 0; */
@@ -12328,6 +12324,15 @@ input[type=file]::file-selector-button:hover {
 .expirations-preview {
   width: 100%;
   height: 100%;
+}
+.preview-row {
+  width: 100%;
+  height: 100%;
+}
+.preview-row div{
+  width: 50%;
+  height: 100%;
+  float: left;
 }
 .expirations-preview .timestamp-preview {
   width: 50%;
