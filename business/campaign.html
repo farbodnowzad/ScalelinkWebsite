@@ -18,6 +18,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="../css/app_styles.css" rel="stylesheet" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="module" src="../js/init.js"></script>
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -39,7 +40,7 @@
                 <li>
                     <a href="account.html">Settings</a>
                 </li>
-                <li>
+                <li class="logout">
                     <a href="#">Log Out</a>
                 </li>
             </ul>
@@ -49,123 +50,14 @@
             <div class="container">
                 <div class="row">
                     <div class="col-1"></div>
-                    <div class="col-5 campaign-overview">
-                    </div>
+                    <div class="col-5 campaign-overview"></div>
                     <div class="col-6 campaign-metrics">
-                        <div class="campaign-metrics-row campaign-status">
-                            Status: Active
-                        </div><br>
-                        <div class="campaign-metrics-row campaign-product-users">
-                            <a href="#">Download Addresses</a>
-                        </div>
-                        <div class="campaign-metrics-row">
-                            <div class="campaign-metrics-narrow">
-                                <div class="campaign-metrics-value">
-                                    100
-                                </div>
-                                <div class="campaign-metrics-title">
-                                    Links Created
-                                </div>
-                            </div>
-                            <div class="campaign-metrics-narrow right-side">
-                                <div class="campaign-metrics-value">
-                                    12,000
-                                </div>
-                                <div class="campaign-metrics-title">
-                                    Unique Visitors
-                                </div>
-                            </div>
-                        </div>
-                        <div class="campaign-metrics-row">
+                        <div class="campaign-metrics-row campaign-metrics-row-chart">
                             <div class="campaign-metrics-wide">
-                                <canvas id="bar-chart"></canvas>
-                                <script>
-                                    var xValues = ["6d", "5d", "4d", "3d", "2d", "1d", "Today"];
-                                    var yValues = [55, 49, 44, 24, 15, 3, 3];
-                                    var barColors = ["#0A47E4","#0A47E4", "#0A47E4", "#0A47E4","#0A47E4", "#0A47E4", "#0A47E4"];
-                                    
-                                    new Chart("bar-chart", {
-                                      type: "bar",
-                                      data: {
-                                        labels: xValues,
-                                        datasets: [{
-                                          backgroundColor: barColors,
-                                          data: yValues,
-                                        }]
-                                      },
-                                      options: {
-                                        plugins: {
-                                            legend: {display: false},
-                                            title: {
-                                                display: true,
-                                                text: "Unique Visitors Last 7 Days"
-                                            },
-                                        },
-                                        elements: {
-                                            bar: {
-                                                borderRadius: 5,
-                                            }
-                                        },
-                                        scales: {
-                                            x: {
-                                                grid: {
-                                                    display: false
-                                                }
-                                            },
-                                            y: {
-                                                grid: {
-                                                    display: false
-                                                }
-                                            }
-                                        }
-                                      }
-                                    });
-                                </script>
-                            </div>
-                        </div>
-                        <div class="campaign-metrics-row">
-                            <div class="campaign-metrics-narrow">
-                                <div class="campaign-metrics-value">
-                                    $2,500
-                                </div>
-                                <div class="campaign-metrics-title">
-                                    Budget Remaining
-                                </div>
-                            </div>
-                            <div class="campaign-metrics-narrow right-side">
-                                <div class="campaign-metrics-value">
-                                    $1,000
-                                </div>
-                                <div class="campaign-metrics-title">
-                                    Budget Spent
-                                </div>
-                            </div>
-                        </div>
-                        <div class="campaign-metrics-row">
-                            <div class="campaign-metrics-wide">
-                                <div class="top-performers-headers">
-                                    <div class="top-performers-title">Top Performers</div>
-                                    <div class="top-performers-subtitle">Unique Visitors</div>
-                                </div>
-                                <div class="top-performers-row">
-                                    <img class="top-performers-image" src="../assets/img/influencer.jpg"/>
-                                    <div class="top-performers-full-name">Farbod Nowzad</div>
-                                    <div class="top-performers-value">320</div>
-                                </div>
-                                <div class="top-performers-row">
-                                    <img class="top-performers-image" src="../assets/img/influencer.jpg"/>
-                                    <div class="top-performers-full-name">Farbod Nowzad</div>
-                                    <div class="top-performers-value">320</div>
-                                </div>
-                                <div class="top-performers-row">
-                                    <img class="top-performers-image" src="../assets/img/influencer.jpg"/>
-                                    <div class="top-performers-full-name">Farbod Nowzad</div>
-                                    <div class="top-performers-value">320</div>
-                                </div>
+                                <canvas id="metrics-chart"></canvas>
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-1"></div> -->
                 </div>
             </div>
         </section>
@@ -173,7 +65,69 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="../js/campaign.js"></script>
+        <script type="module" src="../js/campaign.js"></script>
+        <script type="module">
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const campaign_id = urlParams.get('id')
+            var api_url = "http://scalelink-api-env.eba-ncaemzfy.us-west-1.elasticbeanstalk.com/campaign_metrics"
+            // api url
+            const url = api_url + `?campaign_id=${campaign_id}`;
+            // Storing response
+            let metrics;
+            await $.get(url, function(data){
+                // Display the returned data in browser
+                metrics = data;
+            });
+            var daily_counts = metrics.campaign_metrics.daily_counts
+            var xValues = ['6d', '5d', '4d', '3d', '2d', 'Yesterday', 'Today'];
+            var yValues = [];
+            daily_counts.forEach(element => {
+                var visitors = element[1] + parseInt(Math.random(10) * 100);
+                yValues.push(visitors);
+            });
+            var barColors = ["#0A47E4","#0A47E4", "#0A47E4", "#0A47E4","#0A47E4", "#0A47E4", "#0A47E4"];
+            var ctx = document.getElementById('metrics-chart').getContext("2d");;
+            const chart = new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues,
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {display: false},
+                        title: {
+                            display: true,
+                            text: "Unique Visitors Last 7 Days"
+                        },
+                    },
+                    elements: {
+                        bar: {
+                            borderRadius: 5,
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        },
+                        y: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                precision: 0
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- * *                               SB Forms JS                               * *-->
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->

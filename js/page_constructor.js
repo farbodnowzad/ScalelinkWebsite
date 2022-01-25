@@ -111,7 +111,7 @@ class PageConstructor {
             var name = section.sub_type == "file" ? this.variables[section.name]["path"].name : this.variables[section.name]
             return `
             <div class="login-sign-up-input-row">
-                <span class='login-sign-up-input-row-name'>${section.title}</span><br>
+                <span class='campaign-result-title'>${section.title}</span><br>
                 ${name}
             </div>
             `

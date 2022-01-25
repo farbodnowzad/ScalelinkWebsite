@@ -47,12 +47,13 @@ function show(data) {
         var user = users.filter(user => user._id == [link_request.user_id])[0]
         var campaign = campaigns.filter(campaign => campaign._id == [link_request.campaign_id])[0]
         var notification_text = link_request.product == "false" ? " is requesting a link" : " is requesting a product"
+        var date_of_birth = '24';
         row += `<div class="notifications-row">
                     <div class="notifications-clickable">
                         <div class="notifications-image-wrapper">
                             <img class="notifications-image" src="${user.profile_image}"/>
                         </div> 
-                        <div class="notifications-description" full_name="${user.full_name}" gender="${user.gender}" date_of_birth="${user.date_of_birth}" location="${user.city}" social="${user.social}">
+                        <div class="notifications-description" full_name="${user.full_name}" gender="${user.gender}" age="${date_of_birth}" location="${user.city}" social="${user.social}">
                             <div class="notifications-user-text">${user.full_name}${notification_text}</div><br>
                             <a class="notificaiton-campaign-link" href="campaign.html?id=${campaign._id}"><div class="notifications-campaign-name">${campaign.title}</div></a>
                         </div>
@@ -83,13 +84,13 @@ function show(data) {
         var att = this.querySelectorAll(".notifications-description")[0].attributes;
         var full_name = att["full_name"].value;
         var gender = att["gender"].value;
-        var age = att["date_of_birth"].value;
+        var age = att["age"].value;
         var location = att["location"].value;
         document.getElementsByClassName("modal-info-name")[0].innerHTML = full_name;
         document.getElementsByClassName("modal-info-gender")[0].innerHTML = gender;
         document.getElementsByClassName("modal-info-age")[0].innerHTML = age;
         document.getElementsByClassName("modal-info-location")[0].innerHTML = location;
-        document.getElementsByClassName("modal-info-social-link")[0].href = "https://scalelink.xyz";
+        document.getElementsByClassName("modal-info-social-link")[0].href = "https://instagram.com/farbodnowzad";
         modal.style.display = "block";
     })
     $(document).on("click", ".notifications-deny", function() {

@@ -26,7 +26,6 @@ function show(data) {
                         <div class="campaign-result-info">
                             <div class="campaign-result-title">${campaign.title}</div>
                             <div class="campaign-result-timestamps">
-                                <div class="campaign-result-created">Created: ${campaign.timestamp}</div>
                                 <div class="campaign-result-expires">Expires: ${campaign.expiration}</div>
                             </div>
                         </div>

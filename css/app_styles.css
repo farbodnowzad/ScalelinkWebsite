@@ -12681,3 +12681,12 @@ input[type=file]::file-selector-button:hover {
 .list-unstyled {
   font-size: 12px;
 }
+.modal-info-social-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.modal-info-social-link:hover {
+  text-decoration: none;
+  color: inherit;
+}
