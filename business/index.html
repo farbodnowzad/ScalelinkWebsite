@@ -14,6 +14,12 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="../css/app_styles.css" rel="stylesheet" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            var business_id = localStorage.getItem("business_id");
+            if (business_id != null) {
+                window.location.replace("manage_campaigns.html");
+            }
+        </script>
     </head>
     <body id="page-top">
         <!-- App features section-->
