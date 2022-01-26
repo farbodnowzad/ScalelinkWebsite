@@ -34,7 +34,6 @@ async function user_address_csv(api_url, parameters) {
     for (const [key, value] of Object.entries(parameters)) {
         url.searchParams.append(key, value)
     }
-    console.log(url.href)
     // Storing response
     $.get(url.href, function(data){
         var user_info = data.user_info
@@ -44,9 +43,13 @@ async function user_address_csv(api_url, parameters) {
             let row = rowArray.join(",");
             csvContent += row + "\r\n";
         });
-
         var encodedUri = encodeURI(csvContent);
-        window.open(encodedUri);
+        var hiddenElement = document.createElement('a');  
+        hiddenElement.href = encodedUri
+        hiddenElement.target = '_blank';  
+        
+        hiddenElement.download = 'Campaign_Addresses.csv';  
+        hiddenElement.click(); 
     });
 }
 
@@ -228,5 +231,5 @@ function update_campaign(path, parameters) {
 }
 
 $(document).on("click", "#expire-campaign", function() {
-    update_campaign("http://127.0.0.1:5000/campaigns/expire", {"_id": campaign_id, "status": "expired"})
+    update_campaign("https://sclnk.app/campaigns/expire", {"_id": campaign_id, "status": "expired"})
 })

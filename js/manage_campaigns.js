@@ -1,19 +1,29 @@
 import {Auth} from './auth.js'
 const auth = new Auth();
 
-async function getapi(api_url, key, value) {
-    // api url
-    const url = api_url + `?${key}=${value}`;
-    // Storing response
-    $.get(url, function(data){
-        // Display the returned data in browser
-        show(data);
+async function getapi(api_url, parameters) {
+    var formData= new FormData();
+    // append parameters to url
+    $.each(parameters, function(key, value) {
+        formData.append(key, JSON.stringify(value))
+    });
+    await $.ajax({
+        url: api_url,
+        data: formData,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: function(data){
+            // Display the returned data in browser
+            show(data);
+        }
     });
 }
-var api_url = "https://sclnk.app/campaigns"
+// var api_url = "https://sclnk.app/campaigns"
+var api_url = "https://sclnk.app/campaigns/manage"
 var business_id = auth.business_id;;
 
-getapi(api_url, "business_id", business_id);
+getapi(api_url, {"business_id": business_id, "status": {"$in": ["active", "expired"]}});
 
 function show(data) {
     var results = data.campaigns
@@ -26,7 +36,7 @@ function show(data) {
                         <div class="campaign-result-info">
                             <div class="campaign-result-title">${campaign.title}</div>
                             <div class="campaign-result-timestamps">
-                                <div class="campaign-result-expires">Expires: ${campaign.expiration}</div>
+                                <div class="campaign-result-expires">Status: ${campaign.status}</div>
                             </div>
                         </div>
                         <div class="campaign-result-arrow"><div class="arrow-wrapper"><img src="../assets/img/right_arrow.svg"/></div></div>
