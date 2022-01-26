@@ -15,6 +15,9 @@ class PageConstructor {
         $(this.document).on("change", "input[type='text']", function() {
             self.variables[this.name] = this.value;
         })
+        $(this.document).on("change", "input[type='address']", function() {
+            self.variables["address"][this.name] = this.value;
+        })
         $(this.document).on("change", "input[type='password']", function() {
             self.variables[this.name] = this.value;
         })
@@ -42,9 +45,7 @@ class PageConstructor {
             self.variables[this.name] = this.value.toLowerCase();
         })
         $(this.document).on("change", "input[type='date']", function() {
-            var date_split = this.value.toString().split("-")
-            var date_formatted = date_split[1] + '/' + date_split[2] + '/' + date_split[0]
-            self.variables[this.name] = date_formatted
+            self.variables[this.name] = this.value
         })
     }
 
@@ -64,9 +65,9 @@ class PageConstructor {
             document.getElementById("back-button").hidden = false;
         }
         if (this.current_page == this.pages.length-1) {
-            this.document.getElementById("login-signup-action-button").innerHTML = finish_button;
+            this.document.getElementById("main-action-button").innerHTML = finish_button;
         } else {
-            this.document.getElementById("login-signup-action-button").innerHTML = "Next";
+            this.document.getElementById("main-action-button").innerHTML = "Next";
         }
     }
 
@@ -74,7 +75,7 @@ class PageConstructor {
         if (section.type == "select") {
             var select = `
             <div class="login-sign-up-input-row">
-            <span class='login-sign-up-input-row-name'>${section.title}</span><br>
+            <span class='login-sign-up-input-row-name'>${section.title}${section.required ? "*" : ""}</span><br>
             <span class='input-row-subtitle'>${section.subtitle ? section.subtitle : ""}</span>${section.subtitle ? "<br>" : ""}
             <select name="${section.name}" class="${section.class}">
                 <option value="" disabled selected>${section.placeholder}</option>
@@ -88,7 +89,7 @@ class PageConstructor {
         }
         else if (section.type == "checkbox") {
             var checkbox = `<div class="login-sign-up-input-row">
-            <span class='login-sign-up-input-row-name'>${section.title}</span><br>
+            <span class='login-sign-up-input-row-name'>${section.title}${section.required ? "*" : ""}</span><br>
             <span class='input-row-subtitle'>${section.subtitle ? section.subtitle : ""}</span>${section.subtitle ? "<br>" : ""}`
             for (let val of section.options) {
                 var check_toggled = this.variables[section.name].includes(val.toLowerCase()) ? "checked" : "!checked"
@@ -103,7 +104,7 @@ class PageConstructor {
         } else if (section.type == "budget") {
             return `
             <div class="login-sign-up-input-row">
-                <span class='login-sign-up-input-row-name'>${section.title}</span><br>
+                <span class='login-sign-up-input-row-name'>${section.title}${section.required ? "*" : ""}</span><br>
                 <span class='input-row-subtitle'>${section.subtitle ? section.subtitle : ""}</span>${section.subtitle ? "<br>" : ""}
                 <input class="${section.class}" style="${section.style}" type="${section.type}" name="${section.name}" placeholder="${section.placeholder}" value="${this.variables[section.name]}"/>
                 <span class="error-message"></span>
@@ -122,16 +123,16 @@ class PageConstructor {
         } else if (section.type=="file"){
             return `
             <div class="login-sign-up-input-row ">
-                <span class='login-sign-up-input-row-name'>${section.title}</span><br>
+                <span class='login-sign-up-input-row-name'>${section.title}${section.required ? "*" : ""}</span><br>
                 <span class='input-row-subtitle'>${section.subtitle ? section.subtitle : ""}</span>${section.subtitle ? "<br>" : ""}
-                <input class="${section.class} ${section.class_style}" style="${section.style}" type="${section.type}" name="${section.name}" value="${this.variables[section.name]["path"]}" accept="image/*"/>
+                <input class="${section.class} ${section.class_style}" style="${section.style}" type="${section.type}" name="${section.name}" files="${this.variables[section.name]["path"]}" ${section.meta} accept="image/*"/>
                 <span class="error-message"></span>
             </div>
             `
         } else if (section.class_style == "long_text") {
             return `
             <div class="login-sign-up-input-row ">
-                <span class='login-sign-up-input-row-name'>${section.title}</span><br>
+                <span class='login-sign-up-input-row-name'>${section.title}${section.required ? "*" : ""}</span><br>
                 <span class='input-row-subtitle'>${section.subtitle ? section.subtitle : ""}</span>${section.subtitle ? "<br>" : ""}
                 <textarea class="${section.class} ${section.class_style}" style="${section.style}" type="${section.type}" name="${section.name}" placeholder="${section.placeholder}" ${section.meta}>${this.variables[section.name]}</textarea>
                 <span class="error-message"></span>
@@ -140,7 +141,7 @@ class PageConstructor {
         } else {
             return `
             <div class="login-sign-up-input-row ">
-                <span class='login-sign-up-input-row-name'>${section.title}</span><br>
+                <span class='login-sign-up-input-row-name'>${section.title}${section.required ? "*" : ""}</span><br>
                 <span class='input-row-subtitle'>${section.subtitle ? section.subtitle : ""}</span>${section.subtitle ? "<br>" : ""}
                 <input class="${section.class} ${section.class_style}" style="${section.style}" type="${section.type}" name="${section.name}" placeholder="${section.placeholder}" value="${this.variables[section.name]}" min=${(new Date()).toISOString().split('T')[0]} ${section.meta}/>
                 <span class="error-message"></span>

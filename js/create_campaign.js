@@ -2,9 +2,10 @@ import {PageConstructor} from './page_constructor.js'
 import {Auth} from './auth.js'
 import {pages} from './page_sections/create_campaign.js'
 const auth = new Auth();
-const stripe =  Stripe("pk_test_51K9hYrIyqcT6sVBoc69DHBEsM84eoNp2gv98T0x7pblMXCJnqU0tajuxs46XDYg1aCGue73A5pu8ftrSo95vfn3j00mENAsC2v");
+const stripe =  window.Stripe("pk_test_51K9hYrIyqcT6sVBoc69DHBEsM84eoNp2gv98T0x7pblMXCJnqU0tajuxs46XDYg1aCGue73A5pu8ftrSo95vfn3j00mENAsC2v");
 let elements;
 
+var internationalNumberFormat = new Intl.NumberFormat('en-US')
 var variables = {
     "business_id": auth.business_id,
     "title": "",
@@ -26,7 +27,6 @@ var variables = {
 }
 
 function create_campaign_preview() {
-    var internationalNumberFormat = new Intl.NumberFormat('en-US')
     var expiration = variables.expiration ? "Expires: " + variables.expiration : ""
     var budget = variables.budget ? "Budget: $" + internationalNumberFormat.format(variables.budget) : ""
     var about = variables.about ? variables.about.slice(0,100) + "..." : ""
@@ -71,13 +71,8 @@ function show_payment_modal() {
     span.onclick = function() {
         modal.style.display = "none";
     }
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
     var modal = document.getElementById("payment-modal");
+    modal.querySelectorAll(".payment-total-amount")[0].innerHTML = "Deposit $" + internationalNumberFormat.format(variables.budget)
     modal.style.display = "block";
 }
 
@@ -85,7 +80,7 @@ async function create_campaign(path, parameters) {
     var formData = new FormData()
     $.each(parameters, function(key, value) {
         if (["primary_image"].includes(key)) {
-            formData.append(key, variables["primary_image"]["path"])
+            formData.append(key, variables[key]["path"])
         } else {
             formData.append(key, value)
         }
@@ -110,7 +105,7 @@ function update_campaign(path, parameters) {
         data: formData,
         processData: false,
         contentType: false,
-        type: 'PUT',
+        type: 'POST',
         success: async function(data){
             Swal.fire({
                 title: 'Success!',
@@ -131,8 +126,7 @@ async function initialize_payment_intent(campaign_id) {
     $.each(parameters, function(key, value) {
         formData.append(key, value)
     });
-    // var path = "https://sclnk.app/payments/create_payment_intent"
-    var path = "http://127.0.0.1:5000/payments/create_payment_intent"
+    var path = "https://sclnk.app/payments/create_payment_intent"
     const response = await $.ajax({
         url: path,
         data: formData,
@@ -142,6 +136,7 @@ async function initialize_payment_intent(campaign_id) {
     });
 
     const clientSecret = response.clientSecret;
+    variables["client_secret"] = clientSecret
     const appearance = {
         theme: 'stripe',
         variables: {
@@ -156,27 +151,26 @@ async function initialize_payment_intent(campaign_id) {
 async function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
-  
-    const { error } = await stripe.confirmPayment({
-      elements,
-      confirmParams: {
-        // Make sure to change this to your payment completion page
-        return_url: "https://scalelink.xyz",
-      },
+
+    stripe.confirmPayment({
+        elements,
+        redirect: "if_required",
+        confirmParams: {
+            // Make sure to change this to your payment completion page
+            return_url: "https://scalelink.xyz",
+        },
+    }).then(function(result) {
+        setLoading(false);
+        if (result.error) {
+            if (result.error.type === "card_error" || result.error.type === "validation_error") {
+                showMessage(error.message);
+            } else {
+                showMessage("An unexpected error occured.");
+            }
+        } else {
+            update_campaign("https://sclnk.app/campaigns/activate", {"_id": variables.campaign_id, "status": "active"})
+        }
     });
-  
-    // This point will only be reached if there is an immediate error when
-    // confirming the payment. Otherwise, your customer will be redirected to
-    // your `return_url`. For some payment methods like iDEAL, your customer will
-    // be redirected to an intermediate site first to authorize the payment, then
-    // redirected to the `return_url`.
-    if (error.type === "card_error" || error.type === "validation_error") {
-      showMessage(error.message);
-    } else {
-      showMessage("An unexpected error occured.");
-    }
-    setLoading(false);
-    update_campaign("https://sclnk.app/campaigns", {"_id": variables.campaign_id, "status": "active"})
 }
 
 var page_constructor = new PageConstructor(variables, pages, document)
@@ -195,17 +189,59 @@ $(document).on("change", "textarea", function(){
     create_campaign_preview()
 })
 
-var next_button = document.getElementById("login-signup-action-button")
+// Show a spinner on payment submission
+function setLoading(isLoading) {
+    if (isLoading) {
+      // Disable the button and show a spinner
+      document.querySelector("#submit").disabled = true;
+      document.querySelector("#spinner").classList.remove("hidden");
+      document.querySelector("#button-text").classList.add("hidden");
+    } else {
+      document.querySelector("#submit").disabled = false;
+      document.querySelector("#spinner").classList.add("hidden");
+      document.querySelector("#button-text").classList.remove("hidden");
+    }
+  }
+
+function showMessage(messageText) {
+    const messageContainer = document.querySelector("#payment-message");
+
+    messageContainer.classList.remove("hidden");
+    messageContainer.textContent = messageText;
+
+    setTimeout(function () {
+        messageContainer.classList.add("hidden");
+        messageText.textContent = "";
+    }, 4000);
+}
+
+var next_button = document.getElementById("main-action-button")
 next_button.onclick = function () {
     if (page_constructor.current_page == pages.length-1) {
-        var resp = create_campaign("https://sclnk.app/campaigns", variables)
-        // variables["campaign_id"] = resp.campaign_id
-        // initialize_payment_intent(resp.campaign_id);
-        // checkStatus();
-        // document.querySelector("#payment-modal").addEventListener("submit", handleSubmit);
-        show_payment_modal()
+        create_campaign("https://sclnk.app/campaigns", variables).then((resp) => {
+            variables["campaign_id"] = resp.campaign_id;
+            initialize_payment_intent(variables["campaign_id"]);
+            document.querySelector("#submit").addEventListener("click", handleSubmit);
+            show_payment_modal();
+        })
     } else {
-        page_constructor.next_page("Launch Campaign")
+        var page = pages[page_constructor.current_page]
+        let current_keys = page.filter(function (currentElement) {
+            return currentElement["required"]
+        });
+        var error = 0;
+        current_keys.forEach(key_obj => {
+            if (!variables[key_obj.name]) {
+                console.log(key_obj.name)
+                error++;
+            }
+        });
+        if (error) {
+            document.getElementById("blank-fields-message").style.display = "inline-block";
+        } else {
+            document.getElementById("blank-fields-message").style.display = "none";
+            page_constructor.next_page("Deposit Funds")
+        }
     }
 }
 

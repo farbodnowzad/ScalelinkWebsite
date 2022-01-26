@@ -46,17 +46,19 @@
         <section>
             <div class="container">
                 <div id="payment-modal" class="modal">
-                    <link href="../css/payment.css" rel="stylesheet" />
                     <!-- Modal content -->
                     <div class="modal-content">
                         <span class="close">&times;</span>
+                        <div class="payment-total-amount"></div><br>
+                        <span>This amount will be place into a holding account and will only be spent as your campaign gets clicks. You can expire the campaign anytime and have your remaining deposit returned.</span><br>
                         <div id="payment-element">
                             <!--Stripe.js injects the Payment Element-->
                         </div>
                         <button id="submit">
                             <div class="spinner hidden" id="spinner"></div>
-                            <span id="button-text">Pay now</span>
+                            <span id="button-text">Pay Now & Launch Campaign</span>
                         </button>
+                        <div id="payment-message" class="hidden"></div>
                     </div>
                 </div>
                 <div class="row">
@@ -69,7 +71,9 @@
                             </div>
                             <div id="login-sign-up-inputs-wrapper"></div>
                         </div>
-                        <div class="login-signup-action-button" id="login-signup-action-button">
+                        <br>
+                        <span class="hidden" id="blank-fields-message" style="color: red;">Please fill out all required fields</span>
+                        <div class="main-action-button" id="main-action-button">
                             Next
                         </div>
                     </div>

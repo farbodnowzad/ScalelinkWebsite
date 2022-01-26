@@ -11692,9 +11692,6 @@ footer a:hover, footer a:active, footer a:focus {
     font-family: "SFPro-Bold";
     font-size: 1.25rem;
 }
-.feed-h1 {
-    font-size: 1.15rem;
-}
 .campaign-link {
     display: block;
     height: 100%;
@@ -12105,7 +12102,7 @@ footer a:hover, footer a:active, footer a:focus {
   color: #a4a4a4
 }
 
-.login-signup-action-button{
+.main-action-button{
   font-family: "SFPro-Bold";
   background-color: #0A47E4;
   color: white;
@@ -12148,7 +12145,7 @@ select {
   padding-left: 1%;
 }
 
-#back-button, .login-signup-action-button {
+#back-button, .main-action-button {
   cursor: pointer;
 }
 
@@ -12700,4 +12697,133 @@ input[type=file]::file-selector-button:hover {
 .modal-info-social-link:hover {
   text-decoration: none;
   color: inherit;
+}
+
+.hidden {
+  display: none;
+}
+
+#payment-message {
+  color: rgb(105, 115, 134);
+  font-size: 16px;
+  line-height: 20px;
+  padding-top: 12px;
+  text-align: center;
+}
+
+#payment-element {
+  margin-bottom: 24px;
+}
+
+/* Buttons and links */
+#payment-modal button {
+  background-color: #0a47e4;
+  font-family: Arial, sans-serif;
+  color: #ffffff;
+  border-radius: 4px;
+  border: 0;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: block;
+  transition: all 0.2s ease;
+  box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
+  width: 100%;
+}
+
+#payment-modal button:hover {
+  filter: contrast(115%);
+}
+#payment-modal button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* spinner/processing state, errors */
+.spinner,
+.spinner:before,
+.spinner:after {
+  border-radius: 50%;
+}
+.spinner {
+  color: #ffffff;
+  font-size: 22px;
+  text-indent: -99999px;
+  margin: 0px auto;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  box-shadow: inset 0 0 0 2px;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.spinner:before,
+.spinner:after {
+  position: absolute;
+  content: "";
+}
+.spinner:before {
+  width: 10.4px;
+  height: 20.4px;
+  background-color: #0a47e4;
+  border-radius: 20.4px 0 0 20.4px;
+  top: -0.2px;
+  left: -0.2px;
+  -webkit-transform-origin: 10.4px 10.2px;
+  transform-origin: 10.4px 10.2px;
+  -webkit-animation: loading 2s infinite ease 1.5s;
+  animation: loading 2s infinite ease 1.5s;
+}
+.spinner:after {
+  width: 10.4px;
+  height: 10.2px;
+  background-color: #0a47e4;
+  border-radius: 0 10.2px 10.2px 0;
+  top: -0.1px;
+  left: 10.2px;
+  -webkit-transform-origin: 0px 10.2px;
+  transform-origin: 0px 10.2px;
+  -webkit-animation: loading 2s infinite ease;
+  animation: loading 2s infinite ease;
+}
+
+@-webkit-keyframes loading {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes loading {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  form {
+    width: 80vw;
+    min-width: initial;
+  }
+}
+
+#payment-modal .payment-total-amount {
+  width: 100%;
+  font-family: "SFPro-Heavy";
+  font-size: 2rem;
+  text-align: center;
+}
+
+#expire-campaign {
+  cursor: pointer;
 }

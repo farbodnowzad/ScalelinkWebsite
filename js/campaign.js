@@ -201,3 +201,32 @@ $(document).on("click", ".campaign-product-users", function() {
     var url = "https://sclnk.app/link_requests/product_request_users"
     user_address_csv(url, {"campaign_id": campaign_id, "business_id": business_id})
 })
+
+function update_campaign(path, parameters) {
+    var formData = new FormData()
+    $.each(parameters, function(key, value) {
+        formData.append(key, value)
+    });
+    $.ajax({
+        url: path,
+        data: formData,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: async function(data){
+            Swal.fire({
+                title: 'Success!',
+                text: 'Your campaign is now inactive. Any remaining budget has been refunded. ',
+                icon: 'success',
+                iconColor: "#0A47E4",
+                confirmButtonColor: "#0A47E4", 
+                }).then(function() {
+                window.location = "manage_campaigns.html";
+            });
+        }
+    });
+}
+
+$(document).on("click", "#expire-campaign", function() {
+    update_campaign("http://127.0.0.1:5000/campaigns/expire", {"_id": campaign_id, "status": "expired"})
+})

@@ -101,7 +101,7 @@ var page_constructor = new PageConstructor(variables, pages, document)
 page_constructor.show();
 page_constructor.create_listeners()
 var business_sign_up = new BusinessSignUp(document, variables);
-var next_button = document.getElementById("login-signup-action-button")
+var next_button = document.getElementById("main-action-button")
 next_button.onclick = function () {
     if (page_constructor.current_page == pages.length-1) {
         business_sign_up.signUpCall(variables).then(function(sign_up_response) {

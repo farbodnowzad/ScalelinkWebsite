@@ -93,7 +93,7 @@ var variables = await get(api_url, "_id", business_id);
 var page_constructor = new PageConstructor(variables, pages, document)
 page_constructor.show("Save");
 page_constructor.create_listeners()
-var next_button = document.getElementById("login-signup-action-button")
+var next_button = document.getElementById("main-action-button")
 next_button.onclick = function () {
     if (page_constructor.current_page == pages.length-1) {
         var response = post(api_url, variables)

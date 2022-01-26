@@ -1,11 +1,12 @@
 var page_1 = [
     {
         "title": "Title",
-        "subtitle": "Pick something to help identify the campaign",
+        "subtitle": "Create a name to help identify the campaign",
         "class": "login-sign-up-input",
         "type": "text",
         "name": "title",
         "placeholder": "20% Off New Product Line",
+        "required": true
     },
     {
         "title": "URL",
@@ -14,12 +15,14 @@ var page_1 = [
         "type": "text",
         "name": "url",
         "placeholder": "acme.com",
+        "required": true,
     },
     {
         "title": "Banner Image",
         "class": "login-sign-up-input",
         "type": "file",
         "name": "primary_image",
+        "required": true,
     },
     {
         "title": "What should potential influencers know about this campaign?",
@@ -29,14 +32,15 @@ var page_1 = [
         "type": "text",
         "name": "about",
         "placeholder": "Enter details",
+        "required": true
     },
-    {
-        "title": "Add any additional images here",
-        "class": "login-sign-up-input",
-        "type": "file",
-        "name": "secondary_attachments",
-        "meta": "multiple"
-    },
+    // {
+    //     "title": "Add any additional images here",
+    //     "class": "login-sign-up-input",
+    //     "type": "file",
+    //     "name": "secondary_attachments",
+    //     "meta": "multiple"
+    // },
 ]
 
 var page_2 = [
@@ -64,6 +68,7 @@ var page_2 = [
         "name": "requires_approval",
         "options": ["Yes", "No"],
         "placeholder": "Select One...",
+        "required": true
     },
     {
         "title": "Will you send a product to influencers before they can start sharing?",
@@ -72,6 +77,7 @@ var page_2 = [
         "name": "requires_product",
         "options": ["Yes", "No"],
         "placeholder": "Select One...",
+        "required": true
     },
 ]
 
@@ -81,13 +87,15 @@ var page_3 = [
         "class": "login-sign-up-input",
         "type": "date",
         "name": "expiration",
+        "required": true
     },
     {
         "title": "How much do you want to spend on this campaign?",
         "class": "login-sign-up-input",
         "type": "budget",
         "name": "budget",
-        "placeholder": "$10,000"
+        "placeholder": "$10,000",
+        "required": true
     },
     {
         "title": "What is the maximum amount that one person can make?",
