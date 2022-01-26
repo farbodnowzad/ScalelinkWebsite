@@ -106,12 +106,12 @@ function create_campaign_overview(campaign) {
     return obj
 }
 
-function create_campaign_metrics_top(campaign_metrics) {
+function create_campaign_metrics_top(campaign_metrics, campaign) {
     var obj = `<div class="campaign-metrics-row campaign-status">
-                    Status: Active
+                    Status: ${campaign.status}
                 </div><br>
                 <div class="campaign-metrics-row campaign-product-users">
-                    <a href="#">Download Addresses</a>
+                    <a href="#">Download Addresses (${campaign_metrics.product_requests_accepted})</a>
                 </div>
                 <div class="campaign-metrics-row">
                     <div class="campaign-metrics-narrow">

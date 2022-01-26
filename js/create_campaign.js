@@ -77,6 +77,9 @@ function show_payment_modal() {
 }
 
 async function create_campaign(path, parameters) {
+    document.querySelector("#main-action-button").disabled = true;
+    document.querySelector("#main-action-button-spinner").classList.remove("hidden");
+    document.querySelector("#main-action-button-text").classList.add("hidden");
     var formData = new FormData()
     $.each(parameters, function(key, value) {
         if (["primary_image"].includes(key)) {

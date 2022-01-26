@@ -65,9 +65,9 @@ class PageConstructor {
             document.getElementById("back-button").hidden = false;
         }
         if (this.current_page == this.pages.length-1) {
-            this.document.getElementById("main-action-button").innerHTML = finish_button;
+            this.document.getElementById("main-action-button-text").innerHTML = finish_button;
         } else {
-            this.document.getElementById("main-action-button").innerHTML = "Next";
+            this.document.getElementById("main-action-button-text").innerHTML = "Next";
         }
     }
 
