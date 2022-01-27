@@ -11741,15 +11741,15 @@ footer a:hover, footer a:active, footer a:focus {
 .content-container .description {
     width: 100%;
 }
-.content-container .url a{
+.content-container .text-content .url a{
    text-decoration: none;
    color: #0A47E4;
-   font-family: "SFPro-Semibold";
+   font-family: "SFPro-Medium";
 }
-.content-container .url a:hover{
+.content-container .text-content .url a:hover{
   text-decoration: underline;
   color: #0A47E4;
-  font-family: "SFPro-Semibold";
+  font-family: "SFPro-Medium";
 }
 .requirements {
   margin-top: 2%;
@@ -12004,11 +12004,21 @@ footer a:hover, footer a:active, footer a:focus {
       padding-right: 3%;
     }
     div {
-        font-size: 0.7rem;
+        font-size: 0.8rem;
     }
     .feed-h1 {
         font-size: 0.9rem;
     }
+    .content-container .text-content .url a{
+      text-decoration: none;
+      color: #0A47E4;
+      font-family: "SFPro-Medium";
+   }
+   .content-container .text-content .url a:hover{
+     text-decoration: underline;
+     color: #0A47E4;
+     font-family: "SFPro-Medium";
+   }
     .campaign_details {
         visibility: hidden;
         /* height: 0px; */
@@ -12452,7 +12462,7 @@ input[type=file]::file-selector-button:hover {
 
 .campaign-field {
   margin-bottom: 4%;
-  font-family: "SFPro-Semibold";
+  font-family: "SFPro-Medium";
 }
 
 .campaign-field-title {
@@ -12510,7 +12520,7 @@ input[type=file]::file-selector-button:hover {
 #bar-chart{
   width: 100%;
   max-width:600px;
-  font-family: "SFPro-Semibold";
+  font-family: "SFPro-Medium";
 }
 
 .top-performers-headers {
@@ -12639,7 +12649,7 @@ input[type=file]::file-selector-button:hover {
   width: 25%;
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, .1);
   border: 0;
-  font-family: "SFPro-Semibold";
+  font-family: "SFPro-Medium";
 }
 
 #payment-modal .modal-content {
