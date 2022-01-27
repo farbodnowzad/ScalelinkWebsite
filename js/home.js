@@ -2,7 +2,7 @@ const user_id = localStorage.getItem("user_id")
 var internationalNumberFormat = new Intl.NumberFormat('en-US')
 
 async function get_feed() {
-    var api_url = "http://127.0.0.1:5000/feed/home"
+    var api_url = "https://sclnk.app/feed/home"
     // api url
     const url = api_url + `?user_id=${user_id}`;
     // Storing response
