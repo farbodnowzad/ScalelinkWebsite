@@ -2,7 +2,7 @@ function get_campaign() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const campaign_id = urlParams.get('id')
-    var api_url = "http://127.0.0.1:5000/campaigns"
+    var api_url = "https://sclnk.app/campaigns"
     // api url
     const url = api_url + `?_id=${campaign_id}`;
     // Storing response

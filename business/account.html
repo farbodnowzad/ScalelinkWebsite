@@ -17,7 +17,9 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link href="../css/app_styles.css" rel="stylesheet" />
-        <script type="module" src="../js/init.js"></script>
+        <link href="../css/flash.min.css" rel="stylesheet" />
+        <script type="module" src="../js/user_init.js"></script>
+        <script src="../js/flash.min.js"></script>
     </head>
     <body id="page-top">
         <nav id="sidebar">
@@ -48,10 +50,11 @@
         </nav>
         <!-- Basic features section-->
         <section>
-            <div class="container px-5">
+            <div class="container">
                 <div class="row gx-5 align-items-center">
                     <div class="col col-md-2"></div>
                     <div class="col-12 col-md-8">
+                        <div class="flash-container"></div>
                         <div class="account-top-row">
                             <img id="logo"/><br><br>
                             <div class="page-header"></div>
@@ -60,7 +63,8 @@
                             <div id="login-sign-up-inputs-wrapper"></div>
                         </div>
                         <div class="main-action-button" id="main-action-button">
-                            Save
+                            <div class="spinner hidden" id="main-action-button-spinner"></div>
+                            <span id="main-action-button-text">Save</span>
                         </div>
                     </div>
                     <div class="col col-md-2"></div>
