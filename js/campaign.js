@@ -1,5 +1,6 @@
 import {Auth} from './auth.js'
 const auth = new Auth();
+var internationalNumberFormat = new Intl.NumberFormat('en-US')
 
 async function get_overview(key, value) {
     var api_url = "https://sclnk.app/campaigns"
@@ -138,7 +139,6 @@ function create_campaign_metrics_top(campaign_metrics, campaign) {
 }
 
 function create_campaign_metrics_bottom(campaign_metrics, campaign) {
-    var internationalNumberFormat = new Intl.NumberFormat('en-US')
     var obj = `<div class="campaign-metrics-row">
                     <div class="campaign-metrics-narrow">
                         <div class="campaign-metrics-value">

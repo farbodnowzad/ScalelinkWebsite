@@ -11698,7 +11698,6 @@ footer a:hover, footer a:active, footer a:focus {
 }
 .feed-campaign {
     width: 100%;
-    height: 100%;
     box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, .1);
     border-radius: 10px;
     padding-top: 5%;
@@ -11717,8 +11716,6 @@ footer a:hover, footer a:active, footer a:focus {
 }
 .feed-campaign .content-container {
     width: 100%;
-    height: 100%;
-    min-height: 100%;
     border-radius: 10px;
 }
 .feed-campaign .content-container div {
@@ -11730,11 +11727,9 @@ footer a:hover, footer a:active, footer a:focus {
     overflow: hidden;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    /* border: 1px solid black; */
 }
 .banner-image img {
-    /* flex-shrink: 0; */
-    min-width: 100%;
+    width: 100%;
     height: auto;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -11748,23 +11743,51 @@ footer a:hover, footer a:active, footer a:focus {
 }
 .content-container .url a{
    text-decoration: none;
-   color: #878787;
-   font-family: "SFPro-Regular";
+   color: #0A47E4;
+   font-family: "SFPro-Semibold";
+}
+.content-container .url a:hover{
+  text-decoration: underline;
+  color: #0A47E4;
+  font-family: "SFPro-Semibold";
+}
+.requirements {
+  margin-top: 2%;
+  display: inline-block;
+  width: 100%;
+}
+.requirements div {
+  float: left;
+  padding-right: 5%;
+}
+.requirement-icon {
+  height: 30px;
+  width: 30px;
 }
 .expirations {
     width: 100%;
     height: 100%;
+    display: inline-block;
 }
 .expirations .timestamp {
-    width: 50%;
+    width: 40%;
     height: 100%;
     float: left;
 }
+.feed-h1 {
+  font-size: 1.3rem;
+}
+.heavy {
+  font-family: "SFPro-Heavy";
+}
+.bold {
+  font-family: "SFPro-Bold";
+}
 .expirations .budget {
-    width: 50%;
-    height: 100%;
-    float: right;
-    text-align: right;
+  width: 50%;
+  height: 100%;
+  float: right;
+  text-align: right;
 }
 .earnings {
     padding-top: 5%;
@@ -11949,7 +11972,7 @@ footer a:hover, footer a:active, footer a:focus {
         padding: 0px;
     }
     .px-5 {
-        padding-right: 1rem !important;
+        padding-right: 0rem !important;
         padding-left: 1rem !important;
     }
     .feed-campaign {
@@ -11959,12 +11982,29 @@ footer a:hover, footer a:active, footer a:focus {
         padding-right: 0%;
     }
     .feed-campaign .content-container div {
-        margin-bottom: 2%;
+        /* margin-bottom: 2%; */
      }
     .text-content {
         padding-bottom: 3%;
         padding-left: 3%;
         padding-right: 3%;
+    }
+    .requirements {
+      margin-top: -2%;
+      display: inline-block;
+      width: 100%;
+      padding-left: 3%;
+      padding-right: 3%;
+    }
+    .requirements img{
+      height: 25px;
+      width: 25px;
+    }
+    .expirations {
+      display: inline-block;
+      width: 100%;
+      padding-left: 3%;
+      padding-right: 3%;
     }
     div {
         font-size: 0.7rem;
@@ -12668,10 +12708,11 @@ input[type=file]::file-selector-button:hover {
   max-width: 100px;
 }
 .notificaiton-campaign-link {
-  color: grey;
+  color: black;
+  text-decoration: none;
 }
 .notificaiton-campaign-link:hover {
-  color: black;
+  color: #0A47E4;
 }
 .campaign-product-users{
   width: 100%;
@@ -12826,4 +12867,44 @@ input[type=file]::file-selector-button:hover {
 
 #expire-campaign {
   cursor: pointer;
+}
+
+.transactions-row {
+  height: 42px;
+  width: 100%;
+  display: inline-block;
+  cursor: pointer;
+  margin-bottom: 5%;
+}
+.transactions-description {
+  display: inline-block;
+  vertical-align: middle;
+  height: 42px;
+}
+.transactions-text {
+  margin: 0;
+  position: absolute;
+  font-family: "SFPro-Bold";
+}
+.search-bar {
+  width: 100%;
+  height: 3%;
+}
+.search-bar-input {
+  width: 100%;
+  border: 1px solid black;
+  height: 100%;
+  padding-left: 5%;
+  padding-right: 2%;
+  border: 1px solid #C4C4C4;
+  border-radius: 5px;
+  background: url('../assets/img/magnifying-glass.png') no-repeat scroll 2% 50%;
+  background-size: 2%;
+}
+
+@media (max-width: 576px) {
+  .search-bar {
+    width: 100%;
+    height: 3%;
+  }
 }

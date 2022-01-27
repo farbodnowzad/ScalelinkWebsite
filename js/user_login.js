@@ -124,5 +124,5 @@ if (form) {
     // setup the fields we want to validate, we only have two but you can add others
     const fields = ["login-email", "login-password"];
     // run the class
-    const validator = new Login(form, fields);
+    const validator = new UserLogin(form, fields);
 }

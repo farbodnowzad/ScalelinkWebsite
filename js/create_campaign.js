@@ -70,6 +70,9 @@ function show_payment_modal() {
     var span = document.getElementsByClassName("close")[0];
     span.onclick = function() {
         modal.style.display = "none";
+        document.querySelector("#main-action-button").disabled = false;
+        document.querySelector("#main-action-button-spinner").classList.add("hidden");
+        document.querySelector("#main-action-button-text").classList.remove("hidden");
     }
     var modal = document.getElementById("payment-modal");
     modal.querySelectorAll(".payment-total-amount")[0].innerHTML = "Deposit $" + internationalNumberFormat.format(variables.budget)
@@ -77,9 +80,13 @@ function show_payment_modal() {
 }
 
 async function create_campaign(path, parameters) {
+    if (variables.campaign_id) {
+        return {"campaign_id": variables.campaign_id}
+    }
     document.querySelector("#main-action-button").disabled = true;
     document.querySelector("#main-action-button-spinner").classList.remove("hidden");
     document.querySelector("#main-action-button-text").classList.add("hidden");
+
     var formData = new FormData()
     $.each(parameters, function(key, value) {
         if (["primary_image"].includes(key)) {
@@ -124,7 +131,7 @@ function update_campaign(path, parameters) {
 }
 
 async function initialize_payment_intent(campaign_id) {
-    var parameters = {"budget": variables.budget, "campaign_id": campaign_id};
+    var parameters = {"budget": variables.budget, "campaign_id": campaign_id, "business_id": variables.business_id};
     var formData = new FormData()
     $.each(parameters, function(key, value) {
         formData.append(key, value)
