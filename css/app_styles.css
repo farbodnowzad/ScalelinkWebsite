@@ -11784,7 +11784,7 @@ footer a:hover, footer a:active, footer a:focus {
   font-family: "SFPro-Bold";
 }
 .expirations .budget {
-  width: 50%;
+  width: 60%;
   height: 100%;
   float: right;
   text-align: right;
@@ -11817,7 +11817,7 @@ footer a:hover, footer a:active, footer a:focus {
     background-color: grey;
 } */
 .expected_value, .campaign-field-header {
-    font-family: "SFPro-Heavy";
+    font-family: "SFPro-Bold";
 }
 .campaign_details a{
     text-decoration: none;
@@ -12009,12 +12009,12 @@ footer a:hover, footer a:active, footer a:focus {
     .feed-h1 {
         font-size: 0.9rem;
     }
-    .content-container .text-content .url a{
+    .url a{
       text-decoration: none;
       color: #0A47E4;
       font-family: "SFPro-Medium";
    }
-   .content-container .text-content .url a:hover{
+   .url a:hover{
      text-decoration: underline;
      color: #0A47E4;
      font-family: "SFPro-Medium";

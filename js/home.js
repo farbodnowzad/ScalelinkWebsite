@@ -43,8 +43,11 @@ function show(data) {
                             ${sends_product}
                         </div>
                         <div class="expirations">
-                            <div class="timestamp">Expires <span class="bold">${campaign.expiration}</span></div>
-                            <div class="budget">Budget <span class="bold">$${budget_formatted} Remaining</span></div>
+                            <div class="timestamp">Expires: <span class="bold">${campaign.expiration}</span></div>
+                            <div class="budget">Available: <span class="bold">$${budget_formatted}</span></div>
+                        </div>
+                        <div class="text-content">
+                            <div class="description">Status: ${campaign.status}</div>
                         </div>
                     </div>
                 </div>`;
