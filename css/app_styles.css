@@ -12161,6 +12161,10 @@ footer a:hover, footer a:active, footer a:focus {
   border: none;
 }
 
+.copy-link-text {
+  padding-left: 1%;
+}
+
 .enter-sign-up-button {
   font-family: "SFPro-Bold";
   text-align: center;
@@ -12942,4 +12946,57 @@ input[type=file]::file-selector-button:hover {
     line-height: 40px;
     padding: 0;
   }
+}
+
+.link-campaign-description {
+  display: inline-block;
+  width: 100%;
+}
+
+.link-campaign-description .description {
+  float: left;
+  width: 75%;
+}
+
+.link-campaign-description  .link-campaign-url {
+  float: right;
+  text-decoration: none;
+  color: #0A47E4;
+}
+
+.link-metrics-row {
+  width: 100%;
+  display: inline-block;
+}
+
+.link-metrics-narrow {
+  width: 48%;
+  height: 10rem;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, .1);
+  border-radius: 10px;
+  margin-bottom: 5%;
+  text-align: center;
+  background-color: white;
+  margin-top: 5%;
+  float: left;
+}
+
+.right-side {
+  float: right;
+}
+
+.link-metrics-value {
+  height: 50%;
+  text-align: center;
+  padding-top: 13%;
+}
+
+.link-metrics-value span {
+  font-family: "SFPro-Heavy";
+  font-size: 2rem;
+}
+
+.icon {
+  height: 1rem;
+  width: auto;
 }

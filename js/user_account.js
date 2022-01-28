@@ -60,7 +60,14 @@ async function get(api_url, key, value) {
     });
     return user;
 }
-
+async function stripe_account_link() {
+    const url = "https://sclnk.app/users/account_link?user_id=" + `${auth.user_id}`;
+    let account_link;
+    await $.get(url, function(data){
+        account_link = data.account_link;
+    });
+    return account_link;
+}
 function post(path, parameters) {
     var formData = new FormData()
     $.each(parameters, function(key, value) {
@@ -92,6 +99,9 @@ var pages = [page_1]
 var api_url = "https://sclnk.app/users"
 var user_id = auth.user_id;
 var variables = await get(api_url, "_id", user_id);
+var account_link = await stripe_account_link()
+var wallet_button = document.getElementsByClassName("wallet-link")[0]
+wallet_button.href = account_link;
 parse_variables(variables);
 var page_constructor = new PageConstructor(variables, pages, document)
 page_constructor.show("Save");

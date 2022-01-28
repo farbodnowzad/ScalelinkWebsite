@@ -10,7 +10,13 @@ var variables = {
     "date_of_birth": "",
     "phone_number": "",
     "gender": "",
-    "address": {},
+    "address": {
+        "line_1": "",
+        "line_2": "",
+        "city": "",
+        "state": "",
+        "zip": "",
+    },
     "categories": []
 }
 
@@ -52,6 +58,13 @@ var page_2 = [
         "value": variables["full_name"]
     },
     {
+        "title": "Phone Number",
+        "class": "login-sign-up-input",
+        "type": "number",
+        "name": "phone_number",
+        "placeholder": "(650) 430-1133",
+    },
+    {
         "title": "Date of Birth",
         "class": "login-sign-up-input",
         "type": "date",
@@ -76,35 +89,40 @@ var page_3 = [
         "class": "login-sign-up-input",
         "type": "address",
         "name": "line_1",
-        "placeholder": "Line 1"
+        "placeholder": "Line 1",
+        "class_style": "address"
     },
     {
         "title": "Address Line 2 (optional)",
         "class": "login-sign-up-input",
         "type": "address",
         "name": "line_2",
-        "placeholder": "Line 1"
+        "placeholder": "Line 2",
+        "class_style": "address"
     },
     {
         "title": "City",
         "class": "login-sign-up-input",
         "type": "address",
         "name": "city",
-        "placeholder": "Los Angeles"
+        "placeholder": "Los Angeles",
+        "class_style": "address"
     },
     {
         "title": "State",
         "class": "login-sign-up-input",
         "type": "address",
         "name": "state",
-        "placeholder": "CA"
+        "placeholder": "CA",
+        "class_style": "address"
     },
     {
         "title": "Zip Code",
         "class": "login-sign-up-input",
         "type": "address",
         "name": "zip",
-        "placeholder": "90210"
+        "placeholder": "90210",
+        "class_style": "address"
     },
     {
         "title": "Categories you create content about (choose up to 3)",
@@ -124,8 +142,13 @@ page_constructor.show();
 page_constructor.create_listeners()
 var user_sign_up = new UserSignUp(document, variables);
 var next_button = document.getElementById("main-action-button")
+var next_button_spinner = document.getElementById("main-action-button-spinner")
+var next_button_text = document.getElementById("main-action-button-text")
 next_button.onclick = function () {
     if (page_constructor.current_page == pages.length-1) {
+        next_button.disabled = true;
+        next_button_spinner.classList.remove("hidden");
+        next_button_text.classList.add("hidden");
         user_sign_up.signUpCall(variables).then(function(sign_up_response) {
             if (sign_up_response.user_id) {
                 localStorage.setItem("user_id", sign_up_response.user_id);

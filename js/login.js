@@ -69,7 +69,7 @@ class Login {
             // set the status based on the field, the field label, and if it is an error message
             this.setStatus(
                 field,
-                `${field.previousElementSibling.innerText} cannot be blank`,
+                `${field.previousElementSibling.innerText} Cannot be blank`,
                 "error"
             );
             return false;
