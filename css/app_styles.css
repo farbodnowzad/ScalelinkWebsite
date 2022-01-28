@@ -13023,9 +13023,9 @@ input[type=file]::file-selector-button:hover {
   }
 
   .link-metrics-value {
-    height: 50%;
+    height: 55%;
     text-align: center;
-    padding-top: 10%;
+    padding-top: 15%;
   }
 
   .icon {
