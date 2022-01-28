@@ -12960,6 +12960,10 @@ input[type=file]::file-selector-button:hover {
     padding-left: 4%;
     padding-right: 2%;
   }
+  .main-action-button:active {
+    /* Darken on click by 15% (down to 85%) */
+    filter: brightness(0.85);
+  }
 }
 
 .link-campaign-description {

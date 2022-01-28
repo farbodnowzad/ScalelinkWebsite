@@ -29,8 +29,7 @@ async function request_link() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const campaign_id = urlParams.get('id')
-    // var api_url = "https://sclnk.app/link_requests"
-    var api_url = "http://127.0.0.1:5000/link_requests"
+    var api_url = "https://sclnk.app/link_requests"
 
     var parameters = {"campaign_id": campaign_id, "user_id": user_id}
     var formData = new FormData()
