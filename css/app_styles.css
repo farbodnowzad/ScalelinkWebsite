@@ -11859,6 +11859,12 @@ footer a:hover, footer a:active, footer a:focus {
     margin-left: auto;
     margin-right: auto;
     vertical-align: middle;
+    cursor: pointer;
+}
+
+.get-link:active {
+  /* Darken on click by 15% (down to 85%) */
+  filter: brightness(0.85);
 }
 
 /* links */
@@ -13046,5 +13052,9 @@ input[type=file]::file-selector-button:hover {
     float: left;
     text-decoration: none;
     color: #0A47E4;
+  }
+
+  .campaign-details-section {
+    margin-bottom: 12%;
   }
 }

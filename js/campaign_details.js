@@ -25,6 +25,28 @@ async function get_campaign() {
     show(campaign_data, links)
 }
 
+async function request_link() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const campaign_id = urlParams.get('id')
+    // var api_url = "https://sclnk.app/link_requests"
+    var api_url = "http://127.0.0.1:5000/link_requests"
+
+    var parameters = {"campaign_id": campaign_id, "user_id": user_id}
+    var formData = new FormData()
+    $.each(parameters, function(key, value) {
+        formData.append(key, value)
+    });
+    const response = await $.ajax({
+        url: api_url,
+        data: formData,
+        processData: false,
+        contentType: false,
+        type: 'POST'
+    });
+    return response;
+}
+
 get_campaign();
 
 function show(campaign_data, links_data) {
@@ -36,7 +58,7 @@ function show(campaign_data, links_data) {
     if (existing_links.length == 0) {
         existing_link = null;
     } else {
-        existing_link = existing_link[0];
+        existing_link = existing_links[0];
     }
     let row = ``;
     var requires_approval = campaign.requires_approval ? "<div class='requires-approval'><img class = 'requirement-icon' src='../assets/img/requires_approval_icon.png'/> Requires Approval</div>" : ""
@@ -51,7 +73,6 @@ function show(campaign_data, links_data) {
                     <div class="description"><span class="bold">${campaign.title}</span></div>
                     <div class="description">${campaign.about} everybody know its going to be an epic summer so come have fun with it</div>
                     <div class="url">
-                        <span class="campaign-field-header">Campaign URL</span><br>
                         <a href="http://${campaign.url}" target="_blank">${campaign.url}</a>
                     </div>
                 </div>
@@ -63,14 +84,8 @@ function show(campaign_data, links_data) {
                     <div class="timestamp">Expires <span class="bold">${campaign.expiration}</span></div>
                     <div class="budget">Remaining $<span class="bold">100,000</span></div>
                 </div>
-                <div class="do-talk-about text-content">
-                    <span class="campaign-field-header">Do Talk About</span><br>
-                    ${campaign.do_mention}
-                </div>
-                <div class="do-not-talk-about text-content">
-                    <span class="campaign-field-header">Do Not Talk About</span><br>
-                    ${campaign.do_not_mention}
-                </div>
+                ${campaign.do_mention ? '<div class="do-talk-about text-content"><span class="campaign-field-header">Do Talk About</span><br>'+campaign.do_mention+'</div>' : ''}
+                ${campaign.do_not_mention ? '<div class="do-talk-about text-content"><span class="campaign-field-header">Do Not Talk About</span><br>'+campaign.do_not_mention+'</div>' : ''}
                 <div class="text-content url">
                     <span class="campaign-field-header">Business Website</span><br>
                     <a href="http://${business.website}" target="_blank">${business.website}</a>
@@ -84,7 +99,7 @@ function show(campaign_data, links_data) {
     document.getElementsByClassName("feed-campaign")[0].innerHTML = row;
     if (existing_link) {
         document.getElementsByClassName("get-link")[0].innerHTML = `<img class="icon" src="../assets/img/copy_link_icon.png"/><span id="main-action-button-text" class="copy-link-text"> Copy Link</span>`
-        $(document).on("click", ".main-action-button", function() {
+        $(document).on("click", ".get-link", function() {
             var link_url = existing_link.url;
             var data = [new ClipboardItem({ "text/plain": new Blob([link_url], { type: "text/plain" }) })];
             navigator.clipboard.write(data).then(function() {
@@ -95,12 +110,19 @@ function show(campaign_data, links_data) {
         })
     } else if (campaign.requires_product || campaign.requires_approval) {
         document.getElementsByClassName("get-link")[0].innerHTML = `<span id="main-action-button-text" class="copy-link-text">Request Link</span>`
-        $(document).on("click", ".main-action-button", function() {
-            var link_url = ""
+        $(document).on("click", ".get-link", function() {
+            request_link().then((response) => {
+                if (response.link_request_id) {
+                    window.FlashMessage.info('<b>Request sent!</b><br>Approved requests will show up in the My Links tab. You will receive a text message once the request is approved.')
+                }
+                else {
+                    window.FlashMessage.info('Request already sent.')
+                }
+            })
         })
     } else {
         document.getElementsByClassName("get-link")[0].innerHTML = `<span id="main-action-button-text" class="copy-link-text">Get Link</span>`
-        $(document).on("click", ".main-action-button", function() {
+        $(document).on("click", ".get-link", function() {
             var link_url = existing_link.url;
             var data = [new ClipboardItem({ "text/plain": new Blob([link_url], { type: "text/plain" }) })];
             navigator.clipboard.write(data).then(function() {
