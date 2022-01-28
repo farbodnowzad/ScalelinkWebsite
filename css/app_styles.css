@@ -11877,7 +11877,7 @@ footer a:hover, footer a:active, footer a:focus {
 }
 .my-link .banner-image {
   width: 100%;
-  height: 20vh;
+  max-height: 20vh;
   /* display: flex;
   justify-content: center;
   align-items: center; */
@@ -11888,8 +11888,7 @@ footer a:hover, footer a:active, footer a:focus {
 }
 .my-link .banner-image img {
   /* flex-shrink: 0; */
-  min-width: 100%;
-  height: auto;
+  width: 100%;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
@@ -11962,7 +11961,7 @@ footer a:hover, footer a:active, footer a:focus {
 @media (max-width: 576px) {
     .banner-image {
         width: 100%;
-        height: 30vh;
+        max-height: 30vh;
     }
     .my-link .banner-image {
       width: 100%;
@@ -12999,4 +12998,44 @@ input[type=file]::file-selector-button:hover {
 .icon {
   height: 1rem;
   width: auto;
+}
+
+@media (max-width: 576px) {
+  .link-metrics-row {
+    width: 100%;
+    display: inline-block;
+  }
+
+  .link-metrics-narrow {
+    width: 48%;
+    height: 7rem;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, .1);
+    border-radius: 10px;
+    margin-bottom: 5%;
+    text-align: center;
+    background-color: white;
+    margin-top: 5%;
+    float: left;
+  }
+
+  .link-metrics-value {
+    height: 50%;
+    text-align: center;
+    padding-top: 10%;
+  }
+
+  .icon {
+    height: 0.5rem;
+    width: auto;
+  }
+
+  .right-side {
+    float: right;
+  }
+
+  .link-campaign-description  .link-campaign-url {
+    float: left;
+    text-decoration: none;
+    color: #0A47E4;
+  }
 }
