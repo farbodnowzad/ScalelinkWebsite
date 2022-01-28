@@ -19,7 +19,7 @@ var business_id = auth.business_id;;
 getapi(api_url, {"business_id": business_id, "status": "open"});
 
 function notification_action(parameters) {
-    var path = "http://127.0.0.1:5000/link_requests/action"
+    var path = "https://sclnk.app/link_requests/action"
     var formData = new FormData()
     $.each(parameters, function(key, value) {
         formData.append(key, value)
