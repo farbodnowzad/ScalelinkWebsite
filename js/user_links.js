@@ -49,7 +49,7 @@ function show(data) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="main-action-button" id="main-action-button">
+                            <div class="main-action-button" id="main-action-button" link_url=${link.url}>
                                 <img class="icon" src="../assets/img/copy_link_icon.png"/><span id="main-action-button-text" class="copy-link-text"> Copy Link</span>
                             </div>
                         </div>
@@ -58,4 +58,13 @@ function show(data) {
     }
     // Setting innerHTML as tab variable
     document.getElementById("links-feed").innerHTML = row;
+    $(document).on("click", ".main-action-button", function() {
+        var link_url = this.getAttribute("link_url")
+        var data = [new ClipboardItem({ "text/plain": new Blob([link_url], { type: "text/plain" }) })];
+        navigator.clipboard.write(data).then(function() {
+            window.FlashMessage.info('Copied to clipboard!')
+        }, function() {
+            console.error("Unable to write to clipboard. :-(");
+        });
+    })
 }

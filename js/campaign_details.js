@@ -1,24 +1,44 @@
-function get_campaign() {
+import {UserAuth} from './user_auth.js'
+var user_auth = new UserAuth()
+const user_id = user_auth.user_id
+
+async function get_campaign() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const campaign_id = urlParams.get('id')
-    var api_url = "https://sclnk.app/campaigns"
+    var campaign_api_url = "https://sclnk.app/campaigns"
+    var links_api_url = "https://sclnk.app/links"
     // api url
-    const url = api_url + `?_id=${campaign_id}`;
+    const campaign_url = campaign_api_url + `?_id=${campaign_id}`;
+    const links_url = links_api_url + `?user_id=${user_id}`;
     // Storing response
-    $.get(url, function(data){
+    let campaign_data;
+    let links;
+    await $.get(campaign_url, function(data){
         // Display the returned data in browser
-        show(data);
+        campaign_data = data
     });
+    await $.get(links_url, function(data){
+        // Display the returned data in browser
+        links = data
+    });
+    show(campaign_data, links)
 }
 
 get_campaign();
 
-function show(data) {
-    var campaign = data.campaigns[0]
-    var business = data.businesses[0]
+function show(campaign_data, links_data) {
+    var campaign = campaign_data.campaigns[0]
+    var business = campaign_data.businesses[0]
+    var links = links_data.links
+    var existing_links = links.filter(link => campaign._id == link.campaign_id)
+    let existing_link;
+    if (existing_links.length == 0) {
+        existing_link = null;
+    } else {
+        existing_link = existing_link[0];
+    }
     let row = ``;
-    console.log(data.businesses)
     var requires_approval = campaign.requires_approval ? "<div class='requires-approval'><img class = 'requirement-icon' src='../assets/img/requires_approval_icon.png'/> Requires Approval</div>" : ""
     var sends_product = campaign.requires_product ? "<div class='sends-product'><img class = 'requirement-icon' src='../assets/img/sends_product_icon.png'/> Sends Product</div>" : ""
     row += `<div class="content-container">
@@ -62,4 +82,32 @@ function show(data) {
             </div>`;
     // Setting innerHTML as tab variable
     document.getElementsByClassName("feed-campaign")[0].innerHTML = row;
+    if (existing_link) {
+        document.getElementsByClassName("get-link")[0].innerHTML = `<img class="icon" src="../assets/img/copy_link_icon.png"/><span id="main-action-button-text" class="copy-link-text"> Copy Link</span>`
+        $(document).on("click", ".main-action-button", function() {
+            var link_url = existing_link.url;
+            var data = [new ClipboardItem({ "text/plain": new Blob([link_url], { type: "text/plain" }) })];
+            navigator.clipboard.write(data).then(function() {
+                window.FlashMessage.info('Copied to clipboard!')
+            }, function() {
+                console.error("Unable to write to clipboard. :-(");
+            });
+        })
+    } else if (campaign.requires_product || campaign.requires_approval) {
+        document.getElementsByClassName("get-link")[0].innerHTML = `<span id="main-action-button-text" class="copy-link-text">Request Link</span>`
+        $(document).on("click", ".main-action-button", function() {
+            var link_url = ""
+        })
+    } else {
+        document.getElementsByClassName("get-link")[0].innerHTML = `<span id="main-action-button-text" class="copy-link-text">Get Link</span>`
+        $(document).on("click", ".main-action-button", function() {
+            var link_url = existing_link.url;
+            var data = [new ClipboardItem({ "text/plain": new Blob([link_url], { type: "text/plain" }) })];
+            navigator.clipboard.write(data).then(function() {
+                window.FlashMessage.info('Copied to clipboard!')
+            }, function() {
+                console.error("Unable to write to clipboard. :-(");
+            });
+        })
+    }
 }
