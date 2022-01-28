@@ -12127,7 +12127,9 @@ footer a:hover, footer a:active, footer a:focus {
   width: 100%;
   margin-top: 5%;
 }
-
+.loginForm {
+  width: 100%;
+}
 .login-sign-up-input {
   border: 1px solid #E8E8E8;
   width: 100%;
@@ -12943,7 +12945,9 @@ input[type=file]::file-selector-button:hover {
     width: 100%;
     height: 40px;
     line-height: 40px;
-    padding: 0;
+    padding-top: 0;
+    padding-left: 4%;
+    padding-right: 2%;
   }
 }
 
