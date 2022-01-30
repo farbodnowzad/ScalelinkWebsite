@@ -46,6 +46,32 @@ async function request_link() {
     return response;
 }
 
+async function create_link() {
+    document.querySelectorAll(".get-link")[0].disabled = true;
+    document.querySelector("#main-action-button-spinner").classList.remove("hidden");
+    document.querySelector("#main-action-button-text").classList.add("hidden");
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const campaign_id = urlParams.get('id')
+    // var api_url = "https://sclnk.app/links"
+    var api_url = "http://127.0.0.1:5000/links"
+
+    var parameters = {"campaign_id": campaign_id, "user_id": user_id}
+    var formData = new FormData()
+    $.each(parameters, function(key, value) {
+        formData.append(key, value)
+    });
+    const response = await $.ajax({
+        url: api_url,
+        data: formData,
+        processData: false,
+        contentType: false,
+        type: 'POST'
+    });
+    return response;
+}
+
+
 get_campaign();
 
 function show(campaign_data, links_data) {
@@ -99,7 +125,7 @@ function show(campaign_data, links_data) {
     if (existing_link) {
         document.getElementsByClassName("get-link")[0].innerHTML = `<img class="icon" src="../assets/img/copy_link_icon.png"/><span id="main-action-button-text" class="copy-link-text"> Copy Link</span>`
         $(document).on("click", ".get-link", function() {
-            var link_url = existing_link.url;
+            var link_url = 'sclnk.me/' + existing_link._id
             var data = [new ClipboardItem({ "text/plain": new Blob([link_url], { type: "text/plain" }) })];
             navigator.clipboard.write(data).then(function() {
                 window.FlashMessage.info('Copied to clipboard!')
@@ -120,15 +146,21 @@ function show(campaign_data, links_data) {
             })
         })
     } else {
-        document.getElementsByClassName("get-link")[0].innerHTML = `<span id="main-action-button-text" class="copy-link-text">Get Link</span>`
+        document.getElementsByClassName("get-link")[0].innerHTML = `<div class="spinner hidden" id="main-action-button-spinner"></div><span id="main-action-button-text" class="copy-link-text">Get Link</span>`
         $(document).on("click", ".get-link", function() {
-            var link_url = existing_link.url;
-            var data = [new ClipboardItem({ "text/plain": new Blob([link_url], { type: "text/plain" }) })];
-            navigator.clipboard.write(data).then(function() {
-                window.FlashMessage.info('Copied to clipboard!')
-            }, function() {
-                console.error("Unable to write to clipboard. :-(");
-            });
+            create_link().then((response) => {
+                var link_id = response.link_id;
+                var link_url = 'sclnk.me/' + link_id
+                var data = [new ClipboardItem({ "text/plain": new Blob([link_url], { type: "text/plain" }) })];
+                navigator.clipboard.write(data).then(function() {
+                    window.FlashMessage.info('Link copied to clipboard! You can find all your links in the My Links tab.')
+                }, function() {
+                    console.error("Unable to write to clipboard. :-(");
+                });
+                document.querySelectorAll(".get-link")[0].disabled = false;
+                document.querySelector("#main-action-button-spinner").classList.add("hidden");
+                document.querySelector("#main-action-button-text").classList.remove("hidden");
+            })
         })
     }
 }

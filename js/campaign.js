@@ -138,7 +138,17 @@ function create_campaign_metrics_top(campaign_metrics, campaign) {
     return obj
 }
 
-function create_campaign_metrics_bottom(campaign_metrics, campaign) {
+function create_campaign_metrics_bottom(campaign_metrics, campaign, users) {
+    var top_performers_section = ``
+    var top_links = campaign_metrics.top_links
+    for (let top_link of top_links) {
+        var user = users.filter(user => user._id == top_link.user_id)[0]
+        top_performers_section += `<div class="top-performers-row">
+                <img class="top-performers-image" src="${user.profile_image}"/>
+                <div class="top-performers-full-name">${user.full_name}</div>
+                <div class="top-performers-value">${top_link.unique_visitors}</div>
+            </div>`
+    }
     var obj = `<div class="campaign-metrics-row">
                     <div class="campaign-metrics-narrow">
                         <div class="campaign-metrics-value">
@@ -160,24 +170,10 @@ function create_campaign_metrics_bottom(campaign_metrics, campaign) {
                 <div class="campaign-metrics-row">
                     <div class="campaign-metrics-wide">
                         <div class="top-performers-headers">
-                            <div class="top-performers-title">Top Performers</div>
+                            <div class="top-performers-title">Top Influencers</div>
                             <div class="top-performers-subtitle">Unique Visitors</div>
                         </div>
-                        <div class="top-performers-row">
-                            <img class="top-performers-image" src="../assets/img/influencer.jpg"/>
-                            <div class="top-performers-full-name">Farbod Nowzad</div>
-                            <div class="top-performers-value">320</div>
-                        </div>
-                        <div class="top-performers-row">
-                            <img class="top-performers-image" src="../assets/img/influencer.jpg"/>
-                            <div class="top-performers-full-name">Farbod Nowzad</div>
-                            <div class="top-performers-value">320</div>
-                        </div>
-                        <div class="top-performers-row">
-                            <img class="top-performers-image" src="../assets/img/influencer.jpg"/>
-                            <div class="top-performers-full-name">Farbod Nowzad</div>
-                            <div class="top-performers-value">320</div>
-                        </div>
+                        ${top_performers_section}
                     </div>
                 </div>
             <div>`
@@ -193,9 +189,10 @@ function show_campaign_overview(data) {
 }
 
 function show_campaign_metrics(data, campaign) {
-    var result = data.campaign_metrics
-    var campaign_metrics_top = create_campaign_metrics_top(result, campaign)
-    var campaign_metrics_bottom = create_campaign_metrics_bottom(result, campaign)
+    var campaign_metrics = data.campaign_metrics
+    var users = data.users
+    var campaign_metrics_top = create_campaign_metrics_top(campaign_metrics, campaign)
+    var campaign_metrics_bottom = create_campaign_metrics_bottom(campaign_metrics, campaign, users)
     document.getElementsByClassName("campaign-metrics")[0].insertAdjacentHTML("afterBegin", campaign_metrics_top)
     document.getElementsByClassName("campaign-metrics")[0].insertAdjacentHTML("beforeend", campaign_metrics_bottom)
 }

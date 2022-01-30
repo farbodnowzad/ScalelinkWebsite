@@ -49,7 +49,7 @@ function show(data) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="main-action-button" id="main-action-button" link_url=${link.url}>
+                            <div class="main-action-button" id="main-action-button" link_url="sclnk.me/${link._id}">
                                 <img class="icon" src="../assets/img/copy_link_icon.png"/><span id="main-action-button-text" class="copy-link-text"> Copy Link</span>
                             </div>
                         </div>
