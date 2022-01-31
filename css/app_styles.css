@@ -13124,4 +13124,20 @@ input[type=file]::file-selector-button:hover {
     font-family: "SFPro-Heavy";
     text-align: center;
   }
+  .earnings-amount-container {
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+  .account-btn {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .cash-out {
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+  .payment-settings {
+    margin-left: 20%;
+    margin-right: 20%;
+  }
 }
