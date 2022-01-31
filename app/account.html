@@ -51,7 +51,10 @@
                             <div class="page-header"></div>
                         </div>
                         <div class="wallet">
-                            <a class="wallet-link" target="_blank"><img src="../assets/img/Earnings-Card.png"/></a>
+                            <!-- if complete onboarding is false: "complete account information to get paid" + Cash Out hidden; else: "Cash Out not hidden" + "Payment Settings" -->
+                            <div class="earnings-amount-container"><div class="earnings-amount"></div><br><span>Balance</span></div>
+                            <div class="cash-out hidden account-btn">Cash Out</div>
+                            <div class="payment-settings account-btn"></div>
                         </div>
                         <div class="login-sign-up-input-container" id="login-sign-up-input-container">
                             <div id="login-sign-up-inputs-wrapper"></div>

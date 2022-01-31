@@ -20,7 +20,7 @@ var variables = {
     "requires_product": false,
     "gender": [],
     "age": [],
-    "region": "",
+    "regions": [],
     "min_payout": "",
     "max_payout": "",
     "secondary_attachments": [],
@@ -35,7 +35,7 @@ function create_campaign_preview() {
     var max_payout = parseInt(variables.max_payout) > 0 ? "Max Payout: $" + internationalNumberFormat.format(variables.max_payout) : ""
     var gender = variables.gender.length > 0 ? "Gender: " + variables.gender : ""
     var age = variables.age.length > 0 ? "Age: " + variables.age : ""
-    var region = variables.region ? "Regions: " + variables.region : ""
+    var region = variables.regions ? "Regions: " + variables.regions : ""
     var campaign_preview = `
     <div class="content-container-preview">
         <div class="banner-image-preview">
@@ -60,7 +60,7 @@ function create_campaign_preview() {
             <div class="preview-row">${max_payout}</div>
             <div class="preview-row">${gender}</div>
             <div class="preview-row">${age}</div>
-            <div class="preview-row">${region}</div>
+            <div class="preview-row">${regions}</div>
         </div>
     </div>`
     document.getElementsByClassName("feed-campaign-preview")[0].innerHTML = campaign_preview

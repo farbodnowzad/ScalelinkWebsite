@@ -59,12 +59,20 @@ class BusinessSignUp {
         } else {
             // if the field is not blank, check to see if it is password
             if (field.type == "password") {
+                var password_fields = document.getElementsByClassName("login-sign-up-password")
                 // if it is a password, check to see if it meets our minimum character requirement
                 if (field.value.length < 8) {
                     // set the status based on the field, the field label, and if it is an error message
                     this.setStatus(
                         field,
                         `${field.previousElementSibling.innerText} must be at least 8 characters`,
+                        "error"
+                    );
+                    return false;
+                } else if (password_fields[0].value != password_fields[1].value) {
+                    this.setStatus(
+                        field,
+                        `Passwords must match`,
                         "error"
                     );
                     return false;

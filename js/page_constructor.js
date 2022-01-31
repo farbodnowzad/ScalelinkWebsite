@@ -143,7 +143,7 @@ class PageConstructor {
             <div class="login-sign-up-input-row ">
                 <span class='login-sign-up-input-row-name'>${section.title}${section.required ? "*" : ""}</span><br>
                 <span class='input-row-subtitle'>${section.subtitle ? section.subtitle : ""}</span>${section.subtitle ? "<br>" : ""}
-                <input class="${section.class} ${section.class_style}" style="${section.style}" type="${section.type}" name="${section.name}" placeholder="${section.placeholder}" ${section.meta}>${this.variables["address"][section.name]}</input>
+                <input class="${section.class} ${section.class_style}" style="${section.style}" type="${section.type}" name="${section.name}" value="${this.variables["address"][section.name]}" placeholder="${section.placeholder}" ${section.meta}></input>
                 <span class="error-message"></span>
             </div>
             `
