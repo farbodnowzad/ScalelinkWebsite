@@ -30,12 +30,12 @@ function create_campaign_preview() {
     var expiration = variables.expiration ? "Expires: " + variables.expiration : ""
     var budget = variables.budget ? "Budget: $" + internationalNumberFormat.format(variables.budget) : ""
     var about = variables.about ? variables.about.slice(0,100) + "..." : ""
-    var requires_approval = variables.requires_approval == "yes" ? "Requires Approval" : ""
-    var requires_product = variables.requires_product == "yes" ? "Requires Product" : ""
-    var max_payout = parseInt(variables.max_payout) > 0 ? "Max Payout: $" + internationalNumberFormat.format(variables.max_payout) : ""
+    var requires_approval = variables.requires_approval == 'yes' ? "<div class='requires-approval'><img class = 'requirement-icon' src='../assets/img/requires_approval_icon.png'/> Requires Approval</div>" : ""
+    var sends_product = variables.requires_product == 'yes' ? "<div class='sends-product'><img class = 'requirement-icon' src='../assets/img/sends_product_icon.png'/> Sends Product</div>" : ""
+    var max_payout = parseInt(variables.max_payout) > 0 ? "<div class='preview-row'>Max Payout: $" + internationalNumberFormat.format(variables.max_payout)+"</div>" : ""
     var gender = variables.gender.length > 0 ? "Gender: " + variables.gender : ""
     var age = variables.age.length > 0 ? "Age: " + variables.age : ""
-    var region = variables.regions ? "Regions: " + variables.regions : ""
+    var regions = variables.regions.length > 0 ? "Regions: " + variables.regions : ""
     var campaign_preview = `
     <div class="content-container-preview">
         <div class="banner-image-preview">
@@ -54,13 +54,10 @@ function create_campaign_preview() {
                 </div>
             </div>
             <div class="preview-row">
-                <div>${requires_approval}</div>
-                <div>${requires_product}</div>
+                ${requires_approval}
+                ${sends_product}
             </div>
-            <div class="preview-row">${max_payout}</div>
-            <div class="preview-row">${gender}</div>
-            <div class="preview-row">${age}</div>
-            <div class="preview-row">${regions}</div>
+            ${max_payout}
         </div>
     </div>`
     document.getElementsByClassName("feed-campaign-preview")[0].innerHTML = campaign_preview

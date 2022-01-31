@@ -12388,7 +12388,9 @@ input[type=file]::file-selector-button:hover {
 }
 .preview-row {
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
+  display: inline-block;
+  padding-top: 1%;
 }
 .preview-row div{
   width: 50%;

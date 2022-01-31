@@ -63,6 +63,7 @@ var page_2 = [
     },
     {
         "title": "Do you want to approve influencers before they can start sharing?",
+        "subtitle": "Requests from influencers will be visible in Notifications.",
         "class": "login-sign-up-input",
         "type": "select",
         "name": "requires_approval",
@@ -72,6 +73,7 @@ var page_2 = [
     },
     {
         "title": "Will you send a product to influencers before they can start sharing?",
+        "subtitle": "Requests from influencers will be visible in Notifications.",
         "class": "login-sign-up-input",
         "type": "select",
         "name": "requires_product",
@@ -121,13 +123,13 @@ var page_4 = [
         "name": "age",
         "options": ["< 18", "18-24", "25-34", "35-44", "45-64", "65+"],
     },
-    {
-        "title": "Do you want to target influencers in a specific region?",
-        "class": "login-sign-up-input",
-        "type": "text",
-        "name": "region",
-        "placeholder": "Los Angeles"
-    }
+    // {
+    //     "title": "Do you want to target influencers in a specific region?",
+    //     "class": "login-sign-up-input",
+    //     "type": "text",
+    //     "name": "region",
+    //     "placeholder": "Los Angeles"
+    // }
 ]
 
 var page_5 = [
@@ -233,13 +235,13 @@ var page_5 = [
         "name": "age",
         "options": ["< 18", "18-24", "25-34", "35-44", "45-64", "65+"],
     },
-    {
-        "title": "Do you want to target influencers in a specific region?",
-        "class": "login-sign-up-input",
-        "type": "review",
-        "name": "region",
-        "placeholder": "Los Angeles"
-    }
+    // {
+    //     "title": "Do you want to target influencers in a specific region?",
+    //     "class": "login-sign-up-input",
+    //     "type": "review",
+    //     "name": "region",
+    //     "placeholder": "Los Angeles"
+    // }
 ]
 
 const pages = [page_1, page_2, page_3, page_4, page_5]
