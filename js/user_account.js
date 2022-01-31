@@ -181,7 +181,7 @@ payment_settings_btn.addEventListener("click", function() {
     window.location.href = account_link;
 });
 
-earnings_amount.innerHTML = `$${balance}`
+earnings_amount.innerHTML = `$${balance / 100}`
 
 if (complete_onboarding) {
     payment_settings_btn.innerHTML = "<img class='btn-icon' style='height: 15px;' src='../assets/img/settings_icon.png' /> Payment Settings";
