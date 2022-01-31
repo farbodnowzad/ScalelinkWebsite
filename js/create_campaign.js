@@ -230,6 +230,11 @@ next_button.onclick = function () {
             initialize_payment_intent(variables["campaign_id"]);
             document.querySelector("#submit").addEventListener("click", handleSubmit);
             show_payment_modal();
+            var event = "new_campaign";
+            var eventProperties = {
+                "app": "business",
+            };
+            amplitude.getInstance().logEvent(event, eventProperties);
         })
     } else {
         var page = pages[page_constructor.current_page]

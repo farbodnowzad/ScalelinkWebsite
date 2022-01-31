@@ -107,6 +107,11 @@ next_button.onclick = function () {
         business_sign_up.signUpCall(variables).then(function(sign_up_response) {
             if (sign_up_response.business_id) {
                 localStorage.setItem("business_id", sign_up_response.business_id);
+                var event = "register";
+                var eventProperties = {
+                    "app": "business",
+                };
+                amplitude.getInstance().logEvent(event, eventProperties);
                 window.location.replace("manage_campaigns.html")
             } else {
                 business_sign_up.setStatus(

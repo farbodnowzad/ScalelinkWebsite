@@ -152,6 +152,11 @@ next_button.onclick = function () {
         user_sign_up.signUpCall(variables).then(function(sign_up_response) {
             if (sign_up_response.user_id) {
                 localStorage.setItem("user_id", sign_up_response.user_id);
+                var event = "register";
+                var eventProperties = {
+                    "app": "user",
+                };
+                amplitude.getInstance().logEvent(event, eventProperties);
                 window.location.replace("home.html")
             } else {
                 user_sign_up.setStatus(
