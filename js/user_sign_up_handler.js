@@ -62,7 +62,7 @@ class UserSignUp {
         } else {
             // if the field is not blank, check to see if it is password
             if (field.type == "password") {
-                password_fields = document.getElementsByClassName("login-sign-up-password")
+                var password_fields = document.getElementsByClassName("login-sign-up-password")
                 // if it is a password, check to see if it meets our minimum character requirement
                 if (field.value.length < 8) {
                     // set the status based on the field, the field label, and if it is an error message
