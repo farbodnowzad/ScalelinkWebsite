@@ -13109,3 +13109,19 @@ input[type=file]::file-selector-button:hover {
 .account-btn {
   cursor: pointer;
 }
+
+.mobile-warning {
+  display: none;
+}
+
+@media (max-width: 576px) {
+  .business-view {
+    visibility: hidden;
+  }
+
+  .mobile-warning {
+    display:inherit;
+    font-family: "SFPro-Heavy";
+    text-align: center;
+  }
+}

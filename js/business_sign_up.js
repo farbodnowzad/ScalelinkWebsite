@@ -60,7 +60,7 @@ var page_2 = [
         "class_style": "long_text",
         "type": "text",
         "name": "about",
-        "placeholder": "Jen Smith",
+        "placeholder": "What does your organization do? What is it's purpose?",
     },
     {
         "title": "Company Logo",

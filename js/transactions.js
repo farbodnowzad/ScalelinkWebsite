@@ -39,5 +39,5 @@ function show(data) {
                 </div>`;
     }
     // Setting innerHTML as tab variable
-    document.getElementsByClassName("transactions-feed")[0].innerHTML = row;
+    document.getElementsByClassName("transactions-feed")[0].innerHTML = row || "No transactions";;
 }

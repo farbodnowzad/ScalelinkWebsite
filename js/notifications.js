@@ -65,7 +65,7 @@ function show(data) {
                 </div>`;
     }
     // Setting innerHTML as tab variable
-    document.getElementsByClassName("notifications-feed")[0].innerHTML = row;
+    document.getElementsByClassName("notifications-feed")[0].innerHTML = row || "No notifications";
 
     // Get the modal
     var modal = document.getElementById("user_modal");

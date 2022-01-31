@@ -44,5 +44,5 @@ function show(data) {
                 </a>`;
     }
     // Setting innerHTML as tab variable
-    document.getElementsByClassName("campaign-results-feed")[0].innerHTML = row;
+    document.getElementsByClassName("campaign-results-feed")[0].innerHTML = row || "No campaigns";;
 }
