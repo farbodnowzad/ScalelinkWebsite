@@ -3,6 +3,7 @@ import {UserAuth} from './user_auth.js'
 // import {FlashMessage} from 'flash.min.js'
 const auth = new UserAuth();
 var user_id = auth.user_id;
+var internationalNumberFormat = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'})
 
 var page_1 = [
     {
@@ -180,7 +181,7 @@ payment_settings_btn.addEventListener("click", function() {
     window.location.href = account_link;
 });
 
-earnings_amount.innerHTML = `$${balance / 100}`
+earnings_amount.innerHTML = internationalNumberFormat.format(balance / 100)
 
 if (complete_onboarding) {
     payment_settings_btn.innerHTML = "<img class='btn-icon' style='height: 15px;' src='../assets/img/settings_icon.png' /> Payment Settings";

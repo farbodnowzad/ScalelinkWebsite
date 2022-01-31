@@ -1,5 +1,5 @@
 const user_id = localStorage.getItem("user_id")
-var internationalNumberFormat = new Intl.NumberFormat('en-US')
+var internationalNumberFormat = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'})
 
 async function get_links() {
     var api_url = "https://sclnk.app/links"
@@ -19,6 +19,7 @@ function show(data) {
     for (let link of links) {
         var campaign = campaigns.filter(campaign => campaign._id == [link.campaign_id])[0]
         var business = businesses.filter(business => business._id == [campaign.business_id])[0]
+        var payout_formatted = internationalNumberFormat.format(link.payout / 100)
         row += `<div class="feed-campaign">
                     <div class="content-container">
                         <div class="banner-image">
@@ -34,7 +35,7 @@ function show(data) {
                             <div class="link-metrics-row">
                                 <div class="link-metrics-narrow">
                                     <div class="link-metrics-value">
-                                        <span>$${link.payout}</span>
+                                        <span>${payout_formatted}</span>
                                     </div>
                                     <div class="link-metrics-title">
                                         Earnings
