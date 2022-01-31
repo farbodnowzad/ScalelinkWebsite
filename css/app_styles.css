@@ -13082,7 +13082,7 @@ input[type=file]::file-selector-button:hover {
 }
 .cash-out {
   font-family: "SFPro-Heavy";
-  background-color: #07C17E;
+  background-color: #0A47E4;
   color: white;
   margin-left: 30%;
   margin-right: 30%;
@@ -13095,7 +13095,7 @@ input[type=file]::file-selector-button:hover {
 }
 .payment-settings {
   font-family: "SFPro-Heavy";
-  background-color: #0A47E4;
+  background-color: black;
   color: white;
   margin-left: 30%;
   margin-right: 30%;
@@ -13140,4 +13140,8 @@ input[type=file]::file-selector-button:hover {
     margin-left: 20%;
     margin-right: 20%;
   }
+}
+
+.btn-icon {
+  margin-right: 1%;
 }

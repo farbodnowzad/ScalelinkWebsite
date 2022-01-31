@@ -163,16 +163,16 @@ function parse_variables(vals) {
     }
 }
 var pages = [page_1]
-// var api_url = "https://sclnk.app/users"
 var api_url = "https://sclnk.app/users"
+// var api_url = "http://127.0.0.1:5000/users"
 
 var variables = await get(api_url, "_id", user_id);
 
 var account_link = await stripe_account_link();
 var account_status = await stripe_account_status();
 
-var balance = stripe_account_status.balance || 0
-var complete_onboarding = stripe_account_status.complete_onboarding;
+var balance = account_status.balance || 0
+var complete_onboarding = account_status.status;
 
 var earnings_amount = document.getElementsByClassName("earnings-amount")[0]
 var cash_out_btn = document.getElementsByClassName("cash-out")[0]
@@ -184,7 +184,7 @@ payment_settings_btn.addEventListener("click", function() {
 earnings_amount.innerHTML = `$${balance}`
 
 if (complete_onboarding) {
-    payment_settings_btn.innerHTML = "Payment Settings";
+    payment_settings_btn.innerHTML = "<img class='btn-icon' style='height: 15px;' src='../assets/img/settings_icon.png' /> Payment Settings";
     if (balance > 0) {
         cash_out_btn.classList.remove("hidden")
         cash_out_btn.addEventListener("click", function() {

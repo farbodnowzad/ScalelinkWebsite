@@ -28,6 +28,7 @@ var page_1 = [
         "title": "About",
         "class": "login-sign-up-input",
         "type": "text",
+        "class_style": "long_text",
         "name": "about",
         "placeholder": "Details about your organization",
     },
