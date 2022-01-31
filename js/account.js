@@ -11,11 +11,11 @@ var page_1 = [
         "placeholder": "Acme",
     },
     {
-        "title": "Email",
+        "title": "Contact Email",
         "class": "login-sign-up-input",
         "type": "text",
-        "name": "email",
-        "placeholder": "marketing@acme.com",
+        "name": "contact",
+        "placeholder": "contact@acme.com",
     },
     {
         "title": "Website",
@@ -44,13 +44,6 @@ var page_1 = [
         "class": "login-sign-up-input",
         "type": "file",
         "name": "logo",
-    },
-    {
-        "title": "Contact Email",
-        "class": "login-sign-up-input",
-        "type": "text",
-        "name": "contact",
-        "placeholder": "contact@acme.com",
     },
 
 ]
@@ -91,6 +84,7 @@ var pages = [page_1]
 var api_url = "https://sclnk.app/businesses"
 var business_id = auth.business_id;
 var variables = await get(api_url, "_id", business_id);
+console.log(variables)
 var page_constructor = new PageConstructor(variables, pages, document)
 page_constructor.show("Save");
 page_constructor.create_listeners()

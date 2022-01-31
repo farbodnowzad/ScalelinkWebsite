@@ -155,7 +155,7 @@ var page_5 = [
         "sub_type": "file"
     },
     {
-        "title": "What shoudld potential influencers know about this campaign?",
+        "title": "What should potential influencers know about this campaign?",
         "class": "login-sign-up-input",
         "class_style": "long_text",
         "type": "review",
