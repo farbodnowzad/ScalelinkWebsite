@@ -15,7 +15,7 @@ async function get_feed() {
 async function post_instagram_code(instagram_code) {
     var formData = new FormData()
     formData.append("code", instagram_code)
-
+    formData.append("user_id", user_id)
         var instagram_url = "https://sclnk.app/users/instagram"
         let instagram_response;
         $.ajax({
