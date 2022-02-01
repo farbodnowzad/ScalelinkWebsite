@@ -17,6 +17,7 @@ class UserAuth {
    // will remove the localStorage item and redirect to login  screen
    logOut() {
        localStorage.removeItem("user_id");
+       localStorage.removeItem("instagram_id");
        window.location.replace("/app");
    }
 }
