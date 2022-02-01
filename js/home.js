@@ -24,7 +24,7 @@ function show(data) {
     // Loop to access all rows 
     for (let campaign of results) {
         var budget_formatted = internationalNumberFormat.format(campaign.budget / 100)
-        var business = businesses.filter(business => business._id == campaign.business_id)
+        var business = businesses.filter(business => business._id == campaign.business_id)[0]
         var requires_approval = campaign.requires_approval ? "<div class='requires-approval'><img class = 'requirement-icon' src='../assets/img/requires_approval_icon.png'/> Requires Approval</div>" : ""
         var sends_product = campaign.requires_product ? "<div class='sends-product'><img class = 'requirement-icon' src='../assets/img/sends_product_icon.png'/> Sends Product</div>" : ""
         row += `<div class="feed-campaign" campaign_id=${campaign._id}>

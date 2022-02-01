@@ -11705,7 +11705,7 @@ footer a:hover, footer a:active, footer a:focus {
     padding-left: 10%;
     padding-right: 10%;
     font-family: "SFPro-Medium";
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin-bottom: 5%;
     cursor: pointer;
 }
@@ -11775,7 +11775,7 @@ footer a:hover, footer a:active, footer a:focus {
     float: left;
 }
 .feed-h1 {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 }
 .heavy {
   font-family: "SFPro-Heavy";
@@ -12912,7 +12912,7 @@ input[type=file]::file-selector-button:hover {
 }
 .search-bar {
   width: 100%;
-  height: 3%;
+  height: 50px;
 }
 .search-bar-input {
   width: 100%;
@@ -12929,7 +12929,7 @@ input[type=file]::file-selector-button:hover {
 @media (max-width: 576px) {
   .search-bar {
     width: 100%;
-    height: 3%;
+    height: 50px;
   }
   .search-bar-input {
     width: 100%;
