@@ -124,14 +124,7 @@ function show(campaign_data, links_data) {
             </div>`;
     // Setting innerHTML as tab variable
     document.getElementsByClassName("feed-campaign")[0].innerHTML = row;
-    if (!instagram_id) {
-        document.getElementsByClassName("get-link")[0].innerHTML = `<img class="btn-icon icon" src="../assets/img/instagram_icon.png" /> Connect Your Instagram to Get Links`
-        $(document).on("click", ".get-link", function() {
-            var url = `https://api.instagram.com/oauth/authorize?client_id=1130340001160455&redirect_uri=https://www.scalelink.xyz/app/home.html&scope=user_profile,user_media&response_type=code`
-            window.open(url, '_blank');
-        })
-    }
-    else if (existing_link) {
+    if (existing_link) {
         document.getElementsByClassName("get-link")[0].innerHTML = `<img class="icon" src="../assets/img/copy_link_icon.png"/><span id="main-action-button-text" class="copy-link-text"> Copy Link</span>`
         $(document).on("click", ".get-link", function() {
             var link_url = 'sclnk.me/' + existing_link._id

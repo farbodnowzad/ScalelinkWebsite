@@ -34,15 +34,15 @@ async function post_instagram_code(instagram_code) {
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const instagram_code = urlParams.get('code')
-if (!instagram_id) {
-    document.getElementsByClassName("connect-instagram")[0].classList.remove("hidden")
-}
 if (instagram_code) {
     var instagram_response = post_instagram_code(instagram_code)
     localStorage.setItem("instagram_id", instagram_response.id);
     get_feed();
 } else {
     get_feed();
+}
+if (!instagram_id) {
+    document.getElementsByClassName("connect-instagram")[0].classList.remove("hidden")
 }
 function show(data) {
     var results = data.campaigns
