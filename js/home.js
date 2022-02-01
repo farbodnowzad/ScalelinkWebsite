@@ -41,7 +41,7 @@ if (instagram_code) {
 } else {
     get_feed();
 }
-if (!instagram_id) {
+if (instagram_id == "null") {
     document.getElementsByClassName("connect-instagram")[0].classList.remove("hidden")
 }
 function show(data) {
