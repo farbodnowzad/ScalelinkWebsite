@@ -13077,7 +13077,7 @@ input[type=file]::file-selector-button:hover {
   box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, .1);
 }
 .earnings-amount {
-  font-size: 36px;
+  font-size: 2rem
 }
 .cash-out {
   font-family: "SFPro-Heavy";
@@ -13113,13 +13113,18 @@ input[type=file]::file-selector-button:hover {
   display: none;
 }
 
-#profile_image {
+.profile-image-container {
   float: left;
   height: 50px;
   width: 50px;
   overflow: hidden;
-  border-radius: 100px;;
+  border-radius: 100px;
   margin-right: 2%;
+}
+
+#profile_image {
+  width:100%;
+  min-height:100%;
 }
 
 @media (max-width: 576px) {
@@ -13139,6 +13144,8 @@ input[type=file]::file-selector-button:hover {
   .account-btn {
     padding-left: 5%;
     padding-right: 5%;
+    padding-top: 4%;
+    padding-bottom: 4%;
   }
   .cash-out {
     margin-left: 20%;
@@ -13148,13 +13155,20 @@ input[type=file]::file-selector-button:hover {
     margin-left: 20%;
     margin-right: 20%;
   }
-  #profile_image {
+  .profile-image-container {
     float: left;
     height: 40px;
     width: 40px;
     overflow: hidden;
-    border-radius: 100px;;
+    border-radius: 100px;
     margin-right: 2%;
+  }
+  .page-header {
+    font-family: "SFPro-Heavy";
+    font-size: 1.1rem;
+  }
+  .earnings-amount {
+    font-size: 1.5rem
   }
 }
 
