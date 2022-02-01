@@ -7,7 +7,7 @@ class UserSignUp {
     async signUpCall() {
         var formData = new FormData()
         $.each(this.fields, function(key, value) {
-            if (["logo"].includes(key)) {
+            if (["profile_image"].includes(key)) {
                 formData.append(key, value["path"])
             } else {
                 if (value.constructor == Object){

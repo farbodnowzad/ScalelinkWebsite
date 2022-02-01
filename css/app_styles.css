@@ -13113,6 +13113,15 @@ input[type=file]::file-selector-button:hover {
   display: none;
 }
 
+#profile_image {
+  float: left;
+  height: 50px;
+  width: 50px;
+  overflow: hidden;
+  border-radius: 100px;;
+  margin-right: 2%;
+}
+
 @media (max-width: 576px) {
   .business-view {
     visibility: hidden;
@@ -13139,8 +13148,28 @@ input[type=file]::file-selector-button:hover {
     margin-left: 20%;
     margin-right: 20%;
   }
+  #profile_image {
+    float: left;
+    height: 40px;
+    width: 40px;
+    overflow: hidden;
+    border-radius: 100px;;
+    margin-right: 2%;
+  }
 }
 
 .btn-icon {
   margin-right: 1%;
+}
+
+.url-text {
+  font-family: "SFPro-Bold";
+  text-decoration: none;
+}
+
+.account-top-row {
+  display: inline-block;
+  width: 100%;
+  vertical-align: middle;
+  line-height: 40px;
 }

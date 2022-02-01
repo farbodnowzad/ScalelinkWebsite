@@ -97,8 +97,9 @@ async function get(api_url, key, value) {
         user = data.users[0];
         user["profile_image"] = {"filename": "", "path": user["profile_image"]}
         var page_header = document.getElementsByClassName("page-header")[0]
-        var logo = document.getElementById("logo")
+        var profile_image = document.getElementById("profile_image")
         page_header.innerHTML = user.full_name;
+        profile_image.src = user.profile_image.path;
     });
     return user;
 }
@@ -196,7 +197,6 @@ if (complete_onboarding) {
 }
 
 parse_variables(variables);
-console.log(variables);
 var page_constructor = new PageConstructor(variables, pages, document)
 page_constructor.show("Save");
 page_constructor.create_listeners()

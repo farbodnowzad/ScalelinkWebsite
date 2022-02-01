@@ -70,7 +70,7 @@ function create_campaign_overview(campaign) {
             </div>
             <div class="url campaign-field">
                 <span class="campaign-field-title">URL</span><br>
-                <a href="https://${campaign.url}">${campaign.url}</a>
+                <a href="https://${campaign.url}" class='url-text'>${campaign.url}</a>
             </div>
             <div class="expiration campaign-field">
                 <span class="campaign-field-title">Expires</span><br>
@@ -115,7 +115,7 @@ function create_campaign_metrics_top(campaign_metrics, campaign) {
                     Status: ${campaign.status}
                 </div><br>
                 <div class="campaign-metrics-row campaign-product-users">
-                    <a href="#">Download Addresses (${campaign_metrics.product_requests_accepted})</a>
+                    <a href="#" class='url-text'>Download Addresses (${campaign_metrics.product_requests_accepted})</a>
                 </div>
                 <div class="campaign-metrics-row">
                     <div class="campaign-metrics-narrow">

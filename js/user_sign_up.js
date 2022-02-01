@@ -17,7 +17,8 @@ var variables = {
         "state": "",
         "zip": "",
     },
-    "categories": []
+    "categories": [],
+    "profile_image": {}
 }
 
 var page_1 = [
@@ -135,7 +136,16 @@ var page_3 = [
     },
 ]
 
-var pages = [page_1, page_2, page_3]
+var page_4 = [
+    {
+        "title": "Profile Image",
+        "class": "login-sign-up-input",
+        "type": "file",
+        "name": "profile_image",
+    },
+]
+
+var pages = [page_1, page_2, page_3, page_4]
 var page_constructor = new PageConstructor(variables, pages, document)
 
 page_constructor.show();
