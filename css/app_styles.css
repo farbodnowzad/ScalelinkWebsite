@@ -12052,7 +12052,6 @@ footer a:hover, footer a:active, footer a:focus {
     #campaign-footer .get-link {
         float: middle;
         width: 80%;
-        /* height: 50%; */
         background-color: #0A47E4;
         font-family: "SFPro-Heavy";
         color: white;
@@ -12063,7 +12062,9 @@ footer a:hover, footer a:active, footer a:focus {
         margin-top: 5%;
         margin-left: auto;
         margin-right: auto;
-        vertical-align: middle;
+    }
+    #campaign-footer .get-link img {
+      margin-bottom: 1%;
     }
 }
 .page-header {
@@ -13045,7 +13046,7 @@ input[type=file]::file-selector-button:hover {
   }
 
   .icon {
-    height: 0.5rem;
+    height: 0.8rem;
     width: auto;
   }
 
@@ -13186,4 +13187,17 @@ input[type=file]::file-selector-button:hover {
   width: 100%;
   vertical-align: middle;
   line-height: 40px;
+}
+
+.connect-instagram {
+  background-color: #405DE6;
+  color: white;
+  font-family: "SFPro-Medium";
+  text-align: center;
+  border-radius: 10px;
+  padding: 2%;
+  /* margin-left: 25%;
+  margin-right: 25%; */
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, .1);
+  cursor: pointer;
 }

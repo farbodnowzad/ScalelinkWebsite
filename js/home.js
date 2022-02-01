@@ -1,4 +1,5 @@
 const user_id = localStorage.getItem("user_id")
+const instagram_id = localStorage.getItem("instagram_id")
 var internationalNumberFormat = new Intl.NumberFormat('en-US')
 
 async function get_feed() {
@@ -11,12 +12,38 @@ async function get_feed() {
         return show(data)
     });
 }
-get_feed();
-// $('.feed-campaign').click(function(e){
-//     if(e.target.nodeName == 'A') return;
-//     window.location = $(this).find("a").attr("href");
-//     return false;
-// });
+async function post_instagram_code(instagram_code) {
+    var formData = new FormData()
+    formData.append("code", instagram_code)
+
+        var instagram_url = "https://sclnk.app/users/instagram"
+        let instagram_response;
+        $.ajax({
+            url: sign_up_url,
+            data: formData,
+            processData: false,
+            contentType: false,
+            async: false,
+            type: 'POST',
+            success: function(data){
+                instagram_response = data.response;
+            }
+        });
+        return instagram_response;
+}
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const instagram_code = urlParams.get('code')
+if (!instagram_id) {
+    document.getElementsByClassName("connect-instagram")[0].classList.remove("hidden")
+}
+if (instagram_code) {
+    var instagram_response = post_instagram_code(instagram_code)
+    localStorage.setItem("instagram_id", instagram_response.id);
+    get_feed();
+} else {
+    get_feed();
+}
 function show(data) {
     var results = data.campaigns
     var businesses = data.businesses
@@ -58,5 +85,9 @@ function show(data) {
     document.getElementById("campaign-feed").innerHTML = row;
     $(document).on("click", ".feed-campaign", function() {
         window.location.href = `campaign.html?id=${this.getAttribute("campaign_id")}`
+    })
+    $(document).on("click", ".connect-instagram", function() {
+        var url = `https://api.instagram.com/oauth/authorize?client_id=1130340001160455&redirect_uri=https://www.scalelink.xyz/app/home.html&scope=user_profile,user_media&response_type=code`
+        window.open(url, '_blank');
     })
 }

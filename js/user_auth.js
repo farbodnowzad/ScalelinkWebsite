@@ -3,6 +3,7 @@ class UserAuth {
    constructor() {
        document.querySelector("body").style.display = "none";
        this.user_id = localStorage.getItem("user_id");
+       this.instagram_id = localStorage.getItem("instagram_id");
        this.validateAuth();
    }
    // check to see if the localStorage item passed to the function is valid and set
