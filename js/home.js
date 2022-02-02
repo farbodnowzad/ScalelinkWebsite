@@ -35,9 +35,12 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const instagram_code = urlParams.get('code')
 if (instagram_code) {
-    var instagram_response = post_instagram_code(instagram_code)
-    localStorage.setItem("instagram_id", instagram_response.id);
-    get_feed();
+    post_instagram_code(instagram_code).then(instagram_response => {
+        if (instagram_response) {
+            localStorage.setItem("instagram_id", instagram_response.id);
+        }
+        get_feed();
+    })
 } else {
     get_feed();
 }
