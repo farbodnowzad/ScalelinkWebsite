@@ -159,9 +159,7 @@ function cash_out() {
 function disconnect_instagram() {
     var path = "https://sclnk.app/users/instagram/disconnect"
     var formData = new FormData()
-    $.each(parameters, function(key, value) {
-        formData.append("user_id", user_id)
-    });
+    formData.append("user_id", user_id)
     $.ajax({
         url: path,
         data: formData,
