@@ -12,27 +12,18 @@ async function get_feed() {
         return show(data)
     });
 }
-async function post_instagram_code(instagram_code) {
-    var formData = new FormData()
-    formData.append("code", instagram_code)
-    formData.append("user_id", user_id)
-        var instagram_url = "https://sclnk.app/users/instagram"
-        let instagram_response;
-        $.ajax({
-            url: instagram_url,
-            data: formData,
-            processData: false,
-            contentType: false,
-            async: false,
-            type: 'POST',
-            success: function(data){
-                instagram_response = data.response;
-            },
-            error: function(xhr, status, error){
-                instagram_response = null;
-            },
-        });
-        return instagram_response;
+async function get_user() {
+    var api_url = "https://sclnk.app/users"
+    // api url
+    const url = api_url + `?_id=${user_id}`;
+    // Storing response
+    await $.get(url, function(data){
+        // Display the returned data in browser
+        var ig_id = data.users[0]['social_accounts']['instagram_id']
+        if (ig_id) {
+            localStorage.setItem("instagram_id", ig_id)
+        }
+    });
 }
 function check_instagram_id() {
     instagram_id = localStorage.getItem("instagram_id")
@@ -41,23 +32,9 @@ function check_instagram_id() {
         document.getElementsByClassName("connect-instagram-text")[0].classList.remove("hidden")
     }
 }
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const instagram_code = urlParams.get('code')
-if (instagram_code) {
-    post_instagram_code(instagram_code).then(instagram_response => {
-        if (instagram_response) {
-            localStorage.setItem("instagram_id", instagram_response.id);
-        } else {
-            localStorage.setItem("instagram_id", null);
-        }
-        get_feed();
-        check_instagram_id();
-    })
-} else {
-    get_feed();
-    check_instagram_id()
-}
+get_feed();
+get_user();
+check_instagram_id()
 function show(data) {
     var results = data.campaigns
     var businesses = data.businesses
@@ -101,7 +78,7 @@ function show(data) {
         window.location.href = `campaign.html?id=${this.getAttribute("campaign_id")}`
     })
     $(document).on("click", ".connect-instagram", function() {
-        var url = `https://api.instagram.com/oauth/authorize?client_id=1130340001160455&redirect_uri=https://www.scalelink.xyz/app/home.html&scope=user_profile&response_type=code`
+        var url = `https://api.instagram.com/oauth/authorize?client_id=1130340001160455&redirect_uri=https://.scalelink.xyz/app/auth.html?user_id=${user_id}&scope=user_profile&response_type=code`
         window.open(url, '_blank');
     })
 }
