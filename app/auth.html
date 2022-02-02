@@ -62,8 +62,8 @@
             }
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
-            const instagram_code = urlParams.get('code')
-            const user_id = urlParams.get('state')
+            const instagram_code = urlParams.get('code').replace("#_", "")
+            const user_id = urlParams.get('state').replace("#_", "")
             post_instagram_code(instagram_code, user_id).then(instagram_response => {
                 if (instagram_response) {
                     localStorage.setItem("instagram_id", instagram_response.id);
