@@ -95,7 +95,7 @@ function show(data) {
         document.getElementsByClassName("modal-info-gender")[0].innerHTML = gender;
         document.getElementsByClassName("modal-info-age")[0].innerHTML = age;
         document.getElementsByClassName("modal-info-location")[0].innerHTML = location;
-        if (instagram_username) {
+        if (instagram_username != 'undefined' && instagram_username) {
             document.getElementsByClassName("modal-info-social-link")[0].href = `https://instagram.com/${instagram_username}`;
         } else {
             document.getElementsByClassName(" modal-info-social")[0].style.display = 'none';
