@@ -36,7 +36,7 @@ async function post_instagram_code(instagram_code) {
 }
 function check_instagram_id() {
     instagram_id = localStorage.getItem("instagram_id")
-    if (instagram_id == "null") {
+    if (instagram_id == "null" || instagram_id == null) {
         document.getElementsByClassName("connect-instagram")[0].classList.remove("hidden")
         document.getElementsByClassName("connect-instagram-text")[0].classList.remove("hidden")
     }

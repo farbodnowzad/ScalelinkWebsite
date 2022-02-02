@@ -228,5 +228,6 @@ next_button.onclick = function () {
 disconnect_instagram_button.onclick = function () {
     disconnect_instagram();
     disconnect_instagram_button.classList.add("hidden");
-    localStorage.removeItem("instagram_id")
+    localStorage.removeItem("instagram_id");
+    auth.instagram_id = null;
 }
