@@ -78,7 +78,7 @@ function show(data) {
         window.location.href = `campaign.html?id=${this.getAttribute("campaign_id")}`
     })
     $(document).on("click", ".connect-instagram", function() {
-        var url = `https://api.instagram.com/oauth/authorize?client_id=1130340001160455&redirect_uri=https://.scalelink.xyz/app/auth.html?user_id=${user_id}&scope=user_profile&response_type=code`
+        var url = `https://api.instagram.com/oauth/authorize?client_id=1130340001160455&redirect_uri=https://scalelink.xyz/app/auth.html?user_id=${user_id}&scope=user_profile&response_type=code`
         window.open(url, '_blank');
     })
 }
