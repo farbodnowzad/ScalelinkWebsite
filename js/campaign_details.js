@@ -124,7 +124,9 @@ function show(campaign_data, links_data) {
             </div>`;
     // Setting innerHTML as tab variable
     document.getElementsByClassName("feed-campaign")[0].innerHTML = row;
-    if (existing_link) {
+    if (campaign.status == 'expired') {
+        document.getElementsByClassName("get-link")[0].innerHTML = `<span id="main-action-button-text" class="copy-link-text">Expired</span>`
+    } else if (existing_link) {
         document.getElementsByClassName("get-link")[0].innerHTML = `<img class="icon" src="../assets/img/copy_link_icon.png"/><span id="main-action-button-text" class="copy-link-text"> Copy Link</span>`
         $(document).on("click", ".get-link", function() {
             var link_url = 'sclnk.me/' + existing_link._id

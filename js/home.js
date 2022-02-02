@@ -22,6 +22,8 @@ async function get_user() {
         var ig_id = data.users[0]['social_accounts']['instagram_id']
         if (ig_id) {
             localStorage.setItem("instagram_id", ig_id)
+            document.getElementsByClassName("connect-instagram")[0].classList.remove("hidden")
+            document.getElementsByClassName("connect-instagram-text")[0].classList.remove("hidden")
         }
     });
 }
