@@ -19,7 +19,7 @@ async function post_instagram_code(instagram_code) {
         var instagram_url = "https://sclnk.app/users/instagram"
         let instagram_response;
         $.ajax({
-            url: sign_up_url,
+            url: instagram_url,
             data: formData,
             processData: false,
             contentType: false,
