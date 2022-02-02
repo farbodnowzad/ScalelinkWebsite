@@ -22,6 +22,7 @@ async function get_user() {
         var ig_id = data.users[0]['social_accounts']['instagram_id']
         if (ig_id) {
             localStorage.setItem("instagram_id", ig_id)
+            document.getElementsByClassName("connect-instagram-wrapper")[0].classList.add("hidden")
             document.getElementsByClassName("connect-instagram")[0].classList.add("hidden")
             document.getElementsByClassName("connect-instagram-text")[0].classList.add("hidden")
         }
@@ -30,6 +31,7 @@ async function get_user() {
 function check_instagram_id() {
     instagram_id = localStorage.getItem("instagram_id")
     if (instagram_id == "null" || instagram_id == null) {
+        document.getElementsByClassName("connect-instagram-wrapper")[0].classList.remove("hidden")
         document.getElementsByClassName("connect-instagram")[0].classList.remove("hidden")
         document.getElementsByClassName("connect-instagram-text")[0].classList.remove("hidden")
     }
