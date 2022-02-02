@@ -39,7 +39,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script type="text/javascript">
-            async function post_instagram_code(instagram_code) {
+            async function post_instagram_code(instagram_code, user_id) {
                 var formData = new FormData()
                 formData.append("code", instagram_code)
                 formData.append("user_id", user_id)
@@ -65,11 +65,23 @@
             const urlParams = new URLSearchParams(queryString);
             const instagram_code = urlParams.get('code')
             const user_id = urlParams.get('user_id')
-            post_instagram_code(instagram_code).then(instagram_response => {
+            post_instagram_code(instagram_code, user_id).then(instagram_response => {
                 if (instagram_response) {
                     localStorage.setItem("instagram_id", instagram_response.id);
                     localStorage.setItem("user_id", user_id);
+                    var event = "instagram_auth";
+                    var eventProperties = {
+                        "app": "user",
+                        "status": "success"
+                    };
+                    amplitude.getInstance().logEvent(event, eventProperties);
                     window.location.href = "home.html"
+                } else {
+                    var event = "instagram_auth";
+                    var eventProperties = {
+                        "app": "user",
+                        "status": "fail"
+                    };
                 }
             })
         </script>
