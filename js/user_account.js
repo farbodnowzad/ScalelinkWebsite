@@ -3,6 +3,7 @@ import {UserAuth} from './user_auth.js'
 // import {FlashMessage} from 'flash.min.js'
 const auth = new UserAuth();
 var user_id = auth.user_id;
+var instagram_id = auth.instagram_id;
 var internationalNumberFormat = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'})
 
 var page_1 = [
@@ -155,6 +156,21 @@ function cash_out() {
         success: async function(data){}
     });
 }
+function disconnect_instagram() {
+    var path = "https://sclnk.app/users/instagram/disconnect"
+    var formData = new FormData()
+    $.each(parameters, function(key, value) {
+        formData.append("user_id", user_id)
+    });
+    $.ajax({
+        url: path,
+        data: formData,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: async function(data){}
+    });
+}
 function parse_variables(vals) {
     if (vals.date_of_birth) {
         var dob = vals.date_of_birth.split("/")
@@ -171,6 +187,11 @@ var variables = await get(api_url, "_id", user_id);
 
 var account_link = await stripe_account_link();
 var account_status = await stripe_account_status();
+
+var disconnect_instagram_button = document.getElementById("disconnect-instagram")
+if (instagram_id) {
+    disconnect_instagram_button.classList.remove("hidden")
+}
 
 var balance = account_status.balance || 0
 var complete_onboarding = account_status.status;
@@ -204,4 +225,10 @@ var next_button = document.getElementById("main-action-button")
 next_button.onclick = function () {
     post(api_url, variables);
     window.FlashMessage.info('Saved!')
+}
+
+disconnect_instagram_button.onclick = function () {
+    disconnect_instagram();
+    disconnect_instagram_button.classList.add("hidden");
+    localStorage.removeItem("instagram_id")
 }

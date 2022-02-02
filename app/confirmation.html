@@ -84,6 +84,7 @@
                 const queryString = window.location.search;
                 const urlParams = new URLSearchParams(queryString);
                 const user_id = urlParams.get('id')
+                user_id.replace("#", "")
                 var formData = new FormData()
                 formData.append("user_id", user_id)
                 $.ajax({
