@@ -39,6 +39,7 @@ if (instagram_code) {
         if (instagram_response) {
             localStorage.setItem("instagram_id", instagram_response.id);
         }
+        document.getElementsByClassName("connect-instagram")[0].classList.remove("hidden")
         get_feed();
     })
 } else {
