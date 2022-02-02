@@ -13141,6 +13141,13 @@ input[type=file]::file-selector-button:hover {
   cursor: pointer;
 }
 
+.connect-instagram-text {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 1%;
+  color: grey;
+}
+
 .btn-icon {
   margin-right: 1%;
 }
