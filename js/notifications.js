@@ -47,13 +47,16 @@ function show(data) {
         var user = users.filter(user => user._id == [link_request.user_id])[0]
         var campaign = campaigns.filter(campaign => campaign._id == [link_request.campaign_id])[0]
         var notification_text = link_request.product == "false" ? " is requesting a link" : " is requesting a product"
-        var date_of_birth = '24';
+        var date_of_birth = user.date_of_birth;
+        var dob_split = date_of_birth.split("/") 
+        const get_age = dob_split => Math.floor((new Date() - new Date(`${dob_split[2]}/${dob_split[0]}/${dob_split[1]}`).getTime()) / 3.15576e+10)
+        var age = get_age(dob_split)
         row += `<div class="notifications-row">
                     <div class="notifications-clickable">
                         <div class="notifications-image-wrapper">
                             <img class="notifications-image" src="${user.profile_image}"/>
                         </div> 
-                        <div class="notifications-description" full_name="${user.full_name}" gender="${user.gender}" age="${date_of_birth}" location="${user.address.city}" social="${user.social_accounts.instagram_username}">
+                        <div class="notifications-description" full_name="${user.full_name}" gender="${user.gender}" age="${age}" location="${user.address.city}" social="${user.social_accounts.instagram_username}">
                             <div class="notifications-user-text">${user.full_name}${notification_text}</div><br>
                             <a class="notificaiton-campaign-link" href="campaign.html?id=${campaign._id}"><div class="notifications-campaign-name">${campaign.title}</div></a>
                         </div>
@@ -92,7 +95,11 @@ function show(data) {
         document.getElementsByClassName("modal-info-gender")[0].innerHTML = gender;
         document.getElementsByClassName("modal-info-age")[0].innerHTML = age;
         document.getElementsByClassName("modal-info-location")[0].innerHTML = location;
-        document.getElementsByClassName("modal-info-social-link")[0].href = `https://instagram.com/${instagram_username}`;
+        if (instagram_username) {
+            document.getElementsByClassName("modal-info-social-link")[0].href = `https://instagram.com/${instagram_username}`;
+        } else {
+            document.getElementsByClassName(" modal-info-social")[0].style.display = 'none';
+        }
         modal.style.display = "block";
     })
     $(document).on("click", ".notifications-deny", function() {
