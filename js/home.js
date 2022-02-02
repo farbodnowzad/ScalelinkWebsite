@@ -1,5 +1,5 @@
 const user_id = localStorage.getItem("user_id")
-const instagram_id = localStorage.getItem("instagram_id")
+let instagram_id;
 var internationalNumberFormat = new Intl.NumberFormat('en-US')
 
 async function get_feed() {
@@ -27,9 +27,18 @@ async function post_instagram_code(instagram_code) {
             type: 'POST',
             success: function(data){
                 instagram_response = data.response;
-            }
+            },
+            error: function(xhr, status, error){
+                instagram_response = null;
+            },
         });
         return instagram_response;
+}
+function check_instagram_id() {
+    instagram_id = localStorage.getItem("instagram_id")
+    if (instagram_id == "null") {
+        document.getElementsByClassName("connect-instagram")[0].classList.remove("hidden")
+    }
 }
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -38,15 +47,15 @@ if (instagram_code) {
     post_instagram_code(instagram_code).then(instagram_response => {
         if (instagram_response) {
             localStorage.setItem("instagram_id", instagram_response.id);
+        } else {
+            localStorage.setItem("instagram_id", null);
         }
-        document.getElementsByClassName("connect-instagram")[0].classList.remove("hidden")
         get_feed();
+        check_instagram_id();
     })
 } else {
     get_feed();
-}
-if (instagram_id == "null") {
-    document.getElementsByClassName("connect-instagram")[0].classList.remove("hidden")
+    check_instagram_id()
 }
 function show(data) {
     var results = data.campaigns
