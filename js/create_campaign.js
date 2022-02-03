@@ -249,7 +249,7 @@ function showMessage(messageText) {
 var next_button = document.getElementById("main-action-button")
 next_button.onclick = function () {
     if (page_constructor.current_page == pages.length-1) {
-        create_campaign("http://127.0.0.1:5000/campaigns", variables).then((resp) => {
+        create_campaign("https://sclnk.app/campaigns", variables).then((resp) => {
             variables["campaign_id"] = resp.campaign_id;
             initialize_payment_intent(variables["campaign_id"]);
             document.querySelector("#submit").addEventListener("click", handleSubmit);
