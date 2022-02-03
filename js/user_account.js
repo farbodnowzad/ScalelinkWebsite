@@ -15,13 +15,6 @@ var page_1 = [
         "placeholder": "Jen Smith",
     },
     {
-        "title": "Email",
-        "class": "login-sign-up-input",
-        "type": "text",
-        "name": "email",
-        "placeholder": "marketing@acme.com",
-    },
-    {
         "title": "Phone Number",
         "class": "login-sign-up-input",
         "type": "text",

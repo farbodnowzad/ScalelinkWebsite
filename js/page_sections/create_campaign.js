@@ -102,9 +102,16 @@ var page_3 = [
     {
         "title": "What is the maximum amount that one person can make?",
         "class": "login-sign-up-input",
-        "type": "text",
+        "type": "number",
         "name": "max_payout",
         "placeholder": "No maximum"
+    },
+    {
+        "title": "What is the minimum number of unique visitors a link must receive before the influencers is paid?",
+        "class": "login-sign-up-input",
+        "type": "number",
+        "name": "min_payout",
+        "placeholder": 0
     }
 ]
 
