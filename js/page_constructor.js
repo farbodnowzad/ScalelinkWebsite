@@ -81,7 +81,7 @@ class PageConstructor {
         })
     }
 
-    show(finish_button="Sign Up") {
+    show(finish_button="Sign Up", create_campaign=False) {
         var page = this.pages[this.current_page]
         var sections = this.document.getElementById("login-sign-up-inputs-wrapper")
         sections.innerHTML = ``
@@ -101,7 +101,9 @@ class PageConstructor {
         } else {
             this.document.getElementById("main-action-button-text").innerHTML = "Next";
         }
-        this.init_regions()
+        if (create_campaign) {
+            this.init_regions()
+        }
     }
 
     create_section(section) {
