@@ -72,7 +72,7 @@ class UserSignUp {
                         "error"
                     );
                     return false;
-                } else if (password_fields[0] != password_fields[1]) {
+                } else if (password_fields[0].value != password_fields[1].value) {
                     this.setStatus(
                         field,
                         `Passwords must match`,
