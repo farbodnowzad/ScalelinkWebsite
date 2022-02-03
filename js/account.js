@@ -48,9 +48,9 @@ var page_1 = [
 
 ]
 
-async function get(api_url, key, value) {
+async function get_account(api_url, key, value) {
     const url = api_url + `?${key}=${value}`;
-    let business;
+    var business;
     await $.get(url, function(data){
         business = data.businesses[0];
         business["logo"] = {"filename": "", "path": business["logo"]}
@@ -83,8 +83,7 @@ function post(path, parameters) {
 var pages = [page_1]
 var api_url = "https://sclnk.app/businesses"
 var business_id = auth.business_id;
-var variables = await get(api_url, "_id", business_id);
-console.log(variables)
+var variables = await get_account(api_url, "_id", business_id);
 var page_constructor = new PageConstructor(variables, pages, document)
 page_constructor.show("Save");
 page_constructor.create_listeners()

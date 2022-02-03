@@ -78,6 +78,7 @@ class UserSignUp {
                         `Passwords must match`,
                         "error"
                     );
+                    return false;
                 } else {
                     // set the status based on the field without text and return a success message
                     this.setStatus(field, null, "success");
