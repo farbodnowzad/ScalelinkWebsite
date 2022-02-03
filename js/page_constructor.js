@@ -26,6 +26,9 @@ class PageConstructor {
         $(this.document).on("change", "textarea", function() {
             self.variables[this.name] = this.value;
         })
+        $(this.document).on("change", "input[type='number']", function() {
+            self.variables[this.name] = this.value;
+        })
         $(this.document).on("keyup", "input[type='budget']", function() {
             var internationalNumberFormat = new Intl.NumberFormat('en-US')
             self.variables[this.name] = this.value;

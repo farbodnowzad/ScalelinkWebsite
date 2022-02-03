@@ -89,7 +89,7 @@ var page_3 = [
     {
         "title": "Phone Number",
         "class": "login-sign-up-input",
-        "type": "text",
+        "type": "number",
         "name": "phone_number",
         "placeholder": "(650) 555-5555"
     }

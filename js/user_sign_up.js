@@ -63,7 +63,7 @@ var page_2 = [
         "class": "login-sign-up-input",
         "type": "number",
         "name": "phone_number",
-        "placeholder": "(650) 430-1133",
+        "placeholder": "(650) 555-5555"
     },
     {
         "title": "Date of Birth",
