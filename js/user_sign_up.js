@@ -158,6 +158,7 @@ next_button.onclick = function () {
     if (page_constructor.current_page == pages.length-1) {
         next_button.disabled = true;
         next_button_spinner.classList.remove("hidden");
+        next_button_spinner.classList.add("visible-spinner");
         next_button_text.classList.add("hidden");
         user_sign_up.signUpCall(variables).then(function(sign_up_response) {
             if (sign_up_response.user_id) {

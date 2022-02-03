@@ -12966,6 +12966,14 @@ input[type=file]::file-selector-button:hover {
     /* Darken on click by 15% (down to 85%) */
     filter: brightness(0.85);
   }
+  .main-action-button:before, .visible-spinner {
+    display:inline-block;
+    vertical-align:middle;
+  }
+  .main-action-button:before {
+      content:"";
+      height:100%;
+  }
 }
 
 .link-campaign-description {
