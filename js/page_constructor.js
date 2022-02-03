@@ -81,7 +81,7 @@ class PageConstructor {
         })
     }
 
-    show(finish_button="Sign Up", create_campaign=False) {
+    show(finish_button="Sign Up", create_campaign=false) {
         var page = this.pages[this.current_page]
         var sections = this.document.getElementById("login-sign-up-inputs-wrapper")
         sections.innerHTML = ``

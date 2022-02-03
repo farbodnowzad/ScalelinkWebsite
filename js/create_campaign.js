@@ -181,7 +181,7 @@ async function handleSubmit(e) {
 }
 
 var page_constructor = new PageConstructor(variables, pages, document)
-page_constructor.show(create_campaign=True);
+page_constructor.show(create_campaign=true);
 page_constructor.create_listeners()
 
 // generate preview based on updates to the variables
