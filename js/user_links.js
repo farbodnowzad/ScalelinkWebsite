@@ -58,7 +58,7 @@ function show(data) {
                 </div>`;
     }
     // Setting innerHTML as tab variable
-    document.getElementById("links-feed").innerHTML = row;
+    document.getElementById("links-feed").innerHTML = row || 'None yet. Discover campaigns on the home screen to get new links. Your unique links will be visible here.';
     $(document).on("click", ".main-action-button", function() {
         var link_url = this.getAttribute("link_url")
         var data = [new ClipboardItem({ "text/plain": new Blob([link_url], { type: "text/plain" }) })];
