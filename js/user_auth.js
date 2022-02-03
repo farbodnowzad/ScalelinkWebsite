@@ -11,7 +11,8 @@ class UserAuth {
        if (this.user_id == null) {
            window.location.replace("/app");
        } else {
-           document.querySelector("body").style.display = "block";
+            amplitude.getInstance().setUserId(this.user_id);
+            document.querySelector("body").style.display = "block";
        }
    }
    // will remove the localStorage item and redirect to login  screen
