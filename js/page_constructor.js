@@ -13,7 +13,9 @@ class PageConstructor {
             self.variables[this.name]["path"] = this.files[0];
         })
         $(this.document).on("change", "input[type='text']", function() {
-            self.variables[this.name] = this.value;
+            if (this.name != 'regions') {
+                self.variables[this.name] = this.value;
+            }
         })
         $(this.document).on("change", "input[type='address']", function() {
             self.variables["address"][this.name] = this.value;
@@ -147,7 +149,19 @@ class PageConstructor {
                 <span class="error-message"></span>
             </div>
             `
-        }else {
+        } else if (section.class_style == "regions") {
+            return `
+            <div class="login-sign-up-input-row ">
+                <span class='login-sign-up-input-row-name'>${section.title}${section.required ? "*" : ""}</span><br>
+                <span class='input-row-subtitle'>${section.subtitle ? section.subtitle : ""}</span>${section.subtitle ? "<br>" : ""}
+                <input class="${section.class} ${section.class_style}" style="${section.style}" type="${section.type}" name="${section.name}" placeholder="${section.placeholder}" value="${this.variables[section.name]}" min=${(new Date()).toISOString().split('T')[0]} ${section.meta}/>
+                <br>
+                <div id="regions-list" class="hidden">${this.variables[section.name]}</div>
+                <br>
+                <div id="remove-last-region" class="hidden" style='color: #0A47e4'>Undo Last Region</div>
+            </div>
+            `
+        } else {
             return `
             <div class="login-sign-up-input-row ">
                 <span class='login-sign-up-input-row-name'>${section.title}${section.required ? "*" : ""}</span><br>

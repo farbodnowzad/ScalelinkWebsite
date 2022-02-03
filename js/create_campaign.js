@@ -184,6 +184,30 @@ var page_constructor = new PageConstructor(variables, pages, document)
 page_constructor.show();
 page_constructor.create_listeners()
 
+var options = {
+    types: ['(cities)'],
+   };
+var input = document.getElementsByClassName('regions')[0];
+var regions_list = document.getElementById('regions-list');
+var remove_last_region = document.getElementById('remove-last-region');
+var autocomplete = new google.maps.places.Autocomplete(input, options);
+autocomplete.addListener("place_changed", () => {
+    regions_list.classList.remove('hidden')
+    remove_last_region.classList.remove('hidden')
+    const place = autocomplete.getPlace()
+    var formatted_address = `"${place.formatted_address}"`
+    variables.regions.push(formatted_address)
+    document.getElementById("regions-list").innerHTML =  variables.regions.join(' ')
+    input.value = ''
+})
+$(document).on('click', '#remove-last-region', function() {
+    variables.regions.splice(-1, 1)
+    document.getElementById("regions-list").innerHTML =  variables.regions.join(' ')
+    if (variables.regions.length == 0) {
+        remove_last_region.classList.add('hidden')
+    }
+})
+
 // generate preview based on updates to the variables
 create_campaign_preview()
 $(document).on("change", "input", function(){
@@ -225,7 +249,7 @@ function showMessage(messageText) {
 var next_button = document.getElementById("main-action-button")
 next_button.onclick = function () {
     if (page_constructor.current_page == pages.length-1) {
-        create_campaign("https://sclnk.app/campaigns", variables).then((resp) => {
+        create_campaign("http://127.0.0.1:5000/campaigns", variables).then((resp) => {
             variables["campaign_id"] = resp.campaign_id;
             initialize_payment_intent(variables["campaign_id"]);
             document.querySelector("#submit").addEventListener("click", handleSubmit);
