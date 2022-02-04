@@ -55,11 +55,15 @@ class PageConstructor {
     }
 
     init_regions() {
+        var inputs = this.document.getElementsByClassName('regions');
+        if (inputs.length == 0) {
+            return;
+        }
         var self = this;
         var options = {
             types: ['(cities)'],
            };
-        var input = this.document.getElementsByClassName('regions')[0];
+        var input = inputs[0];
         var regions_list = this.document.getElementById('regions-list');
         var remove_last_region = this.document.getElementById('remove-last-region');
         var autocomplete = new google.maps.places.Autocomplete(input, options);
@@ -81,7 +85,7 @@ class PageConstructor {
         })
     }
 
-    show(finish_button="Sign Up", create_campaign=false) {
+    show(finish_button="Sign Up") {
         var page = this.pages[this.current_page]
         var sections = this.document.getElementById("login-sign-up-inputs-wrapper")
         sections.innerHTML = ``
@@ -101,9 +105,7 @@ class PageConstructor {
         } else {
             this.document.getElementById("main-action-button-text").innerHTML = "Next";
         }
-        if (create_campaign) {
-            this.init_regions()
-        }
+        this.init_regions()
     }
 
     create_section(section) {

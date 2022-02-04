@@ -102,7 +102,7 @@ function create_campaign_overview(campaign) {
             </div>
             <div class="regions campaign-field">
                 <span class="campaign-field-title">Regions</span><br>
-                ${campaign.region}
+                ${campaign.region_names}
             </div>
             <div id="expire-campaign">
                 Expire Campaign

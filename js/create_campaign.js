@@ -29,7 +29,7 @@ var variables = {
 function create_campaign_preview() {
     var expiration = variables.expiration ? "Expires: " + variables.expiration : ""
     var budget = variables.budget ? "Budget: $" + internationalNumberFormat.format(variables.budget) : ""
-    var about = variables.about ? variables.about.slice(0,100) + "..." : ""
+    var about = variables.about ? variables.about.slice(0, 150) + (variables.about.length > 150 ? "..." : "") : ""
     var requires_approval = variables.requires_approval == 'yes' ? "<div class='requires-approval'><img class = 'requirement-icon' src='../assets/img/requires_approval_icon.png'/> Requires Approval</div>" : ""
     var sends_product = variables.requires_product == 'yes' ? "<div class='sends-product'><img class = 'requirement-icon' src='../assets/img/sends_product_icon.png'/> Sends Product</div>" : ""
     var max_payout = parseInt(variables.max_payout) > 0 ? "<div class='preview-row'>Max Payout: $" + internationalNumberFormat.format(variables.max_payout)+"</div>" : ""
@@ -181,7 +181,7 @@ async function handleSubmit(e) {
 }
 
 var page_constructor = new PageConstructor(variables, pages, document)
-page_constructor.show(create_campaign=true);
+page_constructor.show();
 page_constructor.create_listeners()
 
 // generate preview based on updates to the variables
