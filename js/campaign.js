@@ -152,7 +152,7 @@ function create_campaign_metrics_bottom(campaign_metrics, campaign, users) {
     var obj = `<div class="campaign-metrics-row">
                     <div class="campaign-metrics-narrow">
                         <div class="campaign-metrics-value">
-                            $${internationalNumberFormat.format((campaign.budget - campaign_metrics.budget_spent) / 100)}
+                            $${internationalNumberFormat.format((campaign.budget - campaign_metrics.budget_spent) * 0.8 / 100)}
                         </div>
                         <div class="campaign-metrics-title">
                             Budget Remaining

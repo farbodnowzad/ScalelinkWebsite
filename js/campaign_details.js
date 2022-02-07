@@ -87,7 +87,7 @@ function show(campaign_data, links_data) {
         existing_link = existing_links[0];
     }
     let row = ``;
-    var budget_formatted = internationalNumberFormat.format(campaign.budget / 100)
+    var budget_formatted = internationalNumberFormat.format(campaign.budget * 0.8 / 100)
     var requires_approval = campaign.requires_approval ? "<div class='requires-approval'><img class = 'requirement-icon' src='../assets/img/requires_approval_icon.png'/> Requires Approval</div>" : ""
     var sends_product = campaign.requires_product ? "<div class='sends-product'><img class = 'requirement-icon' src='../assets/img/sends_product_icon.png'/> Sends Product</div>" : ""
     row += `<div class="content-container">
