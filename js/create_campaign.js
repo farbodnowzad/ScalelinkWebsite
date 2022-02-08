@@ -28,7 +28,7 @@ var variables = {
 
 function create_campaign_preview() {
     var expiration = variables.expiration ? "Expires: " + variables.expiration : ""
-    var budget = variables.budget ? "Budget: $" + internationalNumberFormat.format(variables.budget) : ""
+    var budget = variables.budget ? "Budget: $" + internationalNumberFormat.format(variables.budget.replace("$", "").replace(",", "")) : ""
     var about = variables.about ? variables.about.slice(0, 150) + (variables.about.length > 150 ? "..." : "") : ""
     var requires_approval = variables.requires_approval == 'yes' ? "<div class='requires-approval'><img class = 'requirement-icon' src='../assets/img/requires_approval_icon.png'/> Requires Approval</div>" : ""
     var sends_product = variables.requires_product == 'yes' ? "<div class='sends-product'><img class = 'requirement-icon' src='../assets/img/sends_product_icon.png'/> Sends Product</div>" : ""

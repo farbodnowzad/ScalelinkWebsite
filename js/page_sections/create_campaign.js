@@ -102,7 +102,7 @@ var page_3 = [
     {
         "title": "What is the maximum amount that one person can make?",
         "class": "login-sign-up-input",
-        "type": "number",
+        "type": "text",
         "name": "max_payout",
         "placeholder": "No maximum"
     },

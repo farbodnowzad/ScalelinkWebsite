@@ -1,6 +1,6 @@
 import {Auth} from './auth.js'
 const auth = new Auth();
-var internationalNumberFormat = new Intl.NumberFormat('en-US')
+var internationalNumberFormat = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'})
 
 async function get_overview(key, value) {
     var api_url = "https://sclnk.app/campaigns"
@@ -152,7 +152,7 @@ function create_campaign_metrics_bottom(campaign_metrics, campaign, users) {
     var obj = `<div class="campaign-metrics-row">
                     <div class="campaign-metrics-narrow">
                         <div class="campaign-metrics-value">
-                            $${internationalNumberFormat.format((campaign.budget - campaign_metrics.budget_spent) * 0.8 / 100)}
+                            ${internationalNumberFormat.format((campaign.budget - campaign_metrics.budget_spent) * 0.8 / 100)}
                         </div>
                         <div class="campaign-metrics-title">
                             Budget Remaining
@@ -160,7 +160,7 @@ function create_campaign_metrics_bottom(campaign_metrics, campaign, users) {
                     </div>
                     <div class="campaign-metrics-narrow right-side">
                         <div class="campaign-metrics-value">
-                            $${internationalNumberFormat.format((campaign_metrics.budget_spent) / 100)}
+                            ${internationalNumberFormat.format((campaign_metrics.budget_spent) / 100)}
                         </div>
                         <div class="campaign-metrics-title">
                             Budget Spent
