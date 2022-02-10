@@ -4,10 +4,8 @@ import {pages} from './pages.js'
 import { PreviewConstructor } from './preview_constructor.js';
 import { format_usd } from '../helpers.js';
 const auth = new Auth();
-const stripe =  window.Stripe("pk_test_51K9hYrIyqcT6sVBoc69DHBEsM84eoNp2gv98T0x7pblMXCJnqU0tajuxs46XDYg1aCGue73A5pu8ftrSo95vfn3j00mENAsC2v");
+const stripe =  window.Stripe("pk_live_51K9hYrIyqcT6sVBoototWSd1xaTCcTy4jBKT6LAGpLEipd940Ch1YK58YqaZD85aUyr8aWmGrjwxleZLdAKDRgmO004vetOjhY");
 let elements;
-
-var saved = false;
 
 var variables = {
     "business_id": auth.business_id,
@@ -58,6 +56,7 @@ async function create_campaign(parameters) {
             formData.append(key, value)
         }
     });
+    console.log(parameters)
     const response = await $.ajax({
         url: path,
         data: formData,
