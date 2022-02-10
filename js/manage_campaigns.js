@@ -23,7 +23,7 @@ async function getapi(api_url, parameters) {
 var api_url = "https://sclnk.app/campaigns/manage"
 var business_id = auth.business_id;;
 
-getapi(api_url, {"business_id": business_id, "status": {"$in": ["active", "expired"]}});
+getapi(api_url, {"business_id": business_id, "status": {"$in": ["active", "expired", "pending"]}, "sort": "last_updated"});
 
 function show(data) {
     var results = data.campaigns
@@ -31,13 +31,15 @@ function show(data) {
     
     // Loop to access all rows 
     for (let campaign of results) {
-        row += `<a href="campaign.html?id=${campaign._id}">
+        var status = campaign.status
+        var redirect_to = status == "pending" ? `create_campaign.html?id=${campaign._id}` : `campaign.html?id=${campaign._id}`
+        var subtitle = status == "pending" ? `<div class="manage-campaign-continue-editing">Continue Editing</div>` : ''
+        row += `<a href="${redirect_to}">
                     <div class="campaign-result">
                         <div class="campaign-result-info">
                             <div class="campaign-result-title">${campaign.title}</div>
-                            <div class="campaign-result-timestamps">
-                                <div class="campaign-result-expires">Status: ${campaign.status}</div>
-                            </div>
+                            <div class="campaign-result-expires">${campaign.status.charAt(0).toUpperCase() + campaign.status.slice(1)}</div>
+                            ${subtitle}
                         </div>
                         <div class="campaign-result-arrow"><div class="arrow-wrapper"><img src="../assets/img/right_arrow.svg"/></div></div>
                     </div>

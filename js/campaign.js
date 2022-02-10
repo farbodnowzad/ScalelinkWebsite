@@ -61,6 +61,7 @@ const business_id = auth.business_id;
 get_overview("_id", campaign_id).then(campaign => {get_metrics("campaign_id", campaign_id, campaign);});
 
 function create_campaign_overview(campaign) {
+    var expire_campaign = campaign.status == 'active'? `<div id="expire-campaign">Expire Campaign</div>` : ``
     var obj = `<div class="banner-image">
                 <img src="${campaign.primary_image}"/>
             </div>
@@ -104,9 +105,7 @@ function create_campaign_overview(campaign) {
                 <span class="campaign-field-title">Regions</span><br>
                 ${campaign.region_names}
             </div>
-            <div id="expire-campaign">
-                Expire Campaign
-            </div>`
+            ${expire_campaign}`
     return obj
 }
 
@@ -152,7 +151,7 @@ function create_campaign_metrics_bottom(campaign_metrics, campaign, users) {
     var obj = `<div class="campaign-metrics-row">
                     <div class="campaign-metrics-narrow">
                         <div class="campaign-metrics-value">
-                            ${internationalNumberFormat.format((campaign.budget - campaign_metrics.budget_spent) * 0.8 / 100)}
+                            ${internationalNumberFormat.format((campaign.budget - campaign_metrics.budget_spent) / 100)}
                         </div>
                         <div class="campaign-metrics-title">
                             Budget Remaining

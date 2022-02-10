@@ -73,7 +73,7 @@ var page_2 = [
         "class": "login-sign-up-input",
         "type": "checkbox",
         "name": "categories",
-        "options": ["Beauty", "Fashion", "Tech", "Lifestyle", "Food", "Wellness", "Fitness", "Business", "Sports", "Music", "Entertainment"],
+        "options": ["Beauty", "Fashion", "Tech", "Lifestyle", "Food/Beverage", "Wellness", "Fitness", "Business", "Sports", "Music", "Entertainment"],
         "placeholder": "",
         "value": variables["categories"]
     },

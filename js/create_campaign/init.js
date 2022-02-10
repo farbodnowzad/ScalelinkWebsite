@@ -1,11 +1,14 @@
-import {PageConstructor} from './page_constructor.js'
-import {Auth} from './auth.js'
-import {pages} from './page_sections/create_campaign.js'
+import {FormConstructor} from './form_constructor.js'
+import {Auth} from '../auth.js'
+import {pages} from './pages.js'
+import { PreviewConstructor } from './preview_constructor.js';
+import { format_usd } from '../helpers.js';
 const auth = new Auth();
 const stripe =  window.Stripe("pk_test_51K9hYrIyqcT6sVBoc69DHBEsM84eoNp2gv98T0x7pblMXCJnqU0tajuxs46XDYg1aCGue73A5pu8ftrSo95vfn3j00mENAsC2v");
 let elements;
 
-var internationalNumberFormat = new Intl.NumberFormat('en-US')
+var saved = false;
+
 var variables = {
     "business_id": auth.business_id,
     "title": "",
@@ -26,57 +29,18 @@ var variables = {
     "secondary_attachments": [],
 }
 
-function create_campaign_preview() {
-    var expiration = variables.expiration ? "Expires: " + variables.expiration : ""
-    var budget = variables.budget ? "Budget: $" + internationalNumberFormat.format(variables.budget.replace("$", "").replace(",", "")) : ""
-    var about = variables.about ? variables.about.slice(0, 150) + (variables.about.length > 150 ? "..." : "") : ""
-    var requires_approval = variables.requires_approval == 'yes' ? "<div class='requires-approval'><img class = 'requirement-icon' src='../assets/img/requires_approval_icon.png'/> Requires Approval</div>" : ""
-    var sends_product = variables.requires_product == 'yes' ? "<div class='sends-product'><img class = 'requirement-icon' src='../assets/img/sends_product_icon.png'/> Sends Product</div>" : ""
-    var max_payout = parseInt(variables.max_payout) > 0 ? "<div class='preview-row'>Max Payout: $" + internationalNumberFormat.format(variables.max_payout)+"</div>" : ""
-    var gender = variables.gender.length > 0 ? "Gender: " + variables.gender : ""
-    var age = variables.age.length > 0 ? "Age: " + variables.age : ""
-    var regions = variables.regions.length > 0 ? "Regions: " + variables.regions : ""
-    var campaign_preview = `
-    <div class="content-container-preview">
-        <div class="banner-image-preview">
-            <img src="${variables.primary_image.filename}"/>
-        </div>
-        <div class="text-content-preview">
-            <div class="brand-name-preview feed-h1-preview">${variables.title}</div>
-            <div class="description-preview">${about}</div>
-            <div class="url-preview">
-                <a href="#">${variables.url}</a>
-            </div>
-            <div class="expirations-preview">
-                <div class="timestamp-preview">${expiration}</div>
-                <div class="budget-preview">
-                    <div class="remaining_amount-preview">${budget}</div>
-                </div>
-            </div>
-            <div class="preview-row">
-                ${requires_approval}
-                ${sends_product}
-            </div>
-            ${max_payout}
-        </div>
-    </div>`
-    document.getElementsByClassName("feed-campaign-preview")[0].innerHTML = campaign_preview
-}
-
 function show_payment_modal() {
     var span = document.getElementsByClassName("close")[0];
     span.onclick = function() {
         modal.style.display = "none";
-        document.querySelector("#main-action-button").disabled = false;
-        document.querySelector("#main-action-button-spinner").classList.add("hidden");
-        document.querySelector("#main-action-button-text").classList.remove("hidden");
     }
     var modal = document.getElementById("payment-modal");
-    modal.querySelectorAll(".payment-total-amount")[0].innerHTML = "Deposit $" + internationalNumberFormat.format(variables.budget)
+    modal.querySelectorAll(".payment-total-amount")[0].innerHTML = "Deposit " + format_usd(variables.budget)
     modal.style.display = "block";
 }
 
-async function create_campaign(path, parameters) {
+async function create_campaign(parameters) {
+    var path = "https://sclnk.app/campaigns";
     if (variables.campaign_id) {
         return {"campaign_id": variables.campaign_id}
     }
@@ -87,7 +51,38 @@ async function create_campaign(path, parameters) {
     var formData = new FormData()
     $.each(parameters, function(key, value) {
         if (["primary_image"].includes(key)) {
-            formData.append(key, variables[key]["path"])
+            if (variables[key]["path"]) {
+                formData.append(key, variables[key]["path"])
+            }
+        } else {
+            formData.append(key, value)
+        }
+    });
+    const response = await $.ajax({
+        url: path,
+        data: formData,
+        processData: false,
+        contentType: false,
+        type: 'POST'
+    });
+    document.querySelector("#main-action-button").disabled = false;
+    document.querySelector("#main-action-button-spinner").classList.add("hidden");
+    document.querySelector("#main-action-button-text").classList.remove("hidden");
+    return response;
+}
+
+async function save_campaign(parameters) {
+    var path = "https://sclnk.app/campaigns/save";
+    if (variables.campaign_id) {
+        return {"campaign_id": variables.campaign_id}
+    }
+
+    var formData = new FormData()
+    $.each(parameters, function(key, value) {
+        if (["primary_image"].includes(key)) {
+            if (variables[key]["path"]) {
+                formData.append(key, variables[key]["path"])
+            }
         } else {
             formData.append(key, value)
         }
@@ -102,7 +97,7 @@ async function create_campaign(path, parameters) {
     return response;
 }
 
-function update_campaign(path, parameters) {
+function activate_campaign(path, parameters) {
     var formData = new FormData()
     $.each(parameters, function(key, value) {
         formData.append(key, value)
@@ -175,26 +170,40 @@ async function handleSubmit(e) {
                 showMessage("An unexpected error occured.");
             }
         } else {
-            update_campaign("https://sclnk.app/campaigns/activate", {"_id": variables.campaign_id, "status": "active"})
+            activate_campaign("https://sclnk.app/campaigns/activate", {"_id": variables.campaign_id, "status": "active"})
         }
     });
 }
 
-var page_constructor = new PageConstructor(variables, pages, document)
-page_constructor.show();
-page_constructor.create_listeners()
+async function get_campaign(campaign_id) {
+    var campaign_api_url = "https://sclnk.app/campaigns"
+    // api url
+    const campaign_url = campaign_api_url + `?_id=${campaign_id}`;
+    // Storing response
+    let campaign_data;
+    await $.get(campaign_url, function(data){
+        // Display the returned data in browser
+        campaign_data = data
+    });
+    variables = campaign_data.campaigns[0]
+    variables.budget = variables.budget / 100
+    variables.max_payout = variables.max_payout / 100
+    variables.primary_image = {"filename": variables.primary_image || "", "path": variables.primary_image || ""}
+}
 
-// generate preview based on updates to the variables
-create_campaign_preview()
-$(document).on("change", "input", function(){
-    create_campaign_preview()
-})
-$(document).on("change", "select", function(){
-    create_campaign_preview()
-})
-$(document).on("change", "textarea", function(){
-    create_campaign_preview()
-})
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const campaign_id = urlParams.get('id')
+if (campaign_id) {
+    await get_campaign(campaign_id);
+}
+var form_constructor = new FormConstructor(variables, pages, document)
+form_constructor.show();
+form_constructor.create_listeners();
+
+var preview_constructor = new PreviewConstructor(variables, document)
+preview_constructor.create_campaign_preview();
+preview_constructor.create_listeners()
 
 // Show a spinner on payment submission
 function setLoading(isLoading) {
@@ -224,8 +233,8 @@ function showMessage(messageText) {
 
 var next_button = document.getElementById("main-action-button")
 next_button.onclick = function () {
-    if (page_constructor.current_page == pages.length-1) {
-        create_campaign("https://sclnk.app/campaigns", variables).then((resp) => {
+    if (form_constructor.current_page == pages.length-1) {
+        create_campaign(variables).then((resp) => {
             variables["campaign_id"] = resp.campaign_id;
             initialize_payment_intent(variables["campaign_id"]);
             document.querySelector("#submit").addEventListener("click", handleSubmit);
@@ -237,7 +246,7 @@ next_button.onclick = function () {
             amplitude.getInstance().logEvent(event, eventProperties);
         })
     } else {
-        var page = pages[page_constructor.current_page]
+        var page = pages[form_constructor.current_page]
         let current_keys = page.filter(function (currentElement) {
             return currentElement["required"]
         });
@@ -252,7 +261,7 @@ next_button.onclick = function () {
             document.getElementById("blank-fields-message").style.display = "inline-block";
         } else {
             document.getElementById("blank-fields-message").style.display = "none";
-            page_constructor.next_page("Deposit Funds")
+            form_constructor.next_page("Deposit Funds")
         }
     }
 }
@@ -260,5 +269,13 @@ next_button.onclick = function () {
 // load the previous section on back button
 var back_button = document.getElementById("back-button")
 back_button.onclick = function () {
-    page_constructor.previous_page()
+    form_constructor.previous_page()
+}
+
+// save the current campaign
+var save_button = document.getElementById("save-button")
+save_button.onclick = function () {
+    save_campaign(variables);
+    save_button.innerHTML = "Saved &#x2714;"
+    save_button.style.backgroundColor = "#CDCCCC"
 }

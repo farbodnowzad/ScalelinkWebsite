@@ -49,6 +49,7 @@ function show(data) {
         var business = businesses.filter(business => business._id == campaign.business_id)[0]
         var requires_approval = campaign.requires_approval ? "<div class='requires-approval'><img class = 'requirement-icon' src='../assets/img/requires_approval_icon.png'/> Requires Approval</div>" : ""
         var sends_product = campaign.requires_product ? "<div class='sends-product'><img class = 'requirement-icon' src='../assets/img/sends_product_icon.png'/> Sends Product</div>" : ""
+        var categories_row = category_indicators(business.categories)
         row += `<div class="feed-campaign" campaign_id=${campaign._id}>
                     <div class="content-container">
                         <div class="banner-image">
@@ -57,9 +58,10 @@ function show(data) {
                         <div class="text-content">
                             <div class="brand-name feed-h1">${business.name}</div>
                             <div class="description"><span class="bold">${campaign.title}</span></div>
+                            ${categories_row}
                             <div class="description">${campaign.about}</div>
                             <div class="url">
-                                <a href="http://${campaign.url}" target="_blank">${campaign.url}</a>
+                                <a class="url" href="http://${campaign.url}" target="_blank">${campaign.url}</a>
                             </div>
                         </div>
                         <div class="requirements">
@@ -85,4 +87,12 @@ function show(data) {
         var url = `https://api.instagram.com/oauth/authorize?client_id=1130340001160455&redirect_uri=https://scalelink.xyz/app/auth.html&state=${user_id}&scope=user_profile&response_type=code`
         window.open(url, '_blank');
     })
+}
+
+function category_indicators(categories) {
+    var categories_items = ``
+    for (let category of categories) {
+        categories_items += `<div class="campaign-category">${category}</div>`
+    }
+    return `<div class="campaign-categories-row">${categories_items}</div>`
 }

@@ -1,4 +1,10 @@
-class PageConstructor {
+import { format_usd, usd_to_int } from '../helpers.js';
+
+class FormConstructor {
+    static internationalNumberFormat = new Intl.NumberFormat('en-US')
+    static COST_PER_CLICK = 2
+    static IMPRESSIONS_PER_VISITOR = 33
+
     constructor(variables, pages, document) {
       this.variables = variables;
       this.pages = pages;
@@ -8,74 +14,53 @@ class PageConstructor {
 
     create_listeners() {
         var self = this;
-        $(this.document).on("change", "input[type='file']", function() {
-            self.variables[this.name]["filename"] = URL.createObjectURL(this.files[0]);
-            self.variables[this.name]["path"] = this.files[0];
-        })
-        $(this.document).on("input", "input[type='text']", function() {
-            if (this.name != 'regions') {
-                self.variables[this.name] = this.value;
+        $(this.document).on("input change", "input, textarea, select", function() {
+            if (this.type == "file") {
+                self.variables[this.name]["filename"] = URL.createObjectURL(this.files[0]);
+                self.variables[this.name]["path"] = this.files[0];
+            } else if (this.name == "budget") {
+                var value = usd_to_int(this.value)
+                self.variables[this.name] = value
+                this.value = format_usd(value)
+                var num_visitors = parseInt(value / FormConstructor.COST_PER_CLICK)
+                var num_impressions = parseInt(num_visitors * FormConstructor.IMPRESSIONS_PER_VISITOR)
+                var text = num_visitors ? `Get ${FormConstructor.internationalNumberFormat.format(num_visitors)} unique visitors and an estimated ${FormConstructor.internationalNumberFormat.format(num_impressions)} impressions` : "Estimated engagement..."
+                $('#budget-estimates').text(text);
+            } else if (this.name == "max_payout") {
+                var value = usd_to_int(this.value)
+                self.variables[this.name] = value
+                this.value = format_usd(value)
+            } else if (this.type == "checkbox") {
+                if (this.checked) {
+                    self.variables[this.name].push(this.value)
+                    self.variables[this.name] = [...new Set(self.variables[this.name])];
+                } else {
+                    var index = self.variables[this.name].indexOf(this.value)
+                    self.variables[this.name].splice(index, 1)
+                    self.variables[this.name] = [...new Set(self.variables[this.name])];
+                }
+            } else if (this.type == "dropdown") {
+                self.variables[this.name] = this.value.toLowerCase();
+            } else if (this.name == "regions") {
+                return;
             }
-        })
-        $(this.document).on("change", "input[type='address']", function() {
-            self.variables["address"][this.name] = this.value;
-        })
-        $(this.document).on("change", "input[type='password']", function() {
-            self.variables[this.name] = this.value;
-        })
-        $(this.document).on("input", "textarea", function() {
-            self.variables[this.name] = this.value;
-        })
-        $(this.document).on("input", "input[type='number']", function() {
-            self.variables[this.name] = this.value;
-        })
-        $(this.document).on("input", "input[type='budget']", function() {
-            var value = this.value.replace('$', '').replace(',', '');
-            self.variables[this.name] = value
-            var internationalNumberFormat = new Intl.NumberFormat('en-US')
-            var budget = self.variables[this.name] ? parseInt(self.variables[this.name].replace("$", "").replace(",", "")) : 0
-            var currency_symbol = value ? '$' : ''
-            var val_formatted = currency_symbol + internationalNumberFormat.format(value)
-            this.value = val_formatted
-            var num_visitors = parseInt(budget / 3)
-            var num_impressions = parseInt(num_visitors * 33)
-            var text = num_visitors ? `Get ${internationalNumberFormat.format(num_visitors)} unique visitors and an estimated ${internationalNumberFormat.format(num_impressions)} impressions` : "Estimated engagement..."
-            $('#budget-estimates').text(text);
-        })
-        $(this.document).on("change", "input[type='checkbox']", function() {
-            if (this.checked) {
-                self.variables[this.name].push(this.value)
-            } else {
-                var index = self.variables[this.name].indexOf(this.value)
-                self.variables[this.name].splice(index, 1)
+            else {
+                self.variables[this.name] = this.value
             }
+            self.unsave();
         })
-        $(this.document).on("change", "select", function() {
-            self.variables[this.name] = this.value.toLowerCase();
-        })
-        $(this.document).on("change", "input[type='date']", function() {
-            self.variables[this.name] = this.value
-        })
-        // $.fn.currencyInput = function() {
-        //     this.each(function() {
-        //       var wrapper = $("<div class='currency-input' />");
-        //       $(this).wrap(wrapper);
-        //       $(this).before("<span class='currency-symbol'>$</span>");
-        //       $(this).change(function() {
-        //         var min = parseFloat($(this).attr("min"));
-        //         var max = parseFloat($(this).attr("max"));
-        //         var value = this.valueAsNumber;
-        //         if(value < min)
-        //           value = min;
-        //         else if(value > max)
-        //           value = max;
-        //         $(this).val(value.toFixed(2)); 
-        //       });
-        //     });
-        // };
-        // $(document).ready(function() {
-        //     $('input.currency').currencyInput();
-        // });
+    }
+
+    unsave() {
+        var save_button = this.document.getElementById("save-button")
+        if (this.variables.title) {
+            save_button.classList.remove("hidden")
+        } else {
+            save_button.classList.add("hidden")
+        }
+        save_button.innerHTML = "Save"
+        save_button.style.backgroundColor = "#0A47E4"
+        save_button.style.color = "#fff"
     }
 
     init_regions() {
@@ -96,6 +81,7 @@ class PageConstructor {
             remove_last_region.classList.remove('hidden')
             const place = autocomplete.getPlace()
             var formatted_address = `"${place.formatted_address}"`
+            console.log(formatted_address)
             self.variables.regions.push(formatted_address)
             self.document.getElementById("regions-list").innerHTML =  self.variables.regions.join(' ')
             input.value = ''
@@ -114,7 +100,7 @@ class PageConstructor {
         var sections = this.document.getElementById("login-sign-up-inputs-wrapper")
         sections.innerHTML = ``
         for (let section of page) {
-            var filled_section = this.create_section(section, this.save_text, this.save_select, this.save_checkbox);
+            var filled_section = this.create_section(section);
             sections.innerHTML += filled_section;
         }
         if (this.current_page == 0) {
@@ -129,7 +115,6 @@ class PageConstructor {
         } else {
             this.document.getElementById("main-action-button-text").innerHTML = "Next";
         }
-        this.create_listeners()
         this.init_regions()
     }
 
@@ -164,11 +149,12 @@ class PageConstructor {
             checkbox += '</div>'
             return checkbox
         } else if (section.type == "budget") {
+            var formatted_value = this.variables[section.name] ? format_usd(this.variables[section.name]) : ''
             return `
             <div class="login-sign-up-input-row">
                 <span class='login-sign-up-input-row-name'>${section.title}${section.required ? "*" : ""}</span><br>
                 <span class='input-row-subtitle'>${section.subtitle ? section.subtitle : ""}</span>${section.subtitle ? "<br>" : ""}
-                <input class="${section.class}" style="${section.style}" type="${section.type}" name="${section.name}" id="${section.name}" placeholder="${section.placeholder}" value="${this.variables[section.name]}"/>
+                <input class="${section.class}" style="${section.style}" type="${section.type}" name="${section.name}" id="${section.name}" placeholder="${section.placeholder}" value="${formatted_value}"/>
                 <span class="error-message"></span>
             </div>
             <div id="budget-estimates">Estimated engagement...</div>
@@ -249,4 +235,4 @@ class PageConstructor {
     }
 }
 
-export {PageConstructor}
+export {FormConstructor}

@@ -33,14 +33,7 @@ var page_1 = [
         "name": "about",
         "placeholder": "Enter details",
         "required": true
-    },
-    // {
-    //     "title": "Add any additional images here",
-    //     "class": "login-sign-up-input",
-    //     "type": "file",
-    //     "name": "secondary_attachments",
-    //     "meta": "multiple"
-    // },
+    }
 ]
 
 var page_2 = [
@@ -93,7 +86,7 @@ var page_3 = [
     },
     {
         "title": "How much do you want to spend on this campaign?",
-        "class": "login-sign-up-input",
+        "class": "login-sign-up-input currency",
         "type": "budget",
         "name": "budget",
         "placeholder": "$10,000",
@@ -247,7 +240,7 @@ var page_5 = [
         "title": "Do you want to target influencers in a specific region?",
         "class": "login-sign-up-input",
         "type": "review",
-        "name": "region",
+        "name": "regions",
         "placeholder": "Los Angeles"
     }
 ]
