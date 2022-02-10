@@ -12045,15 +12045,14 @@ footer a:hover, footer a:active, footer a:focus {
         font-size: 1rem;
     }
     .url a{
-      text-decoration: none;
-      color: black;
+      color: #0A47E4;
       font-family: "SFPro-Medium";
-   }
+    }
    .url a:hover{
      text-decoration: underline;
      color: #0A47E4;
      font-family: "SFPro-Medium";
-   }
+    }
     .campaign_details {
         visibility: hidden;
         /* height: 0px; */
