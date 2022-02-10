@@ -67,7 +67,7 @@ function show(data) {
                 </div>`;
     }
     // Setting innerHTML as tab variable
-    document.getElementById("campaign-feed").innerHTML = row || 'No campaigns right now in this caetgory. Check back soon.';
+    document.getElementById("campaign-feed").innerHTML = row || 'No campaigns right now in this category. Check back soon.';
     $(document).on("click", ".feed-campaign", function() {
         window.location.href = `campaign.html?id=${this.getAttribute("campaign_id")}`
     })
