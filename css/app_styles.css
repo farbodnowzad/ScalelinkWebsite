@@ -11704,7 +11704,7 @@ footer a:hover, footer a:active, footer a:focus {
     padding-bottom: 5%;
     padding-left: 10%;
     padding-right: 10%;
-    font-family: "SFPro-Semibold";
+    font-family: "SFPro-Medium";
     font-size: 0.9rem;
     margin-bottom: 5%;
     cursor: pointer;
@@ -11748,12 +11748,12 @@ footer a:hover, footer a:active, footer a:focus {
 .content-container .text-content .url a{
    text-decoration: underline;
    color: #0A47E4;
-   font-family: "SFPro-Semibold";
+   font-family: "SFPro-Medium";
 }
 .content-container .text-content .url a:hover{
   text-decoration: underline;
   color: #0A47E4;
-  font-family: "SFPro-Semibold";
+  font-family: "SFPro-Medium";
 }
 .requirements {
   width: 100%;
@@ -11789,7 +11789,7 @@ footer a:hover, footer a:active, footer a:focus {
   margin-right: 2%;
   border-radius: 5px;
   background-color: #F1EEEE;
-  font-family: "SFPro-Semibold";
+  font-family: "SFPro-Medium";
 }
 .expirations .timestamp {
     display: inline;
@@ -12047,12 +12047,12 @@ footer a:hover, footer a:active, footer a:focus {
     .url a{
       text-decoration: none;
       color: black;
-      font-family: "SFPro-Semibold";
+      font-family: "SFPro-Medium";
    }
    .url a:hover{
      text-decoration: underline;
      color: #0A47E4;
-     font-family: "SFPro-Semibold";
+     font-family: "SFPro-Medium";
    }
     .campaign_details {
         visibility: hidden;
@@ -13264,7 +13264,7 @@ input[type=file]::file-selector-button:hover {
   margin-right: 2%;
   border-radius: 5px;
   background-color: #F1EEEE;
-  font-family: "SFPro-Semibold";
+  font-family: "SFPro-Medium";
 }
 
 .campaign-tag-dark {

@@ -13,12 +13,22 @@ async function get_feed(category) {
         return show(data)
     });
 }
+
+function format_section_header(category) {
+    var cateogry_name_parts = category.split("_")
+    var category_parts_formatted = []
+    for (let part of cateogry_name_parts) {
+        category_parts_formatted.push(part.charAt(0).toUpperCase() + part.slice(1))
+    }
+    return category_parts_formatted.join(" & ")
+}
 const urlParams = new URLSearchParams(window.location.search);
 const category = urlParams.get('category')
 var section_header = document.getElementsByClassName('section-header')[0]
-section_header.innerHTML = category.charAt(0).toUpperCase() + category.slice(1)
-console.log(section_header.innerHTML)
+section_header.innerHTML = format_section_header(category)
+
 get_feed(category);
+
 function show(data) {
     var results = data.campaigns
     var businesses = data.businesses
