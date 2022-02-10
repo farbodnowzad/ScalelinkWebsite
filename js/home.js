@@ -69,8 +69,9 @@ function show(data) {
                                 ${sends_product}
                             </div>
                             <div class="campaign-tags-row">
-                                <div class="campaign-tag-dark">Expires ${campaign.expiration}</div>
-                                <div class="campaign-tag-dark">Available $${budget_formatted}</div>
+                                <div class="campaign-tag-dark">Exp. ${campaign.expiration}</div>
+                                <div class="campaign-tag-dark">Avail. $${budget_formatted}</div>
+                                <div class="campaign-tag-dark">$1.70/click</div>
                             </div>
                         </div>
                     </div>

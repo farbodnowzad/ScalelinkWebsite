@@ -13260,7 +13260,6 @@ input[type=file]::file-selector-button:hover {
   padding-bottom: 1%;
   padding-left: 4%;
   padding-right: 4%;
-  margin-right: 2%;
   border-radius: 5px;
   background-color: #F1EEEE;
   font-family: "SFPro-Medium";
@@ -13272,7 +13271,6 @@ input[type=file]::file-selector-button:hover {
   padding-bottom: 1%;
   padding-left: 4%;
   padding-right: 4%;
-  margin-right: 2%;
   border-radius: 5px;
   background-color: black;
   color: white;
