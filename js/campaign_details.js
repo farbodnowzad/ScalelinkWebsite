@@ -98,18 +98,18 @@ function show(campaign_data, links_data) {
                     <div class="brand-name feed-h1">${business.name}</div>
                     <div class="description">${business.about}</div>
                     <div class="description"><span class="bold">${campaign.title}</span></div>
-                    <div class="description">${campaign.about} everybody know its going to be an epic summer so come have fun with it</div>
+                    <div class="description">${campaign.about}</div>
                     <div class="url">
                         <a href="http://${campaign.url}" target="_blank">${campaign.url}</a>
                     </div>
-                </div>
-                <div class="requirements">
-                    ${requires_approval}
-                    ${sends_product}
-                </div>
-                <div class="expirations">
-                    <div class="timestamp">Expires <span class="bold">${campaign.expiration}</span></div>
-                    <div class="budget">Remaining $<span class="bold">${budget_formatted}</span></div>
+                    <div class="requirements">
+                        ${requires_approval}
+                        ${sends_product}
+                    </div>
+                    <div class="campaign-tags-row">
+                        <div class="campaign-tag-dark">Expires ${campaign.expiration}</div>
+                        <div class="campaign-tag-dark">Available $${budget_formatted}</div>
+                    </div>
                 </div>
                 ${campaign.do_mention ? '<div class="do-talk-about text-content"><span class="campaign-field-header">Do Talk About</span><br>'+campaign.do_mention+'</div>' : ''}
                 ${campaign.do_not_mention ? '<div class="do-talk-about text-content"><span class="campaign-field-header">Do Not Talk About</span><br>'+campaign.do_not_mention+'</div>' : ''}

@@ -57,29 +57,27 @@ function show(data) {
                         </div>
                         <div class="text-content">
                             <div class="brand-name feed-h1">${business.name}</div>
-                            <div class="description"><span class="bold">${campaign.title}</span></div>
+                            <div class="description"><span class="heavy">${campaign.title}</span></div>
                             ${categories_row}
+                            
                             <div class="description">${campaign.about}</div>
                             <div class="url">
                                 <a class="url" href="http://${campaign.url}" target="_blank">${campaign.url}</a>
                             </div>
-                        </div>
-                        <div class="requirements">
-                            ${requires_approval}
-                            ${sends_product}
-                        </div>
-                        <div class="expirations">
-                            <div class="timestamp">Expires: <span class="bold">${campaign.expiration}</span></div>
-                            <div class="budget">Available: <span class="bold">$${budget_formatted}</span></div>
-                        </div>
-                        <div class="text-content">
-                            <div class="description">Status: ${campaign.status}</div>
+                            <div class="requirements">
+                                ${requires_approval}
+                                ${sends_product}
+                            </div>
+                            <div class="campaign-tags-row">
+                                <div class="campaign-tag-dark">Expires ${campaign.expiration}</div>
+                                <div class="campaign-tag-dark">Available $${budget_formatted}</div>
+                            </div>
                         </div>
                     </div>
                 </div>`;
     }
     // Setting innerHTML as tab variable
-    document.getElementById("campaign-feed").innerHTML = row;
+    document.getElementById("campaign-feed").innerHTML = row || 'No campaigns right now. Check back soon.';
     $(document).on("click", ".feed-campaign", function() {
         window.location.href = `campaign.html?id=${this.getAttribute("campaign_id")}`
     })
@@ -92,7 +90,7 @@ function show(data) {
 function category_indicators(categories) {
     var categories_items = ``
     for (let category of categories) {
-        categories_items += `<div class="campaign-category">${category}</div>`
+        categories_items += `<div class="campaign-tag">${category}</div>`
     }
-    return `<div class="campaign-categories-row">${categories_items}</div>`
+    return `<div class="campaign-tags-row">${categories_items}</div>`
 }

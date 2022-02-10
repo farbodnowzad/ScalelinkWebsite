@@ -11704,7 +11704,7 @@ footer a:hover, footer a:active, footer a:focus {
     padding-bottom: 5%;
     padding-left: 10%;
     padding-right: 10%;
-    font-family: "SFPro-Medium";
+    font-family: "SFPro-Semibold";
     font-size: 0.9rem;
     margin-bottom: 5%;
     cursor: pointer;
@@ -11717,6 +11717,7 @@ footer a:hover, footer a:active, footer a:focus {
 .feed-campaign .content-container {
     width: 100%;
     border-radius: 10px;
+    padding-bottom: 2%;
 }
 .feed-campaign .content-container div {
    margin-bottom: 1%;
@@ -11739,20 +11740,20 @@ footer a:hover, footer a:active, footer a:focus {
     font-family: "SFPro-Heavy";
 }
 .description {
-  font-family: "SFPro-Semibold";
+  font-family: "SFPro-Medium";
 }
 .content-container .description {
     width: 100%;
 }
 .content-container .text-content .url a{
-   text-decoration: none;
+   text-decoration: underline;
    color: #0A47E4;
-   font-family: "SFPro-Medium";
+   font-family: "SFPro-Semibold";
 }
 .content-container .text-content .url a:hover{
   text-decoration: underline;
   color: #0A47E4;
-  font-family: "SFPro-Medium";
+  font-family: "SFPro-Semibold";
 }
 .requirements {
   width: 100%;
@@ -11765,16 +11766,36 @@ footer a:hover, footer a:active, footer a:focus {
 .requirement-icon {
   height: 30px;
   width: 30px;
+  margin-right: 1%;
+  margin-top: 1%;
+  margin-bottom: 1%;
 }
 .expirations {
+    margin-top: 2%;
     width: 100%;
     height: 100%;
     display: inline;
 }
+.expiration-item{
+  /* background-color: black;
+  color: white;
+  padding: 2%;
+  border-radius: 5px; */
+  display: inline;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  padding-left: 4%;
+  padding-right: 4%;
+  margin-right: 2%;
+  border-radius: 5px;
+  background-color: #F1EEEE;
+  font-family: "SFPro-Semibold";
+}
 .expirations .timestamp {
-    width: 40%;
-    height: 100%;
-    float: left;
+    display: inline;
+    /* width: 50%; */
+    /* height: 100%; */
+    /* float: left; */
 }
 .feed-h1 {
   font-size: 1.1rem;
@@ -11786,9 +11807,10 @@ footer a:hover, footer a:active, footer a:focus {
   font-family: "SFPro-Bold";
 }
 .expirations .budget {
-  width: 60%;
-  height: 100%;
-  float: right;
+  display: inline;
+  /* width: 50%; */
+  /* height: 100%; */
+  /* float: right; */
   text-align: right;
 }
 .earnings {
@@ -11989,9 +12011,12 @@ footer a:hover, footer a:active, footer a:focus {
         padding-right: 0%;
     }
     .text-content {
-        padding-bottom: 3%;
         padding-left: 3%;
         padding-right: 3%;
+        font-family: "SFPro-Medium";
+    }
+    .text-content div{
+      padding-bottom: 1%;
     }
     .requirements {
       width: 100%;
@@ -12003,6 +12028,9 @@ footer a:hover, footer a:active, footer a:focus {
     .requirement-icon {
       height: 25px;
       width: 25px;
+      margin-top: 1%;
+      margin-bottom: 1%;
+      margin-right: 1%;
     }
     .expirations {
       display: inline-block;
@@ -12018,13 +12046,13 @@ footer a:hover, footer a:active, footer a:focus {
     }
     .url a{
       text-decoration: none;
-      color: #0A47E4;
-      font-family: "SFPro-Medium";
+      color: black;
+      font-family: "SFPro-Semibold";
    }
    .url a:hover{
      text-decoration: underline;
      color: #0A47E4;
-     font-family: "SFPro-Medium";
+     font-family: "SFPro-Semibold";
    }
     .campaign_details {
         visibility: hidden;
@@ -13222,12 +13250,12 @@ input[type=file]::file-selector-button:hover {
   }
 }
 
-.campaign-categories-row {
+.campaign-tags-row {
  padding-top: 1%;
  padding-bottom: 1%;
 }
 
-.campaign-category {
+.campaign-tag {
   display: inline;
   padding-top: 1%;
   padding-bottom: 1%;
@@ -13237,6 +13265,19 @@ input[type=file]::file-selector-button:hover {
   border-radius: 5px;
   background-color: #F1EEEE;
   font-family: "SFPro-Semibold";
+}
+
+.campaign-tag-dark {
+  display: inline;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 4%;
+  padding-right: 4%;
+  margin-right: 2%;
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+  font-family: "SFPro-Medium";
 }
 
 #disconnect-instagram, #remove-last-region {
@@ -13264,4 +13305,134 @@ input[type=file]::file-selector-button:hover {
   padding-bottom: 1%;
   color: white;
   margin-top: 8px;
+}
+
+/* horizonalt scrolling on home feed */
+/* //VARIABLES BECAUSE CSS PREPROCESSORS ARE COOL */
+
+/* //ENABLE CSS GRID FOR LIFT OFF  🚀 */
+@supports(display: grid) {
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    
+    /* //Let the craziness begin!!! */
+    grid-template-areas:
+      "header header header"
+      "title title footer"
+      "main main main";
+    @media screen and (max-width: 500px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: 0.3fr 1fr auto 1fr;
+      grid-template-areas: 
+        "header"
+        "title"
+        "main"
+        "footer";
+    }
+  }
+
+  .grid-item {
+    color: #fff;
+    background: white;
+    padding: 3.5em 1em;
+    font-size: 1em;
+    font-weight: 700;
+  }
+
+  .main {
+    color: lighten(grey, 25%);
+    background-color: lighten(blue, 60%);
+    grid-area: main;
+    padding: 0;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .main::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .footer {
+    background-color: darken(blue, 10%);
+    grid-area: footer;
+    padding: 0.6em;
+  }
+
+  .items {
+    position: relative;
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    white-space: nowrap;
+    transition: all 0.2s;
+    transform: scale(0.98);
+    will-change: transform;
+    user-select: none;
+    cursor: pointer;
+  }
+
+  .items::-webkit-scrollbar {
+    display: none;
+  }
+
+  .items.active {
+    background: rgba(255,255,255,0.3);
+    cursor: grabbing;
+    cursor: -webkit-grabbing;
+    transform: scale(1);
+  }
+
+  .item {
+    text-align: center;
+    /* vertical-align: middle; */
+    line-height: 250px;
+    display: inline-block;
+    background: black;
+    min-height: 250px;
+    min-width: 200px;
+    margin: 1em 0.5em;
+    border-radius: 10px;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .music-banner {
+    background-image: url("../assets/img/category_banners/music_banner.jpg");
+  }
+  .apps-banner {
+    background-image: url("../assets/img/category_banners/apps_banner.jpg");
+  }
+  .beauty-banner {
+    background-image: url("../assets/img/category_banners/beauty_banner.jpg");
+  }
+  .fashion-banner {
+    background-image: url("../assets/img/category_banners/fashion_banner.jpg");
+  }
+  .products-banner {
+    background-image: url("../assets/img/category_banners/products_banner.jpg");
+  }
+  .food-beverage-banner {
+    background-image: url("../assets/img/category_banners/food_beverage_banner.jpg");
+  }
+  .shade {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.25)
+  }
+
+  @media (max-width: 576px) {
+    .item {
+      line-height: 150px;
+      min-height: 150px;
+      min-width: 120px;
+      margin: 1em 0.25em;
+    }
+  }
 }
