@@ -12151,7 +12151,13 @@ footer a:hover, footer a:active, footer a:focus {
 }
 
 .login-signup-logo img {
-  width: 50%;
+  width: 25%;
+}
+
+@media (max-width: 576px) {
+  .login-signup-logo img {
+    width: 50%;
+  }
 }
 
 .login-sign-up-input-container {
