@@ -12154,6 +12154,10 @@ footer a:hover, footer a:active, footer a:focus {
   width: 25%;
 }
 
+.index-landing-image {
+  width: 100%;
+}
+
 @media (max-width: 576px) {
   .login-signup-logo img {
     width: 50%;
@@ -12202,6 +12206,18 @@ footer a:hover, footer a:active, footer a:focus {
   padding: 2%;
   border-radius: 5px;
   border: none;
+}
+
+.main-action-button-alt{
+  font-family: "SFPro-Bold";
+  background-color: white;
+  color: #0A47E4;
+  border: 1px solid #0A47E4;
+  text-align: center;
+  width: 100%;
+  margin-top: 6%;
+  padding: 2%;
+  border-radius: 5px;
 }
 
 .main-action-button:active {

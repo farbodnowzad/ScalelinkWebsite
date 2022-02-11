@@ -60,17 +60,29 @@
                 <div class="row">
                     <div class="col-sm-3"></div>
                     <div class="col-12 col-sm-6">
-                        <img class='index-landing-image' src="../assets/img/index_image.png"/>
-                        <a href="sign_up.html">
-                                <button class="main-action-button">
-                                Sign Up
+                        <div class="login-signup-logo">
+                            <img src="../assets/img/user_login.png" />
+                        </div>
+                        <div class="login-sign-up-input-container">
+                            <div class="login-sign-up-input-row">
+                                <span class='login-sign-up-input-row-name'>Email</span><br>
+                                <input id="login-email" class='login-sign-up-input' type="text" name="email" placeholder="jen@email.com"/>
+                                <span class="error-message"></span>
+                            </div>
+                            <div class="login-sign-up-input-row">
+                                <span class='login-sign-up-input-row-name'>Password</span><br>
+                                <input id="login-password" class='login-sign-up-input login-sign-up-password' type="password" name="password" placeholder="&#9679; &#9679; &#9679; &#9679; &#9679; &#9679; &#9679; &#9679;">
+                                <span class="error-message"></span>
+                            </div>
+                        </div>
+                        <form action="./home.html" class="loginForm">
+                            <button class="main-action-button" type="submit">
+                                Log In
                             </button>
-                        </a>
-                        <a href="login.html">
-                            <button class="main-action-button-alt">
-                            Log In
-                        </button>
-                    </a>
+                        </form>
+                        <div class="enter-sign-up-button">
+                            <a href="sign_up.html">or Sign Up</a>
+                        </div>
                     </div>
                     <div class="col-sm-3"></div>
                 </div>
@@ -79,13 +91,16 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
+        <script src="../js/user_login.js"></script>
         <script type="text/javascript">
             var event = "page_visit";
             var eventProperties = {
                 "app": "user",
-                "page": "index"
+                "page": "login"
             };
             amplitude.getInstance().logEvent(event, eventProperties);
         </script>
+        
+       
     </body>
 </html>
