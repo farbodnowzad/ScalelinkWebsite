@@ -90,15 +90,16 @@ function show(campaign_data, links_data) {
     var budget_formatted = internationalNumberFormat.format(campaign.budget * 0.8 / 100)
     var requires_approval = campaign.requires_approval ? "<div class='requires-approval'><img class = 'requirement-icon' src='../assets/img/requires_approval_icon.png'/> Requires Approval</div>" : ""
     var sends_product = campaign.requires_product ? "<div class='sends-product'><img class = 'requirement-icon' src='../assets/img/sends_product_icon.png'/> Sends Product</div>" : ""
+    const regex = /(?:\r\n|\r|\n)/g;
     row += `<div class="content-container">
                 <div class="banner-image">
                     <img src="${campaign.primary_image}"/>
                 </div>
                 <div class="text-content">
                     <div class="brand-name feed-h1">${business.name}</div>
-                    <div class="description">${business.about}</div>
+                    <div class="description">${business.about.replace(regex, '<br>')}</div>
                     <div class="description"><span class="bold">${campaign.title}</span></div>
-                    <div class="description">${campaign.about}</div>
+                    <div class="description">${campaign.about.replace(regex, '<br>')}</div>
                     <div class="url">
                         <a href="http://${campaign.url}" target="_blank">${campaign.url}</a>
                     </div>
@@ -111,8 +112,8 @@ function show(campaign_data, links_data) {
                         <div class="campaign-tag-dark">Available $${budget_formatted}</div>
                     </div>
                 </div>
-                ${campaign.do_mention ? '<div class="do-talk-about text-content"><span class="campaign-field-header">Do Talk About</span><br>'+campaign.do_mention+'</div>' : ''}
-                ${campaign.do_not_mention ? '<div class="do-talk-about text-content"><span class="campaign-field-header">Do Not Talk About</span><br>'+campaign.do_not_mention+'</div>' : ''}
+                ${campaign.do_mention ? '<div class="do-talk-about text-content"><span class="campaign-field-header">Do Talk About</span><br>'+campaign.do_mention.replace(regex, '<br>')+'</div>' : ''}
+                ${campaign.do_not_mention ? '<div class="do-talk-about text-content"><span class="campaign-field-header">Do Not Talk About</span><br>'+campaign.do_not_mention.replace(regex, '<br>')+'</div>' : ''}
                 <div class="text-content url">
                     <span class="campaign-field-header">Business Website</span><br>
                     <a href="http://${business.website}" target="_blank">${business.website}</a>
