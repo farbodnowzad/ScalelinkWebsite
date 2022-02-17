@@ -23,7 +23,7 @@ async function getapi(api_url, parameters) {
 var api_url = "https://sclnk.app/campaigns/manage"
 var business_id = auth.business_id;;
 
-getapi(api_url, {"business_id": business_id, "status": {"$in": ["active", "expired", "pending"]}, "sort": "last_updated"});
+getapi(api_url, {"business_id": business_id, "status": {"$in": ["active", "expired", "pending", "test"]}, "sort": "last_updated"});
 
 function show(data) {
     var results = data.campaigns

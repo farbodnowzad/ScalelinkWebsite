@@ -93,6 +93,8 @@ async function save_campaign(parameters) {
         contentType: false,
         type: 'POST'
     });
+    var campaign_id = response.campaign_id;
+    variables._id = campaign_id;
     return response;
 }
 
