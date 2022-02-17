@@ -49,7 +49,7 @@ async function user_address_csv(api_url, parameters) {
         hiddenElement.href = encodedUri
         hiddenElement.target = '_blank';  
         
-        hiddenElement.download = 'Campaign_Addresses.csv';  
+        hiddenElement.download = 'Campaign_Addresses.csv';
         hiddenElement.click(); 
     });
 }
@@ -62,12 +62,13 @@ get_overview("_id", campaign_id).then(campaign => {get_metrics("campaign_id", ca
 
 function create_campaign_overview(campaign) {
     var expire_campaign = campaign.status == 'active'? `<div id="expire-campaign">Expire Campaign</div>` : ``
+    const regex = /(?:\r\n|\r|\n)/g;
     var obj = `<div class="banner-image">
                 <img src="${campaign.primary_image}"/>
             </div>
             <div class="brand-name feed-h1">${campaign.title}</div>
             <div class="description campaign-field">
-                ${campaign.about}
+                ${campaign.about.replace(regex, '<br>')}
             </div>
             <div class="url campaign-field">
                 <span class="campaign-field-title">URL</span><br>
@@ -79,11 +80,11 @@ function create_campaign_overview(campaign) {
             </div>
             <div class="do-mention campaign-field">
                 <span class="campaign-field-title">Influencers should mention</span><br>
-                ${campaign.do_mention}
+                ${campaign.do_mention.replace(regex, '<br>')}
             </div>
             <div class="do-not-mention campaign-field">
                 <span class="campaign-field-title">Influencers should not mention</span><br>
-                ${campaign.do_not_mention}
+                ${campaign.do_not_mention.replace(regex, '<br>')}
             </div>
             <div class="requires-approval campaign-field">
                 <span class="campaign-field-title">Requires Approval</span><br>
