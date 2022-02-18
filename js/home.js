@@ -60,9 +60,6 @@ function show(data) {
                             <div class="description"><span class="heavy">${campaign.title}</span></div>
                             ${categories_row}
                             <div class="description">${campaign.about}</div>
-                            <div class="url">
-                                <a class="url" href="http://${campaign.url}" target="_blank">${campaign.url}</a>
-                            </div>
                             <div class="requirements">
                                 ${requires_approval}
                                 ${sends_product}

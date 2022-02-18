@@ -97,27 +97,30 @@ function show(campaign_data, links_data) {
                 </div>
                 <div class="text-content">
                     <div class="brand-name feed-h1">${business.name}</div>
-                    <div class="description">${business.about.replace(regex, '<br>')}</div>
-                    <div class="description"><span class="bold">${campaign.title}</span></div>
-                    <div class="description">${campaign.about.replace(regex, '<br>')}</div>
+                    <div class="description">${business.about.replace(regex, '<br>')}</div><br>
+                    <div class="description"><span class="heavy">${campaign.title}</span></div>
+                    <div class="description">${campaign.about.replace(regex, '<br>')}</div><br>
                     <div class="url">
-                        <a href="http://${campaign.url}" target="_blank">${campaign.url}</a>
-                    </div>
+                        <a href="http://${campaign.url}" target="_blank">Campaign Destination (do not use)</a>
+                    </div><br>
                     <div class="requirements">
                         ${requires_approval}
                         ${sends_product}
-                    </div>
+                    </div><br>
                     <div class="campaign-tags-row">
                         <div class="campaign-tag-dark">Expires ${campaign.expiration}</div>
                         <div class="campaign-tag-dark">Available $${budget_formatted}</div>
                     </div>
                 </div>
+                <br>
                 ${campaign.do_mention ? '<div class="do-talk-about text-content"><span class="campaign-field-header">Do Talk About</span><br>'+campaign.do_mention.replace(regex, '<br>')+'</div>' : ''}
                 ${campaign.do_not_mention ? '<div class="do-talk-about text-content"><span class="campaign-field-header">Do Not Talk About</span><br>'+campaign.do_not_mention.replace(regex, '<br>')+'</div>' : ''}
+                <br>
                 <div class="text-content url">
                     <span class="campaign-field-header">Business Website</span><br>
                     <a href="http://${business.website}" target="_blank">${business.website}</a>
                 </div>
+                <br>
                 <div class="contact text-content">
                     <span class="campaign-field-header">Contact</span><br>
                     ${business.contact}
