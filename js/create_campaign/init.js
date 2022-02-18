@@ -253,6 +253,10 @@ next_button.onclick = function () {
         });
         var error = 0;
         current_keys.forEach(key_obj => {
+            if (key_obj.type == 'file' && !variables[key_obj.name]['path']) {
+                console.log(key_obj.name)
+                error++;
+            }
             if (!variables[key_obj.name]) {
                 console.log(key_obj.name)
                 error++;

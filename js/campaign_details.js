@@ -106,7 +106,7 @@ function show(campaign_data, links_data) {
                     <div class="requirements">
                         ${requires_approval}
                         ${sends_product}
-                    </div><br>
+                    </div>${sends_product || requires_approval ? '<br>' : ''}
                     <div class="campaign-tags-row">
                         <div class="campaign-tag-dark">Expires ${campaign.expiration}</div>
                         <div class="campaign-tag-dark">Available $${budget_formatted}</div>
