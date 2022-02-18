@@ -12,7 +12,7 @@ var variables = {
     "website": "",
     "phone_number": "",
     "logo": {},
-    "categories": []
+    "categories": ''
 }
 
 var page_1 = [
@@ -68,13 +68,22 @@ var page_2 = [
         "type": "file",
         "name": "logo",
     },
+    // {
+    //     "title": "Which categories apply to your organization(choose up to 3)",
+    //     "class": "login-sign-up-input",
+    //     "type": "checkbox",
+    //     "name": "categories",
+    //     "options": ["Beauty", "Fashion", "Apps", "Music", "Food & Beverage", "Lifestyle", "Other"],
+    //     "placeholder": "",
+    //     "value": variables["categories"]
+    // },
     {
-        "title": "Which categories apply to your organization(choose up to 3)",
+        "title": "Which category best applies to your business?",
         "class": "login-sign-up-input",
-        "type": "checkbox",
+        "type": "select",
         "name": "categories",
-        "options": ["Beauty", "Fashion", "Tech", "Lifestyle", "Food/Beverage", "Wellness", "Fitness", "Business", "Sports", "Music", "Entertainment"],
-        "placeholder": "",
+        "options": ["Beauty", "Fashion", "Apps", "Music", "Food & Beverage", "Lifestyle", "Other"],
+        "placeholder": "Select One...",
         "value": variables["categories"]
     },
 ]
