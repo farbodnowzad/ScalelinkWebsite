@@ -204,7 +204,7 @@ class FormConstructor {
                 <br>
                 <div id="regions-list" class="hidden">${this.variables[section.name]}</div>
                 <br>
-                <div id="remove-last-region" class="hidden" style='color: #0A47e4'>Undo Last Region</div>
+                <div id="remove-last-region" class="hidden" style='color: #0A47E4'>Undo Last Region</div>
             </div>
             `
         } else {

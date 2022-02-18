@@ -143,7 +143,7 @@ async function initialize_payment_intent(campaign_id) {
     const appearance = {
         theme: 'stripe',
         variables: {
-          colorPrimary: '#0a47e4',
+          colorPrimary: '#0A47E4',
         },
     };
     elements = stripe.elements({ appearance, clientSecret });

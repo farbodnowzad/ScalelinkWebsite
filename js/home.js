@@ -59,7 +59,6 @@ function show(data) {
                             <div class="brand-name feed-h1">${business.name}</div>
                             <div class="description"><span class="heavy">${campaign.title}</span></div>
                             ${categories_row}
-                            
                             <div class="description">${campaign.about}</div>
                             <div class="url">
                                 <a class="url" href="http://${campaign.url}" target="_blank">${campaign.url}</a>
