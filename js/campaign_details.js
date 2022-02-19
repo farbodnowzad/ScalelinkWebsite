@@ -45,6 +45,11 @@ async function request_link() {
         contentType: false,
         type: 'POST'
     });
+    var event = "request_link";
+    var eventProperties = {
+        "app": "user",
+    };
+    amplitude.getInstance().logEvent(event, eventProperties);
     return response;
 }
 
@@ -69,6 +74,11 @@ async function create_link() {
         contentType: false,
         type: 'POST'
     });
+    var event = "create_link";
+    var eventProperties = {
+        "app": "user",
+    };
+    amplitude.getInstance().logEvent(event, eventProperties);
     return response;
 }
 
