@@ -121,7 +121,7 @@ var page_4 = [
         "class": "login-sign-up-input",
         "type": "checkbox",
         "name": "age",
-        "options": ["< 18", "18-24", "25-34", "35-44", "45-64", "65+"],
+        "options": ["< 18", "18-20", "21-24", "25-34", "35-44", "45-64", "65+"],
     },
     {
         "title": "Do you want to target influencers in a specific region?",
@@ -234,7 +234,7 @@ var page_5 = [
         "class": "login-sign-up-input",
         "type": "review",
         "name": "age",
-        "options": ["< 18", "18-24", "25-34", "35-44", "45-64", "65+"],
+        "options": ["< 18", "18-20", "21-24", "25-34", "35-44", "45-64", "65+"],
     },
     {
         "title": "Do you want to target influencers in a specific region?",
