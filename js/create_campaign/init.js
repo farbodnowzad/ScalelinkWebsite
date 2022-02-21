@@ -121,6 +121,11 @@ function activate_campaign(path, parameters) {
             });
         }
     });
+    var event = "activate_campaign";
+    var eventProperties = {
+        "app": "business",
+    };
+    amplitude.getInstance().logEvent(event, eventProperties);
 }
 
 async function initialize_payment_intent(campaign_id) {
