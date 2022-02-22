@@ -89,42 +89,42 @@ var page_3 = [
         "title": "Address",
         "class": "login-sign-up-input",
         "type": "address",
-        "name": "line_1",
-        "placeholder": "Line 1",
+        "name": "address",
+        "placeholder": "Address",
         "class_style": "address"
     },
     {
-        "title": "Address Line 2 (optional)",
+        "title": "Apartment or Unit Number (optional)",
         "class": "login-sign-up-input",
         "type": "address",
         "name": "line_2",
         "placeholder": "Line 2",
         "class_style": "address"
     },
-    {
-        "title": "City",
-        "class": "login-sign-up-input",
-        "type": "address",
-        "name": "city",
-        "placeholder": "Los Angeles",
-        "class_style": "address"
-    },
-    {
-        "title": "State",
-        "class": "login-sign-up-input",
-        "type": "address",
-        "name": "state",
-        "placeholder": "CA",
-        "class_style": "address"
-    },
-    {
-        "title": "Zip Code",
-        "class": "login-sign-up-input",
-        "type": "address",
-        "name": "zip",
-        "placeholder": "90210",
-        "class_style": "address"
-    },
+    // {
+    //     "title": "City",
+    //     "class": "login-sign-up-input",
+    //     "type": "address",
+    //     "name": "city",
+    //     "placeholder": "Los Angeles",
+    //     "class_style": "address"
+    // },
+    // {
+    //     "title": "State",
+    //     "class": "login-sign-up-input",
+    //     "type": "address",
+    //     "name": "state",
+    //     "placeholder": "CA",
+    //     "class_style": "address"
+    // },
+    // {
+    //     "title": "Zip Code",
+    //     "class": "login-sign-up-input",
+    //     "type": "address",
+    //     "name": "zip",
+    //     "placeholder": "90210",
+    //     "class_style": "address"
+    // },
     {
         "title": "Categories you create content about (choose up to 3)",
         "class": "login-sign-up-input",
@@ -145,7 +145,7 @@ var page_4 = [
     },
 ]
 
-var pages = [page_1, page_2, page_3, page_4]
+var pages = [page_3, page_4]
 var page_constructor = new PageConstructor(variables, pages, document)
 
 page_constructor.show();

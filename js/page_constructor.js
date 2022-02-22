@@ -79,33 +79,21 @@ class PageConstructor {
     }
 
     init_regions() {
-        var inputs = this.document.getElementsByClassName('regions');
+        var inputs = this.document.getElementsByClassName('address');
         if (inputs.length == 0) {
             return;
         }
         var self = this;
         var options = {
-            types: ['(cities)'],
+            types: ['address'],
            };
         var input = inputs[0];
-        var regions_list = this.document.getElementById('regions-list');
-        var remove_last_region = this.document.getElementById('remove-last-region');
         var autocomplete = new google.maps.places.Autocomplete(input, options);
         autocomplete.addListener("place_changed", () => {
-            regions_list.classList.remove('hidden')
-            remove_last_region.classList.remove('hidden')
             const place = autocomplete.getPlace()
             var formatted_address = `"${place.formatted_address}"`
-            self.variables.regions.push(formatted_address)
-            self.document.getElementById("regions-list").innerHTML =  self.variables.regions.join(' ')
-            input.value = ''
-        })
-        $(this.document).on('click', '#remove-last-region', function() {
-            self.variables.regions.splice(-1, 1)
-            self.document.getElementById("regions-list").innerHTML =  self.variables.regions.join(' ')
-            if (self.variables.regions.length == 0) {
-                remove_last_region.classList.add('hidden')
-            }
+            console.log(formatted_address)
+            // self.variables.address = formatted_address
         })
     }
 
