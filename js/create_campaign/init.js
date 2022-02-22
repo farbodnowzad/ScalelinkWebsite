@@ -22,7 +22,7 @@ var variables = {
     "gender": [],
     "age": [],
     "regions": [],
-    "min_payout": "",
+    "min_visitors": "",
     "max_payout": "",
     "secondary_attachments": [],
 }

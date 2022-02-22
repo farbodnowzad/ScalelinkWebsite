@@ -103,7 +103,7 @@ var page_3 = [
         "title": "What is the minimum number of unique visitors a link must receive before the influencers is paid?",
         "class": "login-sign-up-input",
         "type": "number",
-        "name": "min_payout",
+        "name": "min_visitors",
         "placeholder": 0
     }
 ]
