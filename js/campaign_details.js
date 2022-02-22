@@ -152,17 +152,28 @@ function show(campaign_data, links_data) {
             });
         })
     } else if (campaign.requires_product || campaign.requires_approval) {
-        document.getElementsByClassName("get-link")[0].innerHTML = `<span id="main-action-button-text" class="copy-link-text">Request Link</span>`
-        $(document).on("click", ".get-link", function() {
-            request_link().then((response) => {
-                if (response.link_request_id) {
-                    window.FlashMessage.info('<b>Request sent!</b><br>Approved requests will show up in the My Links tab. You will receive a text message once the request is approved.')
-                }
-                else {
-                    window.FlashMessage.info('Request already sent.')
-                }
+        if (instagram_id == "null" || instagram_id == null) {
+            var request_button = document.getElementsByClassName("get-link")[0]
+            request_button.style.backgroundColor = "#405DE6"
+            request_button.style.fontFamily = "SFPro-Medium"
+            request_button.innerHTML = `<img class="btn-icon icon" src="../assets/img/instagram_icon.png" /> Instagram Required`
+            $(document).on("click", ".get-link", function() {
+                var url = `https://api.instagram.com/oauth/authorize?client_id=1130340001160455&redirect_uri=https://scalelink.xyz/app/auth.html&state=${user_id}&scope=user_profile&response_type=code`
+                window.open(url, '_blank');
             })
-        })
+        } else {
+            document.getElementsByClassName("get-link")[0].innerHTML = `<span id="main-action-button-text" class="copy-link-text">Request Link</span>`
+            $(document).on("click", ".get-link", function() {
+                request_link().then((response) => {
+                    if (response.link_request_id) {
+                        window.FlashMessage.info('<b>Request sent!</b><br>Approved requests will show up in the My Links tab. You will receive a text message once the request is approved.')
+                    }
+                    else {
+                        window.FlashMessage.info('Request already sent.')
+                    }
+                })
+            })
+        }
     } else {
         document.getElementsByClassName("get-link")[0].innerHTML = `<div class="spinner hidden" id="main-action-button-spinner"></div><span id="main-action-button-text" class="copy-link-text">Get Link</span>`
         $(document).on("click", ".get-link", function() {
