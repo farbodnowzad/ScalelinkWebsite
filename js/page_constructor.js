@@ -17,9 +17,6 @@ class PageConstructor {
                 self.variables[this.name] = this.value;
             }
         })
-        $(this.document).on("change", "input[type='address']", function() {
-            self.variables["address"][this.name] = this.value;
-        })
         $(this.document).on("change", "input[type='password']", function() {
             self.variables[this.name] = this.value;
         })
@@ -79,33 +76,21 @@ class PageConstructor {
     }
 
     init_regions() {
-        var inputs = this.document.getElementsByClassName('regions');
-        if (inputs.length == 0) {
+        var input = this.document.getElementById('line_1');
+        if (!input) {
             return;
         }
         var self = this;
         var options = {
-            types: ['(cities)'],
+            types: ['address'],
            };
-        var input = inputs[0];
-        var regions_list = this.document.getElementById('regions-list');
-        var remove_last_region = this.document.getElementById('remove-last-region');
         var autocomplete = new google.maps.places.Autocomplete(input, options);
         autocomplete.addListener("place_changed", () => {
-            regions_list.classList.remove('hidden')
-            remove_last_region.classList.remove('hidden')
             const place = autocomplete.getPlace()
-            var formatted_address = `"${place.formatted_address}"`
-            self.variables.regions.push(formatted_address)
-            self.document.getElementById("regions-list").innerHTML =  self.variables.regions.join(' ')
-            input.value = ''
-        })
-        $(this.document).on('click', '#remove-last-region', function() {
-            self.variables.regions.splice(-1, 1)
-            self.document.getElementById("regions-list").innerHTML =  self.variables.regions.join(' ')
-            if (self.variables.regions.length == 0) {
-                remove_last_region.classList.add('hidden')
-            }
+            var formatted_address = place.formatted_address
+            self.variables.line_1 = place.formatted_address
+            self.variables.address = place.address_components
+            input.value = formatted_address
         })
     }
 
@@ -200,15 +185,15 @@ class PageConstructor {
                 <span class="error-message"></span>
             </div>
             `
-        } else if (section.class_style == "address") {
-            return `
-            <div class="login-sign-up-input-row ">
-                <span class='login-sign-up-input-row-name'>${section.title}${section.required ? "*" : ""}</span><br>
-                <span class='input-row-subtitle'>${section.subtitle ? section.subtitle : ""}</span>${section.subtitle ? "<br>" : ""}
-                <input class="${section.class} ${section.class_style}" style="${section.style}" type="${section.type}" name="${section.name}" value="${this.variables["address"][section.name]}" placeholder="${section.placeholder}" ${section.meta}></input>
-                <span class="error-message"></span>
-            </div>
-            `
+        // } else if (section.class_style == "address") {
+        //     return `
+        //     <div class="login-sign-up-input-row ">
+        //         <span class='login-sign-up-input-row-name'>${section.title}${section.required ? "*" : ""}</span><br>
+        //         <span class='input-row-subtitle'>${section.subtitle ? section.subtitle : ""}</span>${section.subtitle ? "<br>" : ""}
+        //         <input class="${section.class} ${section.class_style}" style="${section.style}" type="${section.type}" name="${section.name}" value="${this.variables["address"][section.name]}" placeholder="${section.placeholder}" ${section.meta}></input>
+        //         <span class="error-message"></span>
+        //     </div>
+        //     `
         } else if (section.class_style == "regions") {
             return `
             <div class="login-sign-up-input-row ">
