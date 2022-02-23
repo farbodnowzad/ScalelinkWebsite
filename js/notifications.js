@@ -1,5 +1,6 @@
 import {Auth} from './auth.js'
 const auth = new Auth();
+import {capitalize} from './helpers.js'
 
 async function getapi(api_url, parameters) {
     // api url
@@ -56,7 +57,7 @@ function show(data) {
                         <div class="notifications-image-wrapper">
                             <img class="notifications-image" src="${user.profile_image}"/>
                         </div> 
-                        <div class="notifications-description" full_name="${user.full_name}" gender="${user.gender}" age="${age}" location="${user.address.city}" social="${user.social_accounts.instagram_username}">
+                        <div class="notifications-description" full_name="${user.full_name}" gender="${user.gender}" age="${age}" city="${user.address.city}" state="${user.address.state}" country="${user.address.country}" social="${user.social_accounts.instagram_username}">
                             <div class="notifications-user-text">${user.full_name}${notification_text}</div><br>
                             <a class="notificaiton-campaign-link" href="campaign.html?id=${campaign._id}"><div class="notifications-campaign-name">${campaign.title}</div></a>
                         </div>
@@ -86,15 +87,17 @@ function show(data) {
         var profile_image = this.querySelectorAll(".notifications-image")[0].src;
         var att = this.querySelectorAll(".notifications-description")[0].attributes;
         var full_name = att["full_name"].value;
-        var gender = att["gender"].value;
+        var gender = capitalize(att["gender"].value)
         var age = att["age"].value;
-        var location = att["location"].value
+        var location = `${capitalize(att["city"].value)}, ${capitalize(att["state"].value)}`
+        var country = capitalize(att["country"].value)
         var instagram_username = att["social"].value
         document.getElementsByClassName("modal-image")[0].src = profile_image;
         document.getElementsByClassName("modal-info-name")[0].innerHTML = full_name;
         document.getElementsByClassName("modal-info-gender")[0].innerHTML = gender;
         document.getElementsByClassName("modal-info-age")[0].innerHTML = age;
         document.getElementsByClassName("modal-info-location")[0].innerHTML = location;
+        document.getElementsByClassName("modal-info-country")[0].innerHTML = country;
         if (instagram_username != 'undefined' && instagram_username) {
             document.getElementsByClassName("modal-info-social-link")[0].href = `https://instagram.com/${instagram_username}`;
         } else {
