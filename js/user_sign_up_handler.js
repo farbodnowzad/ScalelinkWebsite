@@ -2,6 +2,7 @@ class UserSignUp {
     constructor(document, fields) {
         this.document = document;
         this.fields = fields;
+        this.optional_fields = ['line_2']
     }
 
     async signUpCall() {
@@ -9,6 +10,9 @@ class UserSignUp {
         $.each(this.fields, function(key, value) {
             if (["profile_image"].includes(key)) {
                 formData.append(key, value["path"])
+            } else if (["address"].includes(key)) {
+                var address = formatAddress(value)
+                formData.append(key, JSON.stringify(address))
             } else {
                 if (value.constructor == Object){
                     value = JSON.stringify(value)
@@ -33,14 +37,40 @@ class UserSignUp {
         return sign_up_response;
     }
 
+    formatAddress(address) {
+        if (address.constructor == Object) {
+            return address;
+        }
+        var address_parsed = {}
+        var necessary_types = ["street_number", "route", "locality", "administrative_area_level_1", "country", "postal_code"]
+        for (let necessary_type of necessary_types) {
+            for (let component of address) {
+                var types = component.types
+                if (types.includes(necessary_type)) {
+                    address_parsed[necessary_type] = component.long_name
+                }
+            }
+        }
+        address = {}
+        address['line_1'] = `${address_parsed["street_number"]} ${address_parsed["route"]}`
+        address['city'] = address_parsed["locality"]
+        address['state'] = address_parsed["administrative_area_level_1"]
+        address['country'] = address_parsed["country"]
+        address['zip'] = address_parsed["postal_code"]
+        return address
+    }
+
     validateonSubmit() {
         var error = 0;
         var self = this;
         // loop through the fields and check them against a function for validation
         $.each(self.fields, function(key, value) {
+            if (self.optional_fields.includes(key)) {
+                return true;
+            }
             const input = self.document.querySelector(`input[name=${key}]`);
             if (input) {
-                if (self.validateFields(input) == false) {
+                if (self.validateFields(input, value) == false) {
                     // if a field does not validate, auto-increment our error integer
                     error++;
                 }
@@ -49,9 +79,9 @@ class UserSignUp {
         return error;
     }
 
-    validateFields(field) {
+    validateFields(field, value) {
         // remove any whitespace and check to see if the field is blank, if so return false
-        if (field.value.trim() === "") {
+        if (!value) {
             // set the status based on the field, the field label, and if it is an error message
             this.setStatus(
                 field,

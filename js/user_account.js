@@ -54,34 +54,34 @@ var page_1 = [
         "title": "Address Line 2",
         "placeholder": "Apt. or unit number",
         "class": "login-sign-up-input",
-        "type": "address",
+        "type": "text",
         "name": "line_2",
-        "class_style": "address"
+        "class_style": "text"
     },
-    {
-        "title": "City",
-        "placeholder": "City",
-        "class": "login-sign-up-input",
-        "type": "address",
-        "name": "city",
-        "class_style": "address"
-    },
-    {
-        "title": "State",
-        "placeholder": "State",
-        "class": "login-sign-up-input",
-        "type": "address",
-        "name": "state",
-        "class_style": "address"
-    },
-    {
-        "title": "Zip Code",
-        "placeholder": "Zip Code",
-        "class": "login-sign-up-input",
-        "type": "address",
-        "name": "zip",
-        "class_style": "address"
-    },
+    // {
+    //     "title": "City",
+    //     "placeholder": "City",
+    //     "class": "login-sign-up-input",
+    //     "type": "address",
+    //     "name": "city",
+    //     "class_style": "address"
+    // },
+    // {
+    //     "title": "State",
+    //     "placeholder": "State",
+    //     "class": "login-sign-up-input",
+    //     "type": "address",
+    //     "name": "state",
+    //     "class_style": "address"
+    // },
+    // {
+    //     "title": "Zip Code",
+    //     "placeholder": "Zip Code",
+    //     "class": "login-sign-up-input",
+    //     "type": "address",
+    //     "name": "zip",
+    //     "class_style": "address"
+    // },
 ]
 
 async function get(api_url, key, value) {
@@ -118,6 +118,9 @@ function post(path, parameters) {
     $.each(parameters, function(key, value) {
         if (["profile_image"].includes(key)) {
             formData.append(key, value["path"])
+        } else if (["address"].includes(key)) {
+            var address = formatAddress(value)
+            formData.append(key, JSON.stringify(address))
         } else {
             if (value.constructor == Object){
                 value = JSON.stringify(value)
@@ -133,6 +136,28 @@ function post(path, parameters) {
         type: 'POST',
         success: async function(data){}
     });
+}
+function formatAddress(address) {
+    if (address.constructor == Object) {
+        return address;
+    }
+    var address_parsed = {}
+    var necessary_types = ["street_number", "route", "locality", "administrative_area_level_1", "country", "postal_code"]
+    for (let necessary_type of necessary_types) {
+        for (let component of address) {
+            var types = component.types
+            if (types.includes(necessary_type)) {
+                address_parsed[necessary_type] = component.long_name
+            }
+        }
+    }
+    address = {}
+    address['line_1'] = `${address_parsed["street_number"]} ${address_parsed["route"]}`
+    address['city'] = address_parsed["locality"]
+    address['state'] = address_parsed["administrative_area_level_1"]
+    address['country'] = address_parsed["country"]
+    address['zip'] = address_parsed["postal_code"]
+    return address
 }
 function cash_out() {
     var path = "https://sclnk.app/payments"
@@ -211,6 +236,10 @@ if (complete_onboarding) {
 parse_variables(variables);
 var page_constructor = new PageConstructor(variables, pages, document)
 page_constructor.show("Save");
+if (variables.address) {
+    var address_input = document.getElementById("line_1")
+    address_input.value = [variables.address["line_1"], variables.address["city"], variables.address['state'] + " " + variables.address["zip"]].join(", ")
+}
 page_constructor.create_listeners()
 var next_button = document.getElementById("main-action-button")
 next_button.onclick = function () {

@@ -10,13 +10,10 @@ var variables = {
     "date_of_birth": "",
     "phone_number": "",
     "gender": "",
-    "address": {
-        "line_1": "",
-        "line_2": "",
-        "city": "",
-        "state": "",
-        "zip": "",
-    },
+    "address": "",
+    "line_1": "",
+    "line_2": "",
+    // "zip": "",
     "categories": [],
     "profile_image": {}
 }
@@ -89,17 +86,18 @@ var page_3 = [
         "title": "Address",
         "class": "login-sign-up-input",
         "type": "address",
-        "name": "address",
+        "name": "line_1",
         "placeholder": "Address",
         "class_style": "address"
     },
     {
-        "title": "Apartment or Unit Number (optional)",
+        "title": "Apartment or Unit Number",
         "class": "login-sign-up-input",
-        "type": "address",
+        "type": "text",
         "name": "line_2",
-        "placeholder": "Line 2",
-        "class_style": "address"
+        "placeholder": "Optional",
+        "class_style": "text",
+        "optional": true
     },
     // {
     //     "title": "City",
@@ -145,7 +143,8 @@ var page_4 = [
     },
 ]
 
-var pages = [page_3, page_4]
+var pages = [page_1, page_2, page_3, page_4]
+// var pages = [page_3, page_4]
 var page_constructor = new PageConstructor(variables, pages, document)
 
 page_constructor.show();
