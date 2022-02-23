@@ -7,11 +7,12 @@ class UserSignUp {
 
     async signUpCall() {
         var formData = new FormData()
+        var self = this;
         $.each(this.fields, function(key, value) {
             if (["profile_image"].includes(key)) {
                 formData.append(key, value["path"])
             } else if (["address"].includes(key)) {
-                var address = formatAddress(value)
+                var address = self.formatAddress(value)
                 formData.append(key, JSON.stringify(address))
             } else {
                 if (value.constructor == Object){
