@@ -43,7 +43,7 @@ var page_1 = [
         "name": "profile_image",
     },
     {
-        "title": "Address Line 1",
+        "title": "Address",
         "placeholder": "Street Address",
         "class": "login-sign-up-input",
         "type": "address",
@@ -51,8 +51,8 @@ var page_1 = [
         "class_style": "address"
     },
     {
-        "title": "Address Line 2",
-        "placeholder": "Apt. or unit number",
+        "title": "Apt. or unit number",
+        "placeholder": "Optional",
         "class": "login-sign-up-input",
         "type": "text",
         "name": "line_2",
