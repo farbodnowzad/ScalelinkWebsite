@@ -88,6 +88,7 @@ get_campaign();
 function show(campaign_data, links_data) {
     var campaign = campaign_data.campaigns[0]
     var business = campaign_data.businesses[0]
+    var campaign_metric = campaign_data.campaign_metrics[0]
     var links = links_data.links
     var existing_links = links.filter(link => campaign._id == link.campaign_id)
     let existing_link;
@@ -97,7 +98,8 @@ function show(campaign_data, links_data) {
         existing_link = existing_links[0];
     }
     let row = ``;
-    var budget_formatted = internationalNumberFormat.format(campaign.budget * 0.8 / 100)
+    var budget_remaining = campaign.budget - campaign_metric.budget_spent
+    var budget_formatted = internationalNumberFormat.format(budget_remaining * 0.8 / 100)
     var requires_approval = campaign.requires_approval ? "<div class='requires-approval'><img class = 'requirement-icon' src='../assets/img/requires_approval_icon.png'/> Requires Approval</div>" : ""
     var sends_product = campaign.requires_product ? "<div class='sends-product'><img class = 'requirement-icon' src='../assets/img/sends_product_icon.png'/> Sends Product</div>" : ""
     const regex = /(?:\r\n|\r|\n)/g;

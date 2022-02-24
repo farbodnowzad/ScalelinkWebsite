@@ -42,14 +42,17 @@ check_instagram_id()
 function show(data) {
     var results = data.campaigns
     var businesses = data.businesses
+    var campaign_metrics = data.campaign_metrics
     let row = ``;
     // Loop to access all rows 
     for (let campaign of results) {
-        var budget_formatted = internationalNumberFormat.format(campaign.budget * 0.8 / 100)
         var business = businesses.filter(business => business._id == campaign.business_id)[0]
+        var campaign_metric = campaign_metrics.filter(campaign_metric => campaign_metric.campaign_id == campaign._id)[0]
         var requires_approval = campaign.requires_approval ? "<div class='requires-approval'><img class = 'requirement-icon' src='../assets/img/requires_approval_icon.png'/> Requires Approval</div>" : ""
         var sends_product = campaign.requires_product ? "<div class='sends-product'><img class = 'requirement-icon' src='../assets/img/sends_product_icon.png'/> Sends Product</div>" : ""
         var categories_row = category_indicators(business.categories)
+        var budget_remaining = campaign.budget - campaign_metric.budget_spent
+        var budget_formatted = internationalNumberFormat.format(parseInt(budget_remaining * 0.8 / 100))
         row += `<div class="feed-campaign" campaign_id=${campaign._id}>
                     <div class="content-container">
                         <div class="banner-image">
