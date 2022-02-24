@@ -46,6 +46,7 @@ async function updatePassword(email, new_password, confirm_password) {
     formData.append("token", token)
 
     var update_url = "https://sclnk.app/users/update_password"
+    // update_url = "http://127.0.0.1:5000/users/update_password"
     let update_response;
     $.ajax({
         url: update_url,
@@ -82,13 +83,13 @@ function setStatus(field, message, status) {
 var pages = [page_1]
 // var pages = [page_3, page_4]
 var page_constructor = new PageConstructor(variables, pages, document)
+page_constructor.finish_button = "Update Password"
 
 page_constructor.show();
 var next_button = document.getElementById("main-action-button")
 var next_button_spinner = document.getElementById("main-action-button-spinner")
 var next_button_text = document.getElementById("main-action-button-text")
 next_button.onclick = function () {
-    next_button.disabled = true;
     next_button_spinner.classList.remove("hidden");
     next_button_spinner.classList.add("visible-spinner");
     next_button_text.classList.add("hidden");
@@ -104,6 +105,9 @@ next_button.onclick = function () {
                 `Invalid inputs`,
                 "error"
             );
+            next_button_spinner.classList.add("hidden");
+            next_button_spinner.classList.remove("visible-spinner");
+            next_button_text.classList.remove("hidden");
         }
     })
 }

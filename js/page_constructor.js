@@ -4,6 +4,7 @@ class PageConstructor {
       this.pages = pages;
       this.document = document;
       this.current_page = 0
+      this.finish_button = "Sign Up";
     }
 
     create_listeners() {
@@ -94,7 +95,7 @@ class PageConstructor {
         })
     }
 
-    show(finish_button="Sign Up") {
+    show(finish_button=this.finish_button) {
         var page = this.pages[this.current_page]
         var sections = this.document.getElementById("login-sign-up-inputs-wrapper")
         sections.innerHTML = ``
