@@ -171,10 +171,20 @@ next_button.onclick = function () {
             } else {
                 user_sign_up.setStatus(
                     next_button,
-                    `Invalid inputs`,
+                    sign_up_response,
                     "error"
                 );
             }
+        }).catch((e) => {
+            user_sign_up.setStatus(
+                next_button,
+                e.responseJSON.error,
+                "error"
+            );
+            next_button.disabled = false;
+            next_button_spinner.classList.add("hidden");
+            next_button_spinner.classList.remove("visible-spinner");
+            next_button_text.classList.remove("hidden");
         })
     } else {
         var errors = user_sign_up.validateonSubmit()

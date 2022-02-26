@@ -23,6 +23,7 @@ class UserSignUp {
         });
 
         var sign_up_url = "https://sclnk.app/users/sign_up"
+        // sign_up_url = "http://127.0.0.1:5000/users/sign_up"
         let sign_up_response;
         $.ajax({
             url: sign_up_url,
@@ -32,6 +33,9 @@ class UserSignUp {
             async: false,
             type: 'POST',
             success: function(data){
+                sign_up_response = data;
+            },
+            error: function(data) {
                 sign_up_response = data;
             }
         });
