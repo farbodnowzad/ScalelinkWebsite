@@ -53,6 +53,7 @@ function show(data) {
         var categories_row = category_indicators(business.categories)
         var budget_remaining = campaign.budget - campaign_metric.budget_spent
         var budget_formatted = internationalNumberFormat.format(parseInt(budget_remaining * 0.8 / 100))
+        var about_formatted = campaign.about.length > 250 ? campaign.about.slice(0,250) + '...' : campaign.about
         row += `<div class="feed-campaign" campaign_id=${campaign._id}>
                     <div class="content-container">
                         <div class="banner-image">
@@ -62,7 +63,7 @@ function show(data) {
                             <div class="brand-name feed-h1">${business.name}</div>
                             <div class="description"><span class="heavy">${campaign.title}</span></div>
                             ${categories_row}
-                            <div class="description">${campaign.about}</div>
+                            <div class="description">${about_formatted}</div>
                             <div class="requirements">
                                 ${requires_approval}
                                 ${sends_product}
