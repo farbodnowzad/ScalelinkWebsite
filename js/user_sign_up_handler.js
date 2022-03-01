@@ -6,6 +6,11 @@ class UserSignUp {
     }
 
     async signUpCall() {
+        var event = "register_attempt";
+        var eventProperties = {
+            "app": "user",
+        };
+        amplitude.getInstance().logEvent(event, eventProperties);
         var formData = new FormData()
         var self = this;
         $.each(this.fields, function(key, value) {
