@@ -128,10 +128,10 @@ function create_campaign_metrics_top(campaign_metrics, campaign) {
                     </div>
                     <div class="campaign-metrics-narrow right-side">
                         <div class="campaign-metrics-value">
-                            ${campaign_metrics.unique_visitors}
+                            ${campaign_metrics.extended_unique_visitors}
                         </div>
                         <div class="campaign-metrics-title">
-                            Unique Visitors
+                            Total Unique Visitors
                         </div>
                     </div>
                 </div>`
@@ -171,7 +171,7 @@ function create_campaign_metrics_bottom(campaign_metrics, campaign, users) {
                     <div class="campaign-metrics-wide">
                         <div class="top-performers-headers">
                             <div class="top-performers-title">Top Influencers</div>
-                            <div class="top-performers-subtitle">Unique Visitors</div>
+                            <div class="top-performers-subtitle">Paid Unique Visitors</div>
                         </div>
                         ${top_performers_section}
                     </div>
