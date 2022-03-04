@@ -160,7 +160,7 @@ function formatAddress(address) {
     return address
 }
 function cash_out() {
-    var path = "https://sclnk.app/payments"
+    var path = "https://sclnk.app/payments/cash_out"
     var formData = new FormData()
     $.each(parameters, function(key, value) {
         formData.append("user_id", user_id)
