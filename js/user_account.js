@@ -161,17 +161,19 @@ function formatAddress(address) {
 }
 function cash_out() {
     var path = "https://sclnk.app/payments/cash_out"
+    // path = "http://127.0.0.1:5000/payments/cash_out"
     var formData = new FormData()
-    $.each(parameters, function(key, value) {
-        formData.append("user_id", user_id)
-    });
+    formData.append("user_id", user_id)
     $.ajax({
         url: path,
         data: formData,
         processData: false,
         contentType: false,
         type: 'POST',
-        success: async function(data){}
+        success: async function(data){
+            window.FlashMessage.info('Cash out successful. Money is on the way!')
+            setTimeout(()=>{window.location.reload()}, 1500)
+        }
     });
 }
 function disconnect_instagram() {
