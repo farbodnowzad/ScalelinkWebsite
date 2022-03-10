@@ -48,6 +48,7 @@ async function request_link() {
     var event = "request_link";
     var eventProperties = {
         "app": "user",
+        "campaign_id": campaign_id,
     };
     amplitude.getInstance().logEvent(event, eventProperties);
     return response;
