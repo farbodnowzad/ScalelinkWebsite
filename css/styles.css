@@ -11567,8 +11567,15 @@ footer a:hover, footer a:active, footer a:focus {
 
 .masthead {
   background-color: #f8f9fa;
-  padding-top: 9.5rem;
+  padding-top: 5rem;
   padding-bottom: 5rem;
+}
+@media (max-width:576px) {
+  .masthead {
+    background-color: #f8f9fa;
+    padding-top: 2rem;
+    padding-bottom: 5rem;
+  }
 }
 .masthead .masthead-device-mockup {
   display: flex;
@@ -11673,14 +11680,36 @@ footer a:hover, footer a:active, footer a:focus {
   }
 }
 
-#biz-sign-up-btn {
+#influencer-sign-up-btn {
   background-color: #0a47e4;
   display: inline;
-  margin-right: 2%;
+  margin-left: 2%;
   margin-bottom: 10%;
   color: white;
   border: none;
 }
-#biz-sign-up-btn:hover {
+#influencer-sign-up-btn:hover {
   background-color: #000;
+}
+
+#bonus-notice {
+  margin-top: 4.5rem;
+  width: 100%;
+  background-color: #08C168;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  font-family: "SFPro-Regular";
+  font-size: large;
+  padding: 2%;
+}
+
+@media (max-width: 576px) {
+  #bonus-notice {
+    margin-top: 4.5rem;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 10%;
+    padding-right: 10%;
+  }
 }

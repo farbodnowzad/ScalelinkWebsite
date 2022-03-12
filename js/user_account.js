@@ -58,6 +58,14 @@ var page_1 = [
         "name": "line_2",
         "class_style": "text"
     },
+    {
+        "title": "Receive important notifications through email",
+        "class": "login-sign-up-input",
+        "type": "checkbox",
+        "name": "email_notifications",
+        "options": ["Yes"],
+        "placeholder": ""
+    },
     // {
     //     "title": "City",
     //     "placeholder": "City",
@@ -200,6 +208,7 @@ function parse_variables(vals) {
 }
 var pages = [page_1]
 var api_url = "https://sclnk.app/users"
+// api_url = "http://127.0.0.1:5000/users"
 
 var variables = await get(api_url, "_id", user_id);
 
