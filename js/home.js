@@ -86,6 +86,15 @@ function show(data) {
         var url = `https://api.instagram.com/oauth/authorize?client_id=1130340001160455&redirect_uri=https://scalelink.xyz/app/auth.html&state=${user_id}&scope=user_profile&response_type=code`
         window.open(url, '_blank');
     })
+    $(document).on("click", ".referral-link", function() {
+        var referral_link = `https://scalelink.xyz/app/referral.html?referral_id=${user_id}`
+        var data = [new ClipboardItem({ "text/plain": new Blob([referral_link], { type: "text/plain" }) })];
+        navigator.clipboard.write(data).then(function() {
+            window.FlashMessage.info('Referral link copied to clipboard!')
+        }, function() {
+            console.error("Unable to write to clipboard. :-(");
+        });
+    })
 }
 
 function category_indicators(categories) {
