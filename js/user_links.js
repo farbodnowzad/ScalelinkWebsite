@@ -32,6 +32,8 @@ function show(data) {
                                 <a class="link-campaign-url" href="campaign.html?id=${campaign._id}">View Campaign &rarr;</a>
                             </div>
                             <div>Expires: ${campaign.expiration}</div>
+                            <div>Max payout: ${campaign.max_payout ? "$" + (campaign.max_payout/ 100).toString() : "None"}</div>
+                            <div>Minimum visitors required before payment: ${campaign.min_visitors}</div>
                             <div class="link-metrics-row">
                                 <div class="link-metrics-narrow">
                                     <div class="link-metrics-value">
@@ -43,7 +45,7 @@ function show(data) {
                                 </div>
                                 <div class="link-metrics-narrow right-side">
                                     <div class="link-metrics-value">
-                                        <span>${link.unique_visitors}</span>
+                                        <span>${link.extended_unique_visitors}</span>
                                     </div>
                                     <div class="link-metrics-title">
                                         Unique Visitors
