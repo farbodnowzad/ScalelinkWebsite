@@ -12171,6 +12171,10 @@ footer a:hover, footer a:active, footer a:focus {
   .login-signup-logo img {
     width: 50%;
   }
+  .index-landing-image {
+    width: 80%;
+    text-align: center;
+  }
 }
 
 .login-sign-up-input-container {
