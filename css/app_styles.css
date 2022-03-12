@@ -13307,6 +13307,15 @@ input[type=file]::file-selector-button:hover {
   .connect-instagram img {
     margin-bottom: 2px;
   }
+  .referral-link {
+    height: 50px;
+    vertical-align: middle;
+    line-height: 50px;
+    padding: 0%;
+  }
+  .referral-link img {
+    margin-bottom: 2px;
+  }
 }
 
 .campaign-tags-row {
