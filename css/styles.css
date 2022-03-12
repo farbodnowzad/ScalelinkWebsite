@@ -11672,3 +11672,15 @@ footer a:hover, footer a:active, footer a:focus {
     max-width: 15rem;
   }
 }
+
+#biz-sign-up-btn {
+  background-color: #0a47e4;
+  display: inline;
+  margin-right: 2%;
+  margin-bottom: 10%;
+  color: white;
+  border: none;
+}
+#biz-sign-up-btn:hover {
+  background-color: #000;
+}
