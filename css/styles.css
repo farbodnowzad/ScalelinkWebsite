@@ -11701,7 +11701,7 @@ footer a:hover, footer a:active, footer a:focus {
   vertical-align: middle;
   font-family: "SFPro-Regular";
   font-size: large;
-  padding: 2%;
+  padding: 1%;
 }
 
 @media (max-width: 576px) {
