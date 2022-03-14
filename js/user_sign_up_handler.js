@@ -29,7 +29,9 @@ class UserSignUp {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const referral_id = urlParams.get('referral_id')
-        formData.append("referral_user_id", referral_id)
+        if (referral_id) {
+            formData.append("referral_user_id", referral_id)
+        }
         var sign_up_url = "https://sclnk.app/users/sign_up"
         // sign_up_url = "http://127.0.0.1:5000/users/sign_up"
         let sign_up_response;
