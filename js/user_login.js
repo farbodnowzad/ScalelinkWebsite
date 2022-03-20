@@ -50,8 +50,8 @@ class UserLogin {
                 self.loginCall(email.value, password.value).then(function(login_response) {
                     if (login_response.login) {
                         localStorage.setItem("user_id", login_response.user_id);
-                        localStorage.setItem("instagram_id", login_response.social_accounts.get("instagram_id"));
-                        localStorage.setItem("twitter_id", login_response.social_accounts.get("twitter_id"));
+                        localStorage.setItem("instagram_id", login_response.social_accounts.instagram_id);
+                        localStorage.setItem("twitter_id", login_response.social_accounts.twitter_id);
                         self.form.submit();
                     } else {
                         self.setStatus(
