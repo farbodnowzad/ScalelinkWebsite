@@ -2,6 +2,7 @@ import {UserAuth} from './user_auth.js'
 var user_auth = new UserAuth()
 const user_id = user_auth.user_id
 const instagram_id = user_auth.instagram_id
+const twitter_id = user_auth.twitter_id
 var internationalNumberFormat = new Intl.NumberFormat('en-US')
 
 async function get_campaign() {
@@ -155,14 +156,13 @@ function show(campaign_data, links_data) {
             });
         })
     } else if (campaign.requires_product || campaign.requires_approval) {
-        if (instagram_id == "null" || instagram_id == null) {
+        if ((instagram_id == "null" || instagram_id == null) && (twitter_id == "null" || twitter_id == null)) {
             var request_button = document.getElementsByClassName("get-link")[0]
-            request_button.style.backgroundColor = "#E1306C"
+            request_button.style.backgroundColor = "#0A47E4"
             request_button.style.fontFamily = "SFPro-Bold"
-            request_button.innerHTML = `<img class="btn-icon icon" src="../assets/img/instagram_icon.png" /> Instagram Required`
+            request_button.innerHTML = `<img class="btn-icon icon" src="../assets/img/instagram_icon.png" /> Social Media Required`
             $(document).on("click", ".get-link", function() {
-                var url = `https://api.instagram.com/oauth/authorize?client_id=1130340001160455&redirect_uri=https://scalelink.xyz/app/auth.html&state=${user_id}&scope=user_profile&response_type=code`
-                window.open(url, '_blank');
+                window.open("account.html", '_blank');
             })
         } else {
             document.getElementsByClassName("get-link")[0].innerHTML = `<span id="main-action-button-text" class="copy-link-text">Request Link</span>`

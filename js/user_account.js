@@ -3,7 +3,6 @@ import {UserAuth} from './user_auth.js'
 // import {FlashMessage} from 'flash.min.js'
 const auth = new UserAuth();
 var user_id = auth.user_id;
-var instagram_id = auth.instagram_id;
 var internationalNumberFormat = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'})
 
 var page_1 = [
@@ -292,11 +291,15 @@ disconnect_instagram_button.onclick = function () {
     disconnect_instagram();
     disconnect_instagram_button.classList.add("hidden");
     document.getElementsByClassName("connect-instagram")[0].classList.remove("hidden")
+    localStorage.removeItem("instagram_id");
+    auth.instagram_id = null;
 }
 disconnect_twitter_button.onclick = function () {
     disconnect_twitter();
     disconnect_twitter_button.classList.add("hidden");
     document.getElementsByClassName("connect-twitter")[0].classList.remove("hidden")
+    localStorage.removeItem("twitter_id");
+    auth.twitter_id = null;
 }
 
 $(document).on("click", ".connect-instagram", function() {

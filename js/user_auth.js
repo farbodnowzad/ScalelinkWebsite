@@ -4,6 +4,7 @@ class UserAuth {
        document.querySelector("body").style.display = "none";
        this.user_id = localStorage.getItem("user_id");
        this.instagram_id = localStorage.getItem("instagram_id");
+       this.twitter_id = localStorage.getItem("twitter_id");
        this.validateAuth();
    }
    // check to see if the localStorage item passed to the function is valid and set
@@ -19,6 +20,7 @@ class UserAuth {
    logOut() {
        localStorage.removeItem("user_id");
        localStorage.removeItem("instagram_id");
+       localStorage.removeItem("twitter_id");
        window.location.replace("/app");
    }
 }

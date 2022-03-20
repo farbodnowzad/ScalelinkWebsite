@@ -20,7 +20,11 @@ async function get_user() {
     await $.get(url, function(data){
         // Display the returned data in browser
         var ig_id = data.users[0]['social_accounts']['instagram_id']
+        localStorage.setItem("instagram_id", ig_id);
+
         var twitter_id = data.users[0]['social_accounts']['twitter_id']
+        localStorage.setItem("twitter_id", twitter_id);
+        
         if (ig_id || twitter_id) {
             document.getElementsByClassName("connect-social-media-wrapper")[0].classList.add("hidden")
         }
@@ -44,7 +48,10 @@ function parse_twitter_auth() {
             data: formData,
             processData: false,
             contentType: false,
-            type: 'POST'
+            type: 'POST',
+            success: function(data) {
+                get_user();
+            }
         });
     }
 }
