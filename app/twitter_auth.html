@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script type="text/javascript">
+        (function(e,t){var n=e.amplitude||{_q:[],_iq:{}};var r=t.createElement("script")
+        ;r.type="text/javascript"
+        ;r.integrity="sha384-G5p3YHHIMhqDroi1wiIRIEJZZCcdNsFWb90cB5FCjJEkCV1NN5gal4aaJRDHU6Qy"
+        ;r.crossOrigin="anonymous";r.async=true
+        ;r.src="https://cdn.amplitude.com/libs/amplitude-8.16.0-min.gz.js"
+        ;r.onload=function(){if(!e.amplitude.runQueuedFunctions){console.log(
+        "[Amplitude] Error: could not load SDK")}};var s=t.getElementsByTagName("script"
+        )[0];s.parentNode.insertBefore(r,s);function i(e,t){e.prototype[t]=function(){
+        this._q.push([t].concat(Array.prototype.slice.call(arguments,0)));return this}}
+        var o=function(){this._q=[];return this};var a=["add","append","clearAll",
+        "prepend","set","setOnce","unset","preInsert","postInsert","remove"];for(
+        var c=0;c<a.length;c++){i(o,a[c])}n.Identify=o;var l=function(){this._q=[]
+        ;return this};var p=["setProductId","setQuantity","setPrice","setRevenueType",
+        "setEventProperties"];for(var u=0;u<p.length;u++){i(l,p[u])}n.Revenue=l;var d=[
+        "init","logEvent","logRevenue","setUserId","setUserProperties","setOptOut",
+        "setVersionName","setDomain","setDeviceId","enableTracking",
+        "setGlobalUserProperties","identify","clearUserProperties","setGroup",
+        "logRevenueV2","regenerateDeviceId","groupIdentify","onInit","onNewSessionStart"
+        ,"logEventWithTimestamp","logEventWithGroups","setSessionId","resetSessionId",
+        "getDeviceId","getUserId","setMinTimeBetweenSessionsMillis",
+        "setEventUploadThreshold","setUseDynamicConfig","setServerZone","setServerUrl",
+        "sendEvents","setLibrary","setTransport"];function v(t){function e(e){
+        t[e]=function(){t._q.push([e].concat(Array.prototype.slice.call(arguments,0)))}}
+        for(var n=0;n<d.length;n++){e(d[n])}}v(n);n.getInstance=function(e){e=(
+        !e||e.length===0?"$default_instance":e).toLowerCase();if(
+        !Object.prototype.hasOwnProperty.call(n._iq,e)){n._iq[e]={_q:[]};v(n._iq[e])}
+        return n._iq[e]};e.amplitude=n})(window,document);
+        
+        amplitude.getInstance().init("d25e00fa2a9541fc60f28e527e245f82")
+    </script>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Scalelink</title>
+        <link rel="icon" type="image/x-icon" href="../assets/img/ScaleLink_Small_Logo.png">
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Google fonts-->
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,600;1,600&amp;display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500;1,600;1,700&amp;display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="../css/app_styles.css" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+
+        <!-- Basic features section-->
+        <section>
+            <div class="container px-5">
+                <div class="row">
+                    <div class="col col-md-2"></div>
+                    <div class="col-12 col-md-8">
+                        Authorizing...
+                    </div>
+                    <div class="col col-md-2"></div>
+                </div>
+            </div>
+        </section>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script type="text/javascript">
+            function parse_twitter_auth() {
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                const oauth_token = urlParams.get('oauth_token')
+                const oauth_verifier = urlParams.get('oauth_verifier')
+                if (oauth_token && oauth_verifier) {
+                    var path = "https://sclnk.app/users/twitter_auth/verifier"
+                    var formData = new FormData()
+                    formData.append("user_id", user_id)
+                    formData.append("oauth_token", oauth_token)
+                    formData.append("oauth_verifier", oauth_verifier)
+                    $.ajax({
+                        url: path,
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        type: 'POST',
+                        success: function(data) {
+                            window.location('home.html')
+                        }
+                    });
+                }
+            }
+            parse_twitter_auth();
+        </script>
+    </body>
+</html>

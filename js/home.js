@@ -31,34 +31,8 @@ async function get_user() {
     });
 }
 
-
-function parse_twitter_auth() {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const oauth_token = urlParams.get('oauth_token')
-    const oauth_verifier = urlParams.get('oauth_token')
-    if (oauth_token && oauth_verifier) {
-        var path = "https://sclnk.app/users/twitter_auth/verifier"
-        var formData = new FormData()
-        formData.append("user_id", user_id)
-        formData.append("oauth_token", oauth_token)
-        formData.append("oauth_verifier", oauth_verifier)
-        $.ajax({
-            url: path,
-            data: formData,
-            processData: false,
-            contentType: false,
-            type: 'POST',
-            success: function(data) {
-                get_user();
-            }
-        });
-    }
-}
-
 get_feed();
 get_user();
-// parse_twitter_auth();
 function show(data) {
     var results = data.campaigns
     var businesses = data.businesses
