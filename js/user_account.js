@@ -197,6 +197,19 @@ function disconnect_instagram() {
         success: async function(data){}
     });
 }
+function disconnect_twitter() {
+    var path = "https://sclnk.app/users/twitter/disconnect"
+    var formData = new FormData()
+    formData.append("user_id", user_id)
+    $.ajax({
+        url: path,
+        data: formData,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: async function(data){}
+    });
+}
 function parse_variables(vals) {
     if (vals.date_of_birth) {
         var dob = vals.date_of_birth.split("/")
@@ -211,14 +224,13 @@ var api_url = "https://sclnk.app/users"
 // api_url = "http://127.0.0.1:5000/users"
 
 var variables = await get(api_url, "_id", user_id);
+var social_accounts = variables.social_accounts;
 
 var account_link = await stripe_account_link();
 var account_status = await stripe_account_status();
 
 var disconnect_instagram_button = document.getElementById("disconnect-instagram")
-if (instagram_id) {
-    disconnect_instagram_button.classList.remove("hidden")
-}
+var disconnect_twitter_button = document.getElementById("disconnect-twitter")
 
 var balance = account_status.balance || 0
 var complete_onboarding = account_status.status;
@@ -258,9 +270,52 @@ next_button.onclick = function () {
     window.FlashMessage.info('Saved!')
 }
 
+function check_instagram_id(disconnect_instagram_button) {
+    var instagram_id = social_accounts.instagram_id;
+    if (instagram_id == "null" || instagram_id == null) {
+        document.getElementsByClassName("connect-instagram")[0].classList.remove("hidden")
+        disconnect_instagram_button.classList.add("hidden")
+    }
+}
+function check_twitter_id() {
+    var twitter_id = social_accounts.twitter_id;
+    if (twitter_id == "null" || twitter_id == null) {
+        document.getElementsByClassName("connect-twitter")[0].classList.remove("hidden")
+        disconnect_twitter_button.classList.add("hidden")
+    }
+}
+
+check_instagram_id(disconnect_instagram_button);
+check_twitter_id(disconnect_twitter_button);
+
 disconnect_instagram_button.onclick = function () {
     disconnect_instagram();
     disconnect_instagram_button.classList.add("hidden");
-    localStorage.removeItem("instagram_id");
-    auth.instagram_id = null;
+    document.getElementsByClassName("connect-instagram")[0].classList.remove("hidden")
 }
+disconnect_twitter_button.onclick = function () {
+    disconnect_twitter();
+    disconnect_twitter_button.classList.add("hidden");
+    document.getElementsByClassName("connect-twitter")[0].classList.remove("hidden")
+}
+
+$(document).on("click", ".connect-instagram", function() {
+    var url = `https://api.instagram.com/oauth/authorize?client_id=1130340001160455&redirect_uri=https://scalelink.xyz/app/auth.html&state=${user_id}&scope=user_profile&response_type=code`
+    window.open(url, '_blank');
+})
+$(document).on("click", ".connect-twitter", function() {
+    var path = "https://sclnk.app/users/twitter_auth/request_token"
+    var formData = new FormData()
+    $.ajax({
+        url: path,
+        data: formData,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: function(data) {
+            console.log(data.redirect_uri)
+            var url = data.redirect_uri;
+            window.open(url);
+        }
+    });
+})

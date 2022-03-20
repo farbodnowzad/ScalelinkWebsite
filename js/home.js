@@ -20,25 +20,38 @@ async function get_user() {
     await $.get(url, function(data){
         // Display the returned data in browser
         var ig_id = data.users[0]['social_accounts']['instagram_id']
-        if (ig_id) {
-            localStorage.setItem("instagram_id", ig_id)
-            document.getElementsByClassName("connect-instagram-wrapper")[0].classList.add("hidden")
-            document.getElementsByClassName("connect-instagram")[0].classList.add("hidden")
-            document.getElementsByClassName("connect-instagram-text")[0].classList.add("hidden")
+        var twitter_id = data.users[0]['social_accounts']['twitter_id']
+        if (ig_id || twitter_id) {
+            document.getElementsByClassName("connect-social-media-wrapper")[0].classList.add("hidden")
         }
     });
 }
-function check_instagram_id() {
-    instagram_id = localStorage.getItem("instagram_id")
-    if (instagram_id == "null" || instagram_id == null) {
-        document.getElementsByClassName("connect-instagram-wrapper")[0].classList.remove("hidden")
-        document.getElementsByClassName("connect-instagram")[0].classList.remove("hidden")
-        document.getElementsByClassName("connect-instagram-text")[0].classList.remove("hidden")
+
+
+function parse_twitter_auth() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const oauth_token = urlParams.get('oauth_token')
+    const oauth_verifier = urlParams.get('oauth_token')
+    if (oauth_token && oauth_verifier) {
+        var path = "https://sclnk.app/users/twitter_auth/verifier"
+        var formData = new FormData()
+        formData.append("user_id", user_id)
+        formData.append("oauth_token", oauth_token)
+        formData.append("oauth_verifier", oauth_verifier)
+        $.ajax({
+            url: path,
+            data: formData,
+            processData: false,
+            contentType: false,
+            type: 'POST'
+        });
     }
 }
+
 get_feed();
 get_user();
-check_instagram_id()
+parse_twitter_auth();
 function show(data) {
     var results = data.campaigns
     var businesses = data.businesses
@@ -81,10 +94,6 @@ function show(data) {
     document.getElementById("campaign-feed").innerHTML = row || 'No campaigns right now. Check back soon.';
     $(document).on("click", ".feed-campaign", function() {
         window.location.href = `campaign.html?id=${this.getAttribute("campaign_id")}`
-    })
-    $(document).on("click", ".connect-instagram", function() {
-        var url = `https://api.instagram.com/oauth/authorize?client_id=1130340001160455&redirect_uri=https://scalelink.xyz/app/auth.html&state=${user_id}&scope=user_profile&response_type=code`
-        window.open(url, '_blank');
     })
     $(document).on("click", ".referral-link", function() {
         var referral_link = `https://scalelink.xyz/app/referral.html?referral_id=${user_id}`

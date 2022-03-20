@@ -13194,20 +13194,49 @@ input[type=file]::file-selector-button:hover {
   min-height:100%;
 }
 
-.connect-instagram {
-  background-color: #405DE6;
+.connect-social-media {
+  background-color: #0a47e4;
   color: white;
-  font-family: "SFPro-Medium";
+  font-family: "SFPro-Bold";
   text-align: center;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 2%;
   /* margin-left: 25%;
   margin-right: 25%; */
   box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, .1);
   cursor: pointer;
 }
-
-.connect-instagram-text {
+.connect-social-media-text {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 1%;
+  color: grey;
+}
+.connect-instagram {
+  background-color: #E1306C;
+  color: white;
+  font-family: "SFPro-Bold";
+  text-align: center;
+  border-radius: 5px;
+  padding: 2%;
+  /* margin-left: 25%;
+  margin-right: 25%; */
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, .1);
+  cursor: pointer;
+}
+.connect-twitter {
+  background-color: #1DA1F2;
+  color: white;
+  font-family: "SFPro-Bold";
+  text-align: center;
+  border-radius: 5px;
+  padding: 2%;
+  /* margin-left: 25%;
+  margin-right: 25%; */
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, .1);
+  cursor: pointer;
+}
+.connect-twitter-text {
   text-align: center;
   width: 100%;
   margin-bottom: 1%;
@@ -13215,11 +13244,11 @@ input[type=file]::file-selector-button:hover {
 }
 
 .referral-link {
-  background-color: #08C168;
+  background-color: #16C833;
   color: white;
-  font-family: "SFPro-Medium";
+  font-family: "SFPro-Bold";
   text-align: center;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 2%;
   /* margin-left: 25%;
   margin-right: 25%; */
@@ -13237,6 +13266,7 @@ input[type=file]::file-selector-button:hover {
 .referral-link .icon {
   width: 1.2rem;
   height: auto;
+  padding-bottom: 0.2rem;
 }
 
 .btn-icon {
@@ -13298,6 +13328,12 @@ input[type=file]::file-selector-button:hover {
   .earnings-amount {
     font-size: 1.5rem
   }
+  .connect-social-media {
+    height: 50px;
+    vertical-align: middle;
+    line-height: 50px;
+    padding: 0%;
+  }
   .connect-instagram {
     height: 50px;
     vertical-align: middle;
@@ -13305,6 +13341,15 @@ input[type=file]::file-selector-button:hover {
     padding: 0%;
   }
   .connect-instagram img {
+    margin-bottom: 2px;
+  }
+  .connect-twitter {
+    height: 50px;
+    vertical-align: middle;
+    line-height: 50px;
+    padding: 0%;
+  }
+  .connect-twitter img {
     margin-bottom: 2px;
   }
   .referral-link {

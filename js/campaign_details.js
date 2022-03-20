@@ -157,8 +157,8 @@ function show(campaign_data, links_data) {
     } else if (campaign.requires_product || campaign.requires_approval) {
         if (instagram_id == "null" || instagram_id == null) {
             var request_button = document.getElementsByClassName("get-link")[0]
-            request_button.style.backgroundColor = "#405DE6"
-            request_button.style.fontFamily = "SFPro-Medium"
+            request_button.style.backgroundColor = "#E1306C"
+            request_button.style.fontFamily = "SFPro-Bold"
             request_button.innerHTML = `<img class="btn-icon icon" src="../assets/img/instagram_icon.png" /> Instagram Required`
             $(document).on("click", ".get-link", function() {
                 var url = `https://api.instagram.com/oauth/authorize?client_id=1130340001160455&redirect_uri=https://scalelink.xyz/app/auth.html&state=${user_id}&scope=user_profile&response_type=code`
