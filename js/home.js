@@ -58,7 +58,7 @@ function parse_twitter_auth() {
 
 get_feed();
 get_user();
-parse_twitter_auth();
+// parse_twitter_auth();
 function show(data) {
     var results = data.campaigns
     var businesses = data.businesses
