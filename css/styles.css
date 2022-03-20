@@ -11573,7 +11573,7 @@ footer a:hover, footer a:active, footer a:focus {
 @media (max-width:576px) {
   .masthead {
     background-color: #f8f9fa;
-    padding-top: 2rem;
+    padding-top: 6.5rem;
     padding-bottom: 5rem;
   }
 }

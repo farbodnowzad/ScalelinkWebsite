@@ -116,9 +116,9 @@
                 metrics = data;
             });
             var daily_counts = metrics.campaign_metrics.daily_counts
-            // daily_counts = [1, 2, 3, 4, 5, 6, 7].map(function (x) {
-            //     return [0, parseInt(Math.random() * 100 + 20)]
-            // });
+            daily_counts = [1, 2, 3, 4, 5, 6, 7].map(function (x) {
+                return [0, parseInt(Math.random() * 100 + 20)]
+            });
             var xValues = ['6d', '5d', '4d', '3d', '2d', 'Yesterday', 'Today'];
             var yValues = [];
             daily_counts.forEach(element => {
