@@ -12747,9 +12747,13 @@ input[type=file]::file-selector-button:hover {
   font-family: "SFPro-Heavy";
 }
 
-.modal-info-social {
+.modal-info-instagram {
   font-family: "SFPro-Heavy";
   color: #E1306C;
+}
+.modal-info-twitter {
+  font-family: "SFPro-Heavy";
+  color: #1DA1F2;
 }
 
 .modal-info-social img{
