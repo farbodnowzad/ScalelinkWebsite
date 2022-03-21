@@ -57,7 +57,7 @@ class UserSignUp {
             return address;
         }
         var address_parsed = {}
-        var necessary_types = ["street_number", "route", "locality", "administrative_area_level_1", "country", "postal_code"]
+        var necessary_types = ["street_number", "route", "locality", "postal_town", "administrative_area_level_1", "country", "postal_code"]
         for (let necessary_type of necessary_types) {
             for (let component of address) {
                 var types = component.types
@@ -68,7 +68,7 @@ class UserSignUp {
         }
         address = {}
         address['line_1'] = `${address_parsed["street_number"]} ${address_parsed["route"]}`
-        address['city'] = address_parsed["locality"]
+        address['city'] = address_parsed["locality"] || address_parsed["postal_town"]
         address['state'] = address_parsed["administrative_area_level_1"]
         address['country'] = address_parsed["country"]
         address['zip'] = address_parsed["postal_code"]

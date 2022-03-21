@@ -144,7 +144,6 @@ var page_4 = [
 ]
 
 var pages = [page_1, page_2, page_3, page_4]
-// var pages = [page_3, page_4]
 var page_constructor = new PageConstructor(variables, pages, document)
 
 page_constructor.show();

@@ -92,6 +92,7 @@ class PageConstructor {
             self.variables.line_1 = place.formatted_address
             self.variables.address = place.address_components
             input.value = formatted_address
+            console.log(self.variables.address)
         })
     }
 
