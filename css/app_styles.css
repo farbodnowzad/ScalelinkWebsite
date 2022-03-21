@@ -12339,8 +12339,8 @@ input[type=file]::file-selector-button:hover {
 } */
 
 #sidebar {
-  min-width: 250px;
-  max-width: 250px;
+  min-width: 10vw;
+  max-width: 12vw;
   min-height: 100vh;
   position: fixed;
   background-color: black;
@@ -12361,7 +12361,7 @@ input[type=file]::file-selector-button:hover {
 }
 
 #sidebar .sidebar-header img{
-  width: 57%;
+  width: 60%;
 }
 
 #sidebar ul p {
