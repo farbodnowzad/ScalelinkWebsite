@@ -11680,6 +11680,15 @@ footer a:hover, footer a:active, footer a:focus {
   }
 }
 
+.customer-logos {
+  width: 100%;
+  text-align: center;
+}
+.customer-logos div {
+  display: inline;
+  padding: 2rem;
+}
+
 #influencer-sign-up-btn {
   background-color: #0a47e4;
   display: inline;
