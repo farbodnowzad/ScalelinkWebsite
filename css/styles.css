@@ -11431,7 +11431,7 @@ section {
 section.cta {
   position: relative;
   padding: 15rem 0;
-  background-image: url("../assets/img/influencer.jpg");
+  background-image: url("../assets/img/creator.jpg");
   background-position: center;
   background-size: cover;
 }
@@ -11689,15 +11689,15 @@ footer a:hover, footer a:active, footer a:focus {
   padding: 2rem;
 }
 
-#influencer-sign-up-btn {
+#creator-sign-up-btn {
   background-color: #0a47e4;
   display: inline;
-  margin-left: 2%;
+  margin-right: 2%;
   margin-bottom: 10%;
   color: white;
   border: none;
 }
-#influencer-sign-up-btn:hover {
+#creator-sign-up-btn:hover {
   background-color: #000;
 }
 
