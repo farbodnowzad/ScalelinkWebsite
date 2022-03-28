@@ -45,8 +45,9 @@ function show(data) {
         var requires_approval = campaign.requires_approval ? "<div class='requires-approval'><img class = 'requirement-icon' src='../assets/img/requires_approval_icon.png'/> Requires Approval</div>" : ""
         var sends_product = campaign.requires_product ? "<div class='sends-product'><img class = 'requirement-icon' src='../assets/img/sends_product_icon.png'/> Sends Product</div>" : ""
         var categories_row = category_indicators(business.categories)
-        var budget_remaining = campaign.budget - campaign_metric.budget_spent
-        var budget_formatted = internationalNumberFormat.format(parseInt(budget_remaining * 0.8 / 100))
+        var max_payout = campaign.max_payout || Number.MAX_VALUE
+        var budget_remaining = Math.min((campaign.budget - campaign_metric.budget_spent) * 0.85, max_payout)
+        var budget_formatted = internationalNumberFormat.format(parseInt(budget_remaining / 100))
         var about_formatted = campaign.about.length > 250 ? campaign.about.slice(0,250) + '...' : campaign.about
         row += `<div class="feed-campaign" campaign_id=${campaign._id}>
                     <div class="content-container">
