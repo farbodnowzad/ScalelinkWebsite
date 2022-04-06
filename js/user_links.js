@@ -45,10 +45,10 @@ function show(data) {
                                 </div>
                                 <div class="link-metrics-narrow right-side">
                                     <div class="link-metrics-value">
-                                        <span>${link.unique_visitors}</span>
+                                        <span>${link.extended_unique_visitors}</span>
                                     </div>
                                     <div class="link-metrics-title">
-                                        Unique Visitors
+                                        Total Visitors
                                     </div>
                                 </div>
                             </div>
