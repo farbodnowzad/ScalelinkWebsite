@@ -45,6 +45,7 @@ async function user_address_csv(api_url, parameters) {
             csvContent += row + "\r\n";
         });
         var encodedUri = encodeURI(csvContent);
+        encodedUri = encodedUri.replace("#", "%23")
         var hiddenElement = document.createElement('a');  
         hiddenElement.href = encodedUri
         hiddenElement.target = '_blank';  
