@@ -193,7 +193,9 @@ function disconnect_instagram() {
         processData: false,
         contentType: false,
         type: 'POST',
-        success: async function(data){}
+        success: async function(data){
+            localStorage.removeItem("instagram_id");
+        }
     });
 }
 function disconnect_twitter() {
@@ -206,7 +208,9 @@ function disconnect_twitter() {
         processData: false,
         contentType: false,
         type: 'POST',
-        success: async function(data){}
+        success: async function(data){
+            localStorage.removeItem("twitter_id");
+        }
     });
 }
 function parse_variables(vals) {
