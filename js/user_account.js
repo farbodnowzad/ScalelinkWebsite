@@ -64,34 +64,10 @@ var page_1 = [
         "name": "email_notifications",
         "options": ["Yes"],
         "placeholder": ""
-    },
-    // {
-    //     "title": "City",
-    //     "placeholder": "City",
-    //     "class": "login-sign-up-input",
-    //     "type": "address",
-    //     "name": "city",
-    //     "class_style": "address"
-    // },
-    // {
-    //     "title": "State",
-    //     "placeholder": "State",
-    //     "class": "login-sign-up-input",
-    //     "type": "address",
-    //     "name": "state",
-    //     "class_style": "address"
-    // },
-    // {
-    //     "title": "Zip Code",
-    //     "placeholder": "Zip Code",
-    //     "class": "login-sign-up-input",
-    //     "type": "address",
-    //     "name": "zip",
-    //     "class_style": "address"
-    // },
+    }
 ]
 
-async function get(api_url, key, value) {
+async function getUser(api_url, key, value) {
     const url = api_url + `?${key}=${value}`;
     let user;
     await $.get(url, function(data){
@@ -222,65 +198,14 @@ function parse_variables(vals) {
         vals.date_of_birth = [year, month, day].join("-")
     }
 }
-var pages = [page_1]
-var api_url = "https://sclnk.app/users"
-// api_url = "http://127.0.0.1:5000/users"
-
-var variables = await get(api_url, "_id", user_id);
-var social_accounts = variables.social_accounts;
-
-var account_link = await stripe_account_link();
-var account_status = await stripe_account_status();
-
-var disconnect_instagram_button = document.getElementById("disconnect-instagram")
-var disconnect_twitter_button = document.getElementById("disconnect-twitter")
-
-var balance = account_status.balance || 0
-var complete_onboarding = account_status.status;
-
-var earnings_amount = document.getElementsByClassName("earnings-amount")[0]
-var cash_out_btn = document.getElementsByClassName("cash-out")[0]
-var payment_settings_btn = document.getElementsByClassName("payment-settings")[0]
-payment_settings_btn.addEventListener("click", function() {
-    window.location.href = account_link;
-});
-
-earnings_amount.innerHTML = internationalNumberFormat.format(balance / 100)
-
-if (complete_onboarding) {
-    payment_settings_btn.innerHTML = "<img class='btn-icon' style='height: 15px;' src='../assets/img/settings_icon.png' /> Payment Settings";
-    if (balance > 0) {
-        cash_out_btn.classList.remove("hidden")
-        cash_out_btn.addEventListener("click", function() {
-            cash_out();
-        });
-    }
-} else {
-    payment_settings_btn.innerHTML = "Complete Account to Get Paid &rarr;";
-}
-
-parse_variables(variables);
-var page_constructor = new PageConstructor(variables, pages, document)
-page_constructor.show("Save");
-if (variables.address) {
-    var address_input = document.getElementById("line_1")
-    address_input.value = [variables.address["line_1"], variables.address["city"], variables.address['state'] + " " + variables.address["zip"]].join(", ")
-}
-page_constructor.create_listeners()
-var next_button = document.getElementById("main-action-button")
-next_button.onclick = function () {
-    post(api_url, variables);
-    window.FlashMessage.info('Saved!')
-}
-
-function check_instagram_id(disconnect_instagram_button) {
+function check_instagram_id(social_accounts, disconnect_instagram_button) {
     var instagram_id = social_accounts.instagram_id;
     if (instagram_id == "null" || instagram_id == null) {
         document.getElementsByClassName("connect-instagram")[0].classList.remove("hidden")
         disconnect_instagram_button.classList.add("hidden")
     }
 }
-function check_twitter_id() {
+function check_twitter_id(social_accounts, disconnect_twitter_button) {
     var twitter_id = social_accounts.twitter_id;
     if (twitter_id == "null" || twitter_id == null) {
         document.getElementsByClassName("connect-twitter")[0].classList.remove("hidden")
@@ -288,23 +213,82 @@ function check_twitter_id() {
     }
 }
 
-check_instagram_id(disconnect_instagram_button);
-check_twitter_id(disconnect_twitter_button);
+var pages = [page_1]
+var api_url = "https://sclnk.app/users"
 
-disconnect_instagram_button.onclick = function () {
-    disconnect_instagram();
-    disconnect_instagram_button.classList.add("hidden");
-    document.getElementsByClassName("connect-instagram")[0].classList.remove("hidden")
-    localStorage.removeItem("instagram_id");
-    auth.instagram_id = null;
-}
-disconnect_twitter_button.onclick = function () {
-    disconnect_twitter();
-    disconnect_twitter_button.classList.add("hidden");
-    document.getElementsByClassName("connect-twitter")[0].classList.remove("hidden")
-    localStorage.removeItem("twitter_id");
-    auth.twitter_id = null;
-}
+let variables;
+getUser(api_url, "_id", user_id).then((res) => {
+    variables = res;
+    parse_variables(variables);
+
+    var page_constructor = new PageConstructor(variables, pages, document)
+    page_constructor.show("Save");
+    if (variables.address) {
+        var address_input = document.getElementById("line_1")
+        address_input.value = [variables.address["line_1"], variables.address["city"], variables.address['state'] + " " + variables.address["zip"]].join(", ")
+    }
+    page_constructor.create_listeners()
+    var next_button = document.getElementById("main-action-button")
+    next_button.onclick = function () {
+        post(api_url, variables);
+        window.FlashMessage.info('Saved!')
+    }
+
+    var social_accounts = variables.social_accounts;
+    var disconnect_instagram_button = document.getElementById("disconnect-instagram")
+    var disconnect_twitter_button = document.getElementById("disconnect-twitter")
+    check_instagram_id(social_accounts, disconnect_instagram_button);
+    check_twitter_id(social_accounts, disconnect_twitter_button);
+
+    disconnect_instagram_button.onclick = function () {
+        disconnect_instagram();
+        disconnect_instagram_button.classList.add("hidden");
+        document.getElementsByClassName("connect-instagram")[0].classList.remove("hidden")
+        localStorage.removeItem("instagram_id");
+        auth.instagram_id = null;
+    }
+    disconnect_twitter_button.onclick = function () {
+        disconnect_twitter();
+        disconnect_twitter_button.classList.add("hidden");
+        document.getElementsByClassName("connect-twitter")[0].classList.remove("hidden")
+        localStorage.removeItem("twitter_id");
+        auth.twitter_id = null;
+    }
+});
+
+var payment_settings_btn = document.getElementsByClassName("payment-settings")[0];
+
+stripe_account_link().then((res) => {
+    var account_link = res;
+    payment_settings_btn.addEventListener("click", function() {
+        window.location.href = account_link;
+    });
+});
+
+stripe_account_status().then((res) => {
+    var account_status = res;
+    var balance = account_status.balance || 0
+    var complete_onboarding = account_status.status;
+
+    var earnings_amount = document.getElementsByClassName("earnings-amount")[0]
+    var cash_out_btn = document.getElementsByClassName("cash-out")[0]
+
+    earnings_amount.innerHTML = internationalNumberFormat.format(balance / 100)
+
+    if (complete_onboarding) {
+        payment_settings_btn.innerHTML = "<img class='btn-icon' style='height: 15px;' src='../assets/img/settings_icon.png' /> Payment Settings";
+        if (balance > 0) {
+            cash_out_btn.classList.remove("hidden")
+            cash_out_btn.addEventListener("click", function() {
+                cash_out();
+            });
+        }
+    } else {
+        payment_settings_btn.innerHTML = "Complete Account to Get Paid &rarr;";
+    }
+});
+
+
 
 $(document).on("click", ".connect-instagram", function() {
     var url = `https://api.instagram.com/oauth/authorize?client_id=1130340001160455&redirect_uri=https://scalelink.xyz/app/auth.html&state=${user_id}&scope=user_profile&response_type=code`
