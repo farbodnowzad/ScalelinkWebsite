@@ -98,7 +98,7 @@ next_button.onclick = function () {
     var confirm_password = document.getElementById("confirm_password").value
     updatePassword(email, new_password, confirm_password).then(function(update_response) {
         if (update_response.modified_count) {
-            window.location.replace(`https://scalelink.xyz/business`)
+            window.location.replace(`https://scalelink.xyz/app`)
         } else {
             setStatus(
                 next_button,
