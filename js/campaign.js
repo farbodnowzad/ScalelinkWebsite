@@ -219,8 +219,8 @@ function update_campaign(path, parameters) {
                 title: 'Success!',
                 text: 'Your campaign is now inactive. Any remaining budget has been refunded. ',
                 icon: 'success',
-                iconColor: "#0A47E4",
-                confirmButtonColor: "#0A47E4", 
+                iconColor: "#0F1B3D",
+                confirmButtonColor: "#0F1B3D", 
                 }).then(function() {
                 window.location = "manage_campaigns.html";
             });

@@ -37,7 +37,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Scalelink - Get Started</title>
+        <title>Scalelink - Log In</title>
         <link rel="icon" type="image/x-icon" href="../assets/img/ScaleLink_Small_Logo.png">
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
@@ -54,36 +54,42 @@
         </script>
     </head>
     <body id="page-top">
-        <ul class="nav" style="padding-top: 10px; padding-bottom: 10px; box-shadow: 0px 10px 20px 0px rgba(0,0,0, 0.1);">
-            <li class="nav-item">
-              <a class="nav-link active" href="#"><img src="../assets/img/Scalelink_logo.png"/></a>
-            </li>
-        </ul>
         <!-- App features section-->
         <section>
-            <div class="container px- px-5">
+            <div class="container">
                 <div class="row">
                     <div class="col-sm-3"></div>
                     <div class="col-12 col-sm-6">
                         <div class="index-landing-image-wrapper">
-                            <img class='index-landing-image' src="../assets/img/Scalelink_logo.png"/>
+                            <img class='index-landing-image logo' src="../assets/img/scalelink_creators.png"/>
                             <br>
                             <br>
-                            <span>Make money talking about products you love.</span>
+                            <span style="font-weight: 100;">Make money talking about products you love.</span>
                             <br>
-                            <img class='index-landing-image' src="../assets/img/undraw_Personalization_re_grty.png"/>
+                            <br>
+                            <img class='index-landing-image' src="../assets/img/like_content.png"/>
                         </div>
-                        <br>
-                        <a href="sign_up.html">
-                                <button class="main-action-button">
-                                Sign Up
+                        <div class="index-input-container">
+                            <div class="login-sign-up-input-row">
+                                <span class='login-sign-up-input-row-name'>Email</span><br>
+                                <input id="login-email" class='login-sign-up-input' type="text" name="email" placeholder="jen@email.com"/>
+                                <span class="error-message"></span>
+                            </div>
+                            <div class="login-sign-up-input-row">
+                                <span class='login-sign-up-input-row-name'>Password</span><br>
+                                <input id="login-password" class='login-sign-up-input login-sign-up-password' type="password" name="password" placeholder="&#9679; &#9679; &#9679; &#9679; &#9679; &#9679; &#9679; &#9679;">
+                                <span class="error-message"></span>
+                            </div>
+                        </div>
+                        <form action="./home.html" class="loginForm">
+                            <button class="main-action-button" type="submit">
+                                Log In
                             </button>
-                        </a>
-                        <a href="login.html">
+                        </form>
+                        <a href="sign_up.html">
                             <button class="main-action-button-alt">
-                            Log In
+                            or Sign Up Here
                         </button>
-                    </a>
                     </div>
                     <div class="col-sm-3"></div>
                 </div>
@@ -92,13 +98,16 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
+        <script src="../js/user_login.js"></script>
         <script type="text/javascript">
             var event = "page_visit";
             var eventProperties = {
                 "app": "user",
-                "page": "index"
+                "page": "login"
             };
             amplitude.getInstance().logEvent(event, eventProperties);
         </script>
+        
+       
     </body>
 </html>

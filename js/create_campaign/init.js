@@ -114,8 +114,8 @@ function activate_campaign(path, parameters) {
                 title: 'Success!',
                 text: 'Your campaign is now live ',
                 icon: 'success',
-                iconColor: "#0A47E4",
-                confirmButtonColor: "#0A47E4", 
+                iconColor: "#0F1B3D",
+                confirmButtonColor: "#0F1B3D", 
                 }).then(function() {
                 window.location = "manage_campaigns.html";
             });
@@ -148,7 +148,7 @@ async function initialize_payment_intent(campaign_id) {
     const appearance = {
         theme: 'stripe',
         variables: {
-          colorPrimary: '#0A47E4',
+          colorPrimary: '#0F1B3D',
         },
     };
     elements = stripe.elements({ appearance, clientSecret });

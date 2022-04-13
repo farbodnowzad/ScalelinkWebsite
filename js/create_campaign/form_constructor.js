@@ -59,7 +59,7 @@ class FormConstructor {
             save_button.classList.add("hidden")
         }
         save_button.innerHTML = "Save"
-        save_button.style.backgroundColor = "#0A47E4"
+        save_button.style.backgroundColor = "#0F1B3D"
         save_button.style.color = "#fff"
     }
 
@@ -204,7 +204,7 @@ class FormConstructor {
                 <br>
                 <div id="regions-list" class="hidden">${this.variables[section.name]}</div>
                 <br>
-                <div id="remove-last-region" class="hidden" style='color: #0A47E4'>Undo Last Region</div>
+                <div id="remove-last-region" class="hidden" style='color: #0F1B3D'>Undo Last Region</div>
             </div>
             `
         } else {

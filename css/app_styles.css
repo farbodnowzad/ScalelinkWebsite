@@ -11747,17 +11747,17 @@ footer a:hover, footer a:active, footer a:focus {
 }
 .content-container .text-content .url a{
    text-decoration: underline;
-   color: #0A47E4;
+   color: #0F1B3D;
    font-family: "SFPro-Medium";
 }
 .content-container .text-content .url a:hover{
   text-decoration: underline;
-  color: #0A47E4;
+  color: #0F1B3D;
   font-family: "SFPro-Medium";
 }
 .url a {
   text-decoration: underline;
-  color: #0A47E4;
+  color: #0F1B3D;
   font-family: "SFPro-Medium";
 }
 .requirements {
@@ -11829,7 +11829,7 @@ footer a:hover, footer a:active, footer a:focus {
     float: left;
 }
 .earning_amount {
-    color: #0A47E4;
+    color: #0F1B3D;
 }
 .earnings .edit {
     width: 50%;
@@ -11854,7 +11854,7 @@ footer a:hover, footer a:active, footer a:focus {
 }
 .get-link {
     width: 100%;
-    background-color: #0A47E4;
+    background-color: #0F1B3D;
     font-family: "SFPro-Heavy";
     color: white;
     border-radius: 5px;
@@ -11877,7 +11877,7 @@ footer a:hover, footer a:active, footer a:focus {
     float: middle;
     width: 40%;
     /* height: 50%; */
-    background-color: #0A47E4;
+    background-color: #0F1B3D;
     font-family: "SFPro-Heavy";
     color: white;
     border-radius: 5px;
@@ -11955,7 +11955,7 @@ footer a:hover, footer a:active, footer a:focus {
 }
 .campaign-details {
   font-family: "SFPro-Heavy";
-  color: #0A47E4;
+  color: #0F1B3D;
 }
 .campaign-details a {
   text-decoration: none;
@@ -11979,7 +11979,7 @@ footer a:hover, footer a:active, footer a:focus {
   font-family: "SFPro-Heavy";
 }
 .earnings .amount {
-  color: #0A47E4;
+  color: #0F1B3D;
 }
 .unique-link {
   width: 100%;
@@ -12050,12 +12050,12 @@ footer a:hover, footer a:active, footer a:focus {
         font-size: 1rem;
     }
     .url a{
-      color: #0A47E4;
+      color: #0F1B3D;
       font-family: "SFPro-Medium";
     }
    .url a:hover{
      text-decoration: underline;
-     color: #0A47E4;
+     color: #0F1B3D;
      font-family: "SFPro-Medium";
     }
     .campaign_details {
@@ -12064,7 +12064,7 @@ footer a:hover, footer a:active, footer a:focus {
     }
     .get-link {
         width: 100%;
-        background-color: #0A47E4;
+        background-color: #0F1B3D;
         font-family: "SFPro-Heavy";
         color: white;
         border-radius: 5px;
@@ -12086,7 +12086,7 @@ footer a:hover, footer a:active, footer a:focus {
     #campaign-footer .get-link {
         float: middle;
         width: 80%;
-        background-color: #0A47E4;
+        background-color: #0F1B3D;
         font-family: "SFPro-Heavy";
         color: white;
         border-radius: 5px;
@@ -12143,7 +12143,7 @@ footer a:hover, footer a:active, footer a:focus {
     border: 0;
     outline:none;
     width: 100%;
-    color: #0A47E4;
+    color: #0F1B3D;
 }
 .input-info input::placeholder {
     color: #878787;
@@ -12163,6 +12163,11 @@ footer a:hover, footer a:active, footer a:focus {
   text-align: center;
 }
 .index-landing-image {
+  width: 30%;
+  text-align: center;
+}
+
+.index-landing-image-wrapper .logo {
   width: 50%;
   text-align: center;
 }
@@ -12179,6 +12184,10 @@ footer a:hover, footer a:active, footer a:focus {
 
 .login-sign-up-input-container {
   margin-top: 10%;
+  width: 100%;
+}
+
+.index-input-container {
   width: 100%;
 }
 
@@ -12211,7 +12220,7 @@ footer a:hover, footer a:active, footer a:focus {
 
 .main-action-button{
   font-family: "SFPro-Bold";
-  background-color: #0A47E4;
+  background-color: #0F1B3D;
   color: white;
   text-align: center;
   width: 100%;
@@ -12224,8 +12233,8 @@ footer a:hover, footer a:active, footer a:focus {
 .main-action-button-alt{
   font-family: "SFPro-Bold";
   background-color: white;
-  color: #0A47E4;
-  border: 1px solid #0A47E4;
+  color: #0F1B3D;
+  border: 1px solid #0F1B3D;
   text-align: center;
   width: 100%;
   margin-top: 6%;
@@ -12250,7 +12259,7 @@ footer a:hover, footer a:active, footer a:focus {
 }
 
 .enter-sign-up-button a {
-  color: #0A47E4;
+  color: #0F1B3D;
   text-decoration: none;
 }
 
@@ -12293,7 +12302,7 @@ input[type=file]::file-selector-button {
 }
 
 input[type=file]::file-selector-button:hover {
-  border: 1px solid #0A47E4;
+  border: 1px solid #0F1B3D;
 }
 
 .input-row-subtitle {
@@ -12301,7 +12310,7 @@ input[type=file]::file-selector-button:hover {
 }
 
 #budget-estimates {
-  border: 1px solid #0A47E4;
+  border: 1px solid #0F1B3D;
   width: 100%;
   border-radius: 5px;
   padding: 1%;
@@ -12378,12 +12387,12 @@ input[type=file]::file-selector-button:hover {
 }
 #sidebar ul li a:hover {
   color: white;
-  background-color: #0A47E4;
+  background-color: #0F1B3D;
 }
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
   color: #fff;
-  background: #0A47E4;
+  background: #0F1B3D;
 }
 
 .row {
@@ -12692,7 +12701,7 @@ input[type=file]::file-selector-button:hover {
   width: 45%;
   border-radius: 5px;
   font-family: "SFPro-Bold";
-  background-color: #0A47E4;
+  background-color: #0F1B3D;
   color: white;
   text-align: center;
   float: right;
@@ -12799,7 +12808,7 @@ input[type=file]::file-selector-button:hover {
   text-decoration: none;
 }
 .notificaiton-campaign-link:hover {
-  color: #0A47E4;
+  color: #0F1B3D;
 }
 .campaign-product-users{
   width: 100%;
@@ -12807,7 +12816,7 @@ input[type=file]::file-selector-button:hover {
   margin-bottom: 2%;
 }
 .campaign-product-users a{
-  color: #0A47E4;
+  color: #0F1B3D;
   /* text-decoration: none; */
 }
 .campaign-status{
@@ -12845,7 +12854,7 @@ input[type=file]::file-selector-button:hover {
 
 /* Buttons and links */
 #payment-modal button {
-  background-color: #0A47E4;
+  background-color: #0F1B3D;
   font-family: Arial, sans-serif;
   color: #ffffff;
   border-radius: 4px;
@@ -12895,7 +12904,7 @@ input[type=file]::file-selector-button:hover {
 .spinner:before {
   width: 10.4px;
   height: 20.4px;
-  background-color: #0A47E4;
+  background-color: #0F1B3D;
   border-radius: 20.4px 0 0 20.4px;
   top: -0.2px;
   left: -0.2px;
@@ -12907,7 +12916,7 @@ input[type=file]::file-selector-button:hover {
 .spinner:after {
   width: 10.4px;
   height: 10.2px;
-  background-color: #0A47E4;
+  background-color: #0F1B3D;
   border-radius: 0 10.2px 10.2px 0;
   top: -0.1px;
   left: 10.2px;
@@ -13051,7 +13060,7 @@ input[type=file]::file-selector-button:hover {
 .link-campaign-description  .link-campaign-url {
   float: right;
   text-decoration: none;
-  color: #0A47E4;
+  color: #0F1B3D;
 }
 
 .link-metrics-row {
@@ -13127,7 +13136,7 @@ input[type=file]::file-selector-button:hover {
   .link-campaign-description  .link-campaign-url {
     float: left;
     text-decoration: none;
-    color: #0A47E4;
+    color: #0F1B3D;
   }
 
   .campaign-details-section {
@@ -13152,7 +13161,7 @@ input[type=file]::file-selector-button:hover {
 }
 .cash-out {
   font-family: "SFPro-Heavy";
-  background-color: #0A47E4;
+  background-color: #0F1B3D;
   color: white;
   margin-left: 30%;
   margin-right: 30%;
@@ -13199,7 +13208,7 @@ input[type=file]::file-selector-button:hover {
 }
 
 .connect-social-media {
-  background-color: #0a47e4;
+  background-color: #0F1B3D;
   color: white;
   font-family: "SFPro-Bold";
   text-align: center;
@@ -13402,7 +13411,7 @@ input[type=file]::file-selector-button:hover {
 
 #save-button {
   border-radius: 5px;
-  background-color: #0A47E4;
+  background-color: #0F1B3D;
   padding-left: 5%;
   padding-right: 5%;
   padding-top: 2%;
