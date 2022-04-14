@@ -82,7 +82,7 @@ var page_2 = [
         "class": "login-sign-up-input",
         "type": "select",
         "name": "categories",
-        "options": ["Beauty", "Fashion", "Apps", "Music", "Food & Beverage", "Lifestyle", "Other"],
+        "options": ["Beauty", "Wellness", "Fashion", "Apps", "Music", "Food & Beverage", "Lifestyle", "Other"],
         "placeholder": "Select One...",
         "value": variables["categories"]
     },
