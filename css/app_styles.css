@@ -12176,8 +12176,12 @@ footer a:hover, footer a:active, footer a:focus {
   .login-signup-logo img {
     width: 50%;
   }
-  .index-landing-image {
+  .index-landing-image-wrapper .logo {
     width: 80%;
+    text-align: center;
+  }
+  .index-landing-image {
+    width: 50%;
     text-align: center;
   }
 }
@@ -13015,7 +13019,7 @@ input[type=file]::file-selector-button:hover {
   }
   .container {
     padding-left: 5%;
-    padding-right: 5%;
+    padding-right: 0%;
   }
   .login-sign-up-input {
     width: 100%;
