@@ -89,7 +89,7 @@ var page_2 = [
 ]
 var page_3 = [
     {
-        "title": "Contact Email",
+        "title": "Public Contact Email",
         "class": "login-sign-up-input",
         "type": "text",
         "name": "contact",
