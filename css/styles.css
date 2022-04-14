@@ -11697,9 +11697,13 @@ footer a:hover, footer a:active, footer a:focus {
 }
 
 .gradient-text {
-  background-image: linear-gradient(to right, #295FE8, #FD955B);
+  background: linear-gradient(to right, #295FE8, #FD955B);
+  background: -moz-linear-gradient(#295FE8, #FD955B); /* FF 3.6+ */  
+  background: -ms-linear-gradient(#295FE8, #FD955B); /* IE10 */  
+  background: -webkit-linear-gradient(to right, #295FE8, #FD955B); /* Safari 5.1+, Chrome 10+ */  
+  background: -o-linear-gradient(#295FE8, #FD955B); /* Opera 11.10 */  
   -webkit-background-clip: text;
-  color: transparent;
+  color: rgba(255,255,255,0);
 }
 
 .customer-logos {
