@@ -192,9 +192,18 @@ async function get_campaign(campaign_id) {
         campaign_data = data
     });
     variables = campaign_data.campaigns[0]
+    variables.expiration = parse_date(variables.expiration)
     variables.budget = variables.budget / 100
     variables.max_payout = variables.max_payout / 100
     variables.primary_image = {"filename": variables.primary_image || "", "path": variables.primary_image || ""}
+}
+
+function parse_date(dt) {
+    var pieces = dt.split("/")
+    var year = pieces[2]
+    var month = pieces[0]
+    var day = pieces[1]
+    return `${year}-${month}-${day}`
 }
 
 const queryString = window.location.search;
