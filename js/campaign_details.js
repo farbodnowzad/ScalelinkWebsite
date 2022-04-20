@@ -161,7 +161,7 @@ function show(campaign_data, links_data) {
             var request_button = document.getElementsByClassName("get-link")[0]
             request_button.style.backgroundColor = "#0F1B3D"
             request_button.style.fontFamily = "SFPro-Bold"
-            request_button.innerHTML = `<img class="btn-icon icon" src="../assets/img/instagram_icon.png" /> Connect Social Media to Continue`
+            request_button.innerHTML = `<img class="btn-icon icon" src="../assets/img/instagram_icon.png" /> Connect Socials Before Requesting`
             $(document).on("click", ".get-link", function() {
                 window.open("account.html", '_blank');
             })
