@@ -23,8 +23,7 @@ var variables = {
     "age": [],
     "regions": [],
     "min_visitors": "",
-    "max_payout": "",
-    "secondary_attachments": [],
+    "max_payout": ""
 }
 
 function show_payment_modal() {
@@ -39,8 +38,8 @@ function show_payment_modal() {
 
 async function create_campaign(parameters) {
     var path = "https://sclnk.app/campaigns";
-    if (variables.campaign_id) {
-        return {"campaign_id": variables.campaign_id}
+    if (variables._id) {
+        return {"campaign_id": variables._id}
     }
     document.querySelector("#main-action-button").disabled = true;
     document.querySelector("#main-action-button-spinner").classList.remove("hidden");
@@ -50,13 +49,12 @@ async function create_campaign(parameters) {
     $.each(parameters, function(key, value) {
         if (["primary_image"].includes(key)) {
             if (variables[key]["path"]) {
-                formData.append(key, variables[key]["path"])
+                formData.set(key, variables[key]["path"])
             }
         } else {
-            formData.append(key, value)
+            formData.set(key, value)
         }
     });
-    console.log(parameters)
     const response = await $.ajax({
         url: path,
         data: formData,
@@ -72,18 +70,15 @@ async function create_campaign(parameters) {
 
 async function save_campaign(parameters) {
     var path = "https://sclnk.app/campaigns/save";
-    if (variables.campaign_id) {
-        return {"campaign_id": variables.campaign_id}
-    }
 
     var formData = new FormData()
     $.each(parameters, function(key, value) {
         if (["primary_image"].includes(key)) {
             if (variables[key]["path"]) {
-                formData.append(key, variables[key]["path"])
+                formData.set(key, variables[key]["path"])
             }
         } else {
-            formData.append(key, value)
+            formData.set(key, value)
         }
     });
     const response = await $.ajax({
@@ -101,7 +96,7 @@ async function save_campaign(parameters) {
 function activate_campaign(path, parameters) {
     var formData = new FormData()
     $.each(parameters, function(key, value) {
-        formData.append(key, value)
+        formData.set(key, value)
     });
     $.ajax({
         url: path,
@@ -132,7 +127,7 @@ async function initialize_payment_intent(campaign_id) {
     var parameters = {"budget": variables.budget, "campaign_id": campaign_id, "business_id": variables.business_id};
     var formData = new FormData()
     $.each(parameters, function(key, value) {
-        formData.append(key, value)
+        formData.set(key, value)
     });
     var path = "https://sclnk.app/payments/create_payment_intent"
     const response = await $.ajax({
@@ -165,7 +160,7 @@ async function handleSubmit(e) {
         redirect: "if_required",
         confirmParams: {
             // Make sure to change this to your payment completion page
-            return_url: "https://scalelink.xyz",
+            return_url: "https://scalelink.xyz/business",
         },
     }).then(function(result) {
         setLoading(false);
@@ -193,6 +188,8 @@ async function get_campaign(campaign_id) {
     });
     variables = campaign_data.campaigns[0]
     variables.expiration = parse_date(variables.expiration)
+    variables.requires_approval = parse_yes_no(variables.requires_approval)
+    variables.requires_product = parse_yes_no(variables.requires_product)
     variables.budget = variables.budget / 100
     variables.max_payout = variables.max_payout / 100
     variables.primary_image = {"filename": variables.primary_image || "", "path": variables.primary_image || ""}
@@ -205,6 +202,25 @@ function parse_date(dt) {
     var day = pieces[1]
     return `${year}-${month}-${day}`
 }
+
+function check_date(dt) {
+    var pieces = dt.split("-")
+    var year = pieces[0]
+    var month = pieces[1]
+    var day = pieces[2]
+
+    if (year.length != 4 || !(parseInt(month) >= 1 && parseInt(month) <= 12) || !(parseInt(day) >= 1 && parseInt(day) <= 31)) {
+        console.log('false')
+        return false
+    } else {
+        return true;
+    }
+}
+
+function parse_yes_no(val) {
+    var new_val = val == true ? 'yes' : 'no'
+    return new_val
+ }
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -268,6 +284,10 @@ next_button.onclick = function () {
         var error = 0;
         current_keys.forEach(key_obj => {
             if (key_obj.type == 'file' && !variables[key_obj.name]['path']) {
+                console.log(key_obj.name)
+                error++;
+            }
+            if (key_obj.name == 'expiration' && !check_date(variables.expiration)) {
                 console.log(key_obj.name)
                 error++;
             }
