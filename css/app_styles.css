@@ -12632,6 +12632,7 @@ input[type=file]::file-selector-button:hover {
   text-align: center;
   line-height: 50px;
   margin-bottom: 2%;
+  cursor: pointer;
   /* vertical-align: middle; */
 }
 .top-performers-row img{

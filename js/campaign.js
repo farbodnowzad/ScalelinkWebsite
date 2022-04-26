@@ -1,6 +1,7 @@
 import {Auth} from './auth.js'
 const auth = new Auth();
 var internationalNumberFormat = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'})
+import {capitalize} from './helpers.js'
 
 async function get_overview(key, value) {
     var api_url = "https://sclnk.app/campaigns"
@@ -144,7 +145,12 @@ function create_campaign_metrics_bottom(campaign_metrics, campaign, users) {
     var top_links = campaign_metrics.top_links
     for (let top_link of top_links) {
         var user = users.filter(user => user._id == top_link.user_id)[0]
-        top_performers_section += `<div class="top-performers-row">
+        var date_of_birth = user.date_of_birth;
+        var dob_split = date_of_birth.split("/") 
+        const get_age = dob_split => Math.floor((new Date() - new Date(`${dob_split[2]}/${dob_split[0]}/${dob_split[1]}`).getTime()) / 3.15576e+10)
+        var age = get_age(dob_split)
+        top_performers_section += `<div class="top-performers-row" full_name="${user.full_name}" gender="${user.gender}" age="${age}" city="${user.address.city}" \
+        state="${user.address.state}" country="${user.address.country}" instagram="${user.social_accounts.instagram_username}" twitter="${user.social_accounts.twitter_username}">
                 <img class="top-performers-image" src="${user.profile_image}"/>
                 <div class="top-performers-full-name">${user.full_name}</div>
                 <div class="top-performers-value">${top_link.unique_visitors}</div>
@@ -230,4 +236,45 @@ function update_campaign(path, parameters) {
 
 $(document).on("click", "#expire-campaign", function() {
     update_campaign("https://sclnk.app/campaigns/expire", {"_id": campaign_id, "status": "expired"})
+})
+
+ // Get the modal
+ var modal = document.getElementById("user_modal");
+ var span = document.getElementsByClassName("close")[0];
+ span.onclick = function() {
+     modal.style.display = "none";
+ }
+ // When the user clicks anywhere outside of the modal, close it
+ window.onclick = function(event) {
+   if (event.target == modal) {
+     modal.style.display = "none";
+   }
+ }
+$(document).on("click", ".top-performers-row", function() {
+    var profile_image = this.querySelectorAll(".top-performers-image")[0].src;
+    var att = this.attributes;
+    var full_name = att["full_name"].value;
+    var gender = capitalize(att["gender"].value)
+    var age = att["age"].value;
+    var location = `${capitalize(att["city"].value)}, ${capitalize(att["state"].value)}`
+    var country = capitalize(att["country"].value)
+    var instagram_username = att["instagram"].value
+    var twitter_username = att["twitter"].value
+    document.getElementsByClassName("modal-image")[0].src = profile_image;
+    document.getElementsByClassName("modal-info-name")[0].innerHTML = full_name;
+    document.getElementsByClassName("modal-info-gender")[0].innerHTML = gender;
+    document.getElementsByClassName("modal-info-age")[0].innerHTML = age;
+    document.getElementsByClassName("modal-info-location")[0].innerHTML = location;
+    document.getElementsByClassName("modal-info-country")[0].innerHTML = country;
+    if (instagram_username != 'null' &&  instagram_username != 'undefined' && instagram_username) {
+        document.getElementsByClassName("modal-info-instagram-link")[0].href = `https://instagram.com/${instagram_username}`;
+    } else {
+        document.getElementsByClassName("modal-info-instagram")[0].style.display = 'none';
+    }
+    if (twitter_username != 'null' && twitter_username != 'undefined' && twitter_username) {
+        document.getElementsByClassName("modal-info-twitter-link")[0].href = `https://twitter.com/${twitter_username}`;
+    } else {
+        document.getElementsByClassName("modal-info-twitter")[0].style.display = 'none';
+    }
+    modal.style.display = "block";
 })
