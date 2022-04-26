@@ -52,13 +52,17 @@ function show(data) {
         var dob_split = date_of_birth.split("/") 
         const get_age = dob_split => Math.floor((new Date() - new Date(`${dob_split[2]}/${dob_split[0]}/${dob_split[1]}`).getTime()) / 3.15576e+10)
         var age = get_age(dob_split)
+        var ig_username = user.social_accounts.instagram_username || ""
+        ig_username = ig_username.slice()
+        var twitter_username = user.social_accounts.twitter_username || ""
+        twitter_username = twitter_username.slice()
         row += `<div class="notifications-row">
                     <div class="notifications-clickable">
                         <div class="notifications-image-wrapper">
                             <img class="notifications-image" src="${user.profile_image}"/>
                         </div> 
                         <div class="notifications-description" full_name="${user.full_name}" gender="${user.gender}" age="${age}" city="${user.address.city}" \
-                            state="${user.address.state}" country="${user.address.country}" instagram="${user.social_accounts.instagram_username}" twitter="${user.social_accounts.twitter_username}">
+                            state="${user.address.state}" country="${user.address.country}" instagram="${ig_username}" twitter="${twitter_username}">
                             <div class="notifications-user-text">${user.full_name}${notification_text}</div><br>
                             <a class="notificaiton-campaign-link" href="campaign.html?id=${campaign._id}"><div class="notifications-campaign-name">${campaign.title}</div></a>
                         </div>
@@ -100,17 +104,19 @@ function show(data) {
         document.getElementsByClassName("modal-info-age")[0].innerHTML = age;
         document.getElementsByClassName("modal-info-location")[0].innerHTML = location;
         document.getElementsByClassName("modal-info-country")[0].innerHTML = country;
-        document.getElementById("ig-image").innerHTML += ` ${instagram_username}`
-        document.getElementById("twitter-image").innerHTML += ` ${twitter_username}`
+        document.getElementById("ig-image").innerHTML = `<img src="../assets/img/ig_logo.png"/> ${instagram_username}`
+        document.getElementById("twitter-image").innerHTML = `<img src="../assets/img/twitter_logo.png"/> ${twitter_username}`
         if (instagram_username != 'null' &&  instagram_username != 'undefined' && instagram_username) {
+            document.getElementsByClassName("modal-info-instagram")[0].style.visibility = 'visible';
             document.getElementsByClassName("modal-info-instagram-link")[0].href = `https://instagram.com/${instagram_username}`;
         } else {
-            document.getElementsByClassName("modal-info-instagram")[0].style.display = 'none';
+            document.getElementsByClassName("modal-info-instagram")[0].style.visibility = 'hidden';
         }
         if (twitter_username != 'null' && twitter_username != 'undefined' && twitter_username) {
+            document.getElementsByClassName("modal-info-twitter")[0].style.visibility = 'visible';
             document.getElementsByClassName("modal-info-twitter-link")[0].href = `https://twitter.com/${twitter_username}`;
         } else {
-            document.getElementsByClassName("modal-info-twitter")[0].style.display = 'none';
+            document.getElementsByClassName("modal-info-twitter")[0].style.visibility = 'hidden';
         }
         modal.style.display = "block";
     })

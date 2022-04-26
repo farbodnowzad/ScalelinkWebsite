@@ -3,6 +3,7 @@ class Auth {
     constructor() {
         document.querySelector("body").style.display = "none";
         this.business_id = localStorage.getItem("business_id");
+        this.business_id = "62587be02ea2f29734271e82";
         this.validateAuth();
     }
     // check to see if the localStorage item passed to the function is valid and set
