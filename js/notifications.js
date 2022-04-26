@@ -100,6 +100,8 @@ function show(data) {
         document.getElementsByClassName("modal-info-age")[0].innerHTML = age;
         document.getElementsByClassName("modal-info-location")[0].innerHTML = location;
         document.getElementsByClassName("modal-info-country")[0].innerHTML = country;
+        document.getElementById("ig-image").innerHTML += ` ${instagram_username}`
+        document.getElementById("twitter-image").innerHTML += ` ${twitter_username}`
         if (instagram_username != 'null' &&  instagram_username != 'undefined' && instagram_username) {
             document.getElementsByClassName("modal-info-instagram-link")[0].href = `https://instagram.com/${instagram_username}`;
         } else {
