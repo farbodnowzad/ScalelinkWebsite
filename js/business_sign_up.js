@@ -121,6 +121,7 @@ next_button.onclick = function () {
                     "app": "business",
                 };
                 amplitude.getInstance().logEvent(event, eventProperties);
+                fbq('track', 'CompleteRegistration');
                 window.location.replace("manage_campaigns.html")
             } else {
                 business_sign_up.setStatus(
