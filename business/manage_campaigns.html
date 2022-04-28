@@ -97,6 +97,49 @@
         </nav>
         <!-- Basic features section-->
         <section>
+            <div id="onboarding_modal" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <div class="modal-info">
+                        <div class="modal-info-row">
+                            <h3>Welcome to Scalelink</h3>
+                        </div>
+                        <br>
+                        <div id="onboarding-step-1">
+                            <div class="modal-info-row">
+                                <img src="../assets/img/onboarding_previews/new_campaign_onboarding_preview.png" />
+                            </div><br>
+                            <div class="modal-info-row">Create a campaign through the "New Campaigns" tab.</div>
+                            <button class="main-action-button" onclick="getElementById('onboarding-step-1').style = 'display: none;';
+                                getElementById('onboarding-step-2').style = 'display: block;'">Next</button>
+                        </div>
+                        <div id="onboarding-step-2" style="display: none;">
+                            <div class="modal-info-row">
+                                <img src="../assets/img/onboarding_previews/requires_product_onboarding_preview.png" />
+                            </div><br>
+                            <div class="modal-info-row">If you plan to send product to creators, make sure to set the "Requires Product" attribute.</div>
+                            <button class="main-action-button" onclick="getElementById('onboarding-step-2').style = 'display: none;';
+                                getElementById('onboarding-step-3').style = 'display: block;'">Next</button>
+                        </div>
+                        <div id="onboarding-step-3" style="display: none;">
+                            <div class="modal-info-row">
+                                <img src="../assets/img/onboarding_previews/accept_creator_onboarding_preview.png" />
+                            </div><br>
+                            <div class="modal-info-row">Accept creators when they apply to your campaign. Download their addresses through the "Manage Camapaigns" tab.</div>
+                            <button class="main-action-button" onclick="getElementById('onboarding-step-3').style = 'display: none;';
+                                getElementById('onboarding-step-4').style = 'display: block;'">Next</button>
+                        </div>
+                        <div id="onboarding-step-4" style="display: none;">
+                            <div class="modal-info-row">
+                                <img src="../assets/img/onboarding_previews/unique_visitors_onboarding_preview.png" />
+                            </div><br>
+                            <div class="modal-info-row">Only pay for clicks that creators generate to your website. Expire your campaign anytime to get refunded.</div>
+                            <button id="complete-onboarding-btn" class="main-action-button" onclick="getElementById('onboarding_modal').style = 'display: none;';">Get Started</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="container px-5">
                 <div class="mobile-warning"><img src="../assets/img/scalelink_logo.png"/><br><br>For best results, please view on desktop.<br>
                     <div class="logout"><a href="#">Go back.</a></div>
@@ -126,7 +169,5 @@
             };
             amplitude.getInstance().logEvent(event, eventProperties);
         </script>
-        
-       
     </body>
 </html>

@@ -1,6 +1,8 @@
 import {Auth} from './auth.js'
 const auth = new Auth();
 
+var business_id = auth.business_id;
+
 async function getapi(api_url, parameters) {
     var formData= new FormData();
     // append parameters to url
@@ -19,11 +21,59 @@ async function getapi(api_url, parameters) {
         }
     });
 }
+
+let business;
+async function get_business(business_id) {
+    var api_url = "https://sclnk.app/businesses"
+    var url = new URL(api_url)
+    url.searchParams.append('_id', business_id)
+    // Storing response
+    $.get(url.href, function(data){
+        business = data.businesses[0];
+        if (!business.seen_onboarding) {
+            modal.style.display = "block";
+        }
+    });
+}
+
+async function complete_onboarding() {
+    var formData= new FormData();
+    formData.append('_id', business_id)
+    // append parameters to url
+    await $.ajax({
+        url: "https://sclnk.app/businesses/seen_onboarding",
+        data: formData,
+        processData: false,
+        contentType: false,
+        type: 'POST'
+    });
+}
+
 // var api_url = "https://sclnk.app/campaigns"
 var api_url = "https://sclnk.app/campaigns/manage"
-var business_id = auth.business_id;;
 
 getapi(api_url, {"business_id": business_id, "status": {"$in": ["active", "expired", "pending", "test"]}, "sort": "last_updated"});
+get_business(business_id);
+
+var modal = document.getElementById("onboarding_modal");
+var span = document.getElementsByClassName("close")[0];
+span.onclick = function() {
+    modal.style.display = "none";
+    complete_onboarding();
+}
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+$(document).on("click", ".notifications-clickable", function() {
+    modal.style.display = "block";
+})
+
+$(document).on("click", "#complete-onboarding-btn", function() {
+    complete_onboarding();
+})
 
 function show(data) {
     var results = data.campaigns
