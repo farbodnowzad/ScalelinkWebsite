@@ -122,7 +122,6 @@ next_button.onclick = function () {
                 };
                 amplitude.getInstance().logEvent(event, eventProperties);
                 fbq('track', 'CompleteRegistration');
-                window.lintrk('track', { conversion_id: 7579956 });
                 window.location.replace("manage_campaigns.html")
             } else {
                 business_sign_up.setStatus(
