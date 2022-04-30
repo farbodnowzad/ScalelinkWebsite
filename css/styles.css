@@ -11593,6 +11593,23 @@ footer a:hover, footer a:active, footer a:focus {
     padding-bottom: 5rem;
   }
 }
+
+#crypto-image {
+  width: 25%;
+}
+#headline-subtext {
+  font-size: 1.4rem;
+}
+@media (max-width: 576px) {
+  #crypto-image {
+    width: 50%;
+    margin-bottom: 0.5vh;
+  }
+  #headline-subtext {
+    font-size: 1.2rem;
+  }
+}
+
 .masthead .masthead-device-mockup {
   display: flex;
   align-items: center;
